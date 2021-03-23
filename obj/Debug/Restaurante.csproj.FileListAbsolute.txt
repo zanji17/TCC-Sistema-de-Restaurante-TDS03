@@ -1,0 +1,12 @@
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\bin\Debug\Restaurante.mdf
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\bin\Debug\Restaurante_log.ldf
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\bin\Debug\Restaurante.exe.config
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\bin\Debug\Restaurante.exe
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\bin\Debug\Restaurante.pdb
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\obj\Debug\Restaurante.csprojAssemblyReference.cache
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\obj\Debug\Restaurante.FormPratosProdutos.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\obj\Debug\Restaurante.Properties.Resources.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\obj\Debug\Restaurante.csproj.GenerateResource.cache
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\obj\Debug\Restaurante.csproj.CoreCompileInputs.cache
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\obj\Debug\Restaurante.exe
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\obj\Debug\Restaurante.pdb
