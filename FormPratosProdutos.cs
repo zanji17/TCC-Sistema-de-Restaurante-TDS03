@@ -22,7 +22,35 @@ namespace Restaurante
         private void FormPratosProdutos_Load(object sender, EventArgs e)
         {
             con.Open();
-            String 
+            String ctg = "SELECT DISTINCT Tipo FROM Ingredientes";
+            SqlCommand cmd = new SqlCommand(ctg, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            int linhas = dt.Rows.Count;
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < linhas; i++)
+                {
+                    clbCategoria.Items.Add(dt.Rows[i]["Tipo"].ToString());
+                }
+            }
+            con.Close();
+            con.Open();
+            String ingred = "SELECT nome FROM Ingredientes ORDER BY nome";
+            SqlCommand cmdingred = new SqlCommand(ingred, con);
+            SqlDataAdapter daingred = new SqlDataAdapter(cmdingred);
+            DataTable dtingred = new DataTable();
+            daingred.Fill(dtingred);
+            int linhasingred = dtingred.Rows.Count;
+            if (dtingred.Rows.Count > 0)
+            {
+                for (int i = 0; i < linhasingred; i++)
+                {
+                    clbIngredientes.Items.Add(dtingred.Rows[i]["nome"].ToString());
+                }
+            }
+            con.Close();
         }
     }
 }
