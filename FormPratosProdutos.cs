@@ -52,5 +52,15 @@ namespace Restaurante
             }
             con.Close();
         }
+
+        private void clbCategoria_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            clbIngredientes.Items.Clear();
+            con.Open();
+            String tipo = "SELECT nome FROM Ingredientes WHERE Tipo = @tipo ORDER BY nome";
+            SqlCommand cmd = new SqlCommand(tipo, con);
+            cmd.Parameters.AddWithValue("@tipo", SqlDbType.NChar).Value = clbCategoria.GetItemChecked(0);
+
+        }
     }
 }

@@ -70,6 +70,7 @@ namespace Restaurante
             this.clbCategoria.Name = "clbCategoria";
             this.clbCategoria.Size = new System.Drawing.Size(115, 109);
             this.clbCategoria.TabIndex = 2;
+            this.clbCategoria.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbCategoria_ItemCheck);
             // 
             // lblTipo
             // 
