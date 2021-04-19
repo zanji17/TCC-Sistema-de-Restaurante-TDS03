@@ -65,6 +65,7 @@ namespace Restaurante
             // 
             // clbCategoria
             // 
+            this.clbCategoria.CheckOnClick = true;
             this.clbCategoria.FormattingEnabled = true;
             this.clbCategoria.Location = new System.Drawing.Point(12, 113);
             this.clbCategoria.Name = "clbCategoria";
@@ -113,6 +114,7 @@ namespace Restaurante
             this.clbIngredientes.Name = "clbIngredientes";
             this.clbIngredientes.Size = new System.Drawing.Size(115, 109);
             this.clbIngredientes.TabIndex = 8;
+            this.clbIngredientes.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbIngredientes_ItemCheck);
             // 
             // lbIngredientes
             // 
@@ -130,10 +132,11 @@ namespace Restaurante
             this.btnCad.TabIndex = 10;
             this.btnCad.Text = "Cadastrar";
             this.btnCad.UseVisualStyleBackColor = true;
+            this.btnCad.Click += new System.EventHandler(this.btnCad_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(267, 148);
+            this.btnEdit.Location = new System.Drawing.Point(267, 126);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 11;
@@ -142,7 +145,7 @@ namespace Restaurante
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(267, 199);
+            this.btnDel.Location = new System.Drawing.Point(267, 155);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 12;
@@ -151,7 +154,7 @@ namespace Restaurante
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(267, 257);
+            this.btnSair.Location = new System.Drawing.Point(267, 184);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(75, 23);
             this.btnSair.TabIndex = 13;
