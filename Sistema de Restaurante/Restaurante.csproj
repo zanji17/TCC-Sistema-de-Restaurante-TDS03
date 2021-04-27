@@ -61,16 +61,134 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormRegistroPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistroPedido.Designer.cs">
+      <DependentUpon>FormRegistroPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAtendente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAtendente.Designer.cs">
+      <DependentUpon>FormAtendente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAtendimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAtendimento.Designer.cs">
+      <DependentUpon>FormAtendimento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHomeGerente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHomeGerente.Designer.cs">
+      <DependentUpon>FormHomeGerente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDetalhesPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDetalhesPedido.Designer.cs">
+      <DependentUpon>FormDetalhesPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIngredientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIngredientes.designer.cs">
+      <DependentUpon>FormIngredientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRelatorioPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRelatorioPedidos.designer.cs">
+      <DependentUpon>FormRelatorioPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistrarPrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistrarPrato.designer.cs">
+      <DependentUpon>FormRegistrarPrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAcesso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAcesso.Designer.cs">
+      <DependentUpon>FormAcesso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHomeCaixa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHomeCaixa.Designer.cs">
+      <DependentUpon>FormHomeCaixa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHomeAtendente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHomeAtendente.Designer.cs">
+      <DependentUpon>FormHomeAtendente.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPratosProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPratosProdutos.Designer.cs">
       <DependentUpon>FormPratosProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormHomeCozinha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHomeCozinha.Designer.cs">
+      <DependentUpon>FormHomeCozinha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PratosProdutos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAtendente.resx">
+      <DependentUpon>FormAtendente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAtendimento.resx">
+      <DependentUpon>FormAtendimento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHomeGerente.resx">
+      <DependentUpon>FormHomeGerente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDetalhesPedido.resx">
+      <DependentUpon>FormDetalhesPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIngredientes.resx">
+      <DependentUpon>FormIngredientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistroPedido.resx">
+      <DependentUpon>FormRegistroPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRelatorioPedidos.resx">
+      <DependentUpon>FormRelatorioPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrarPrato.resx">
+      <DependentUpon>FormRegistrarPrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAcesso.resx">
+      <DependentUpon>FormAcesso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHomeAtendente.resx">
+      <DependentUpon>FormHomeAtendente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHomeCaixa.resx">
+      <DependentUpon>FormHomeCaixa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPratosProdutos.resx">
       <DependentUpon>FormPratosProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHomeCozinha.resx">
+      <DependentUpon>FormHomeCozinha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,6 +198,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -95,6 +214,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Icon Acesso.png" />
+    <None Include="Resources\Icon Atendente.png" />
+    <None Include="Resources\Icon Atendimento.png" />
+    <None Include="Resources\Icon CadAtendente.png" />
+    <None Include="Resources\Icon Caixa.png" />
+    <None Include="Resources\icon Cozinha.png" />
+    <None Include="Resources\Icon Ingredientes.png" />
+    <None Include="Resources\Icon Pedido.png" />
+    <None Include="Resources\Icon Pratos.png" />
     <Content Include="Restaurante.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
