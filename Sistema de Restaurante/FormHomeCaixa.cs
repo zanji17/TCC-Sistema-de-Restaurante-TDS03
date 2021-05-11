@@ -12,25 +12,27 @@ namespace Restaurante
 {
     public partial class FormHomeCaixa : Form
     {
-        public FormHomeCaixa()
+        public int IdCaixa { get; set; }
+
+        public FormHomeCaixa(int id)
         {
+            IdCaixa = id;
             InitializeComponent();
         }
 
         private void FormHomeCaixa_Load(object sender, EventArgs e)
         {
-            dgvPedidosAbertos.Columns.Add("ID", "ID");
-            dgvPedidosAbertos.Columns.Add("Mesa_Delivery", "Mesa/Delivery");
-            dgvPedidosAbertos.Columns.Add("Data", "Data");
-            dgvPedidosAbertos.Columns.Add("Status", "Status");
+            Pedidos pedidos = new Pedidos();
+            List<Pedidos> pedido = pedidos.PedidosCaixa();
+            dgvPedidosAbertos.DataSource = pedido;
+        }
 
-            dgvRegistroPedido.Columns.Add("ID", "ID");
-            dgvRegistroPedido.Columns.Add("Pratos_Produtos", "Pratos/Produtos");
-            dgvRegistroPedido.Columns.Add("Quantidade", "Quantidade");
-            dgvRegistroPedido.Columns.Add("Adicional", "Adicional");
-            dgvRegistroPedido.Columns.Add("Retirar", "Retirar");
-            dgvRegistroPedido.Columns.Add("Data", "Data");
-            dgvRegistroPedido.Columns.Add("Status", "Status");
+        private void dgvPedidosAbertos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RegistroPedido registro = new RegistroPedido();
+            DataGridViewRow row = this.dgvPedidosAbertos.Rows[e.RowIndex];
+            List<RegistroPedido> lista = registro.listaPratos((int)row.Cells[0].Value);
+            dgvRegistroPedido.DataSource = lista;
         }
     }
 }

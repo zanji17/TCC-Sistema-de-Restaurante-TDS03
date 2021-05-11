@@ -61,6 +61,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acesso.cs" />
+    <Compile Include="FormIngrediente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIngrediente.Designer.cs">
+      <DependentUpon>FormIngrediente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAcesso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAcesso.Designer.cs">
+      <DependentUpon>FormAcesso.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRegistroPedido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,12 +104,6 @@
     <Compile Include="FormDetalhesPedido.Designer.cs">
       <DependentUpon>FormDetalhesPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormIngredientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormIngredientes.designer.cs">
-      <DependentUpon>FormIngredientes.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormRelatorioPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,12 +115,6 @@
     </Compile>
     <Compile Include="FormRegistrarPrato.designer.cs">
       <DependentUpon>FormRegistrarPrato.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormAcesso.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAcesso.Designer.cs">
-      <DependentUpon>FormAcesso.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
@@ -145,9 +146,16 @@
     <Compile Include="FormHomeCozinha.Designer.cs">
       <DependentUpon>FormHomeCozinha.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ingrediente.cs" />
+    <Compile Include="Login.cs" />
+    <Compile Include="Pedidos.cs" />
     <Compile Include="PratosProdutos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistroPedido.cs" />
+    <EmbeddedResource Include="FormAcesso.resx">
+      <DependentUpon>FormAcesso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAtendente.resx">
       <DependentUpon>FormAtendente.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,8 +168,8 @@
     <EmbeddedResource Include="FormDetalhesPedido.resx">
       <DependentUpon>FormDetalhesPedido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormIngredientes.resx">
-      <DependentUpon>FormIngredientes.cs</DependentUpon>
+    <EmbeddedResource Include="FormIngrediente.resx">
+      <DependentUpon>FormIngrediente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistroPedido.resx">
       <DependentUpon>FormRegistroPedido.cs</DependentUpon>
@@ -171,9 +179,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistrarPrato.resx">
       <DependentUpon>FormRegistrarPrato.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAcesso.resx">
-      <DependentUpon>FormAcesso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

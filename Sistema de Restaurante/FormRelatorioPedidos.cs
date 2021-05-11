@@ -19,16 +19,15 @@ namespace Restaurante
 
         private void FormRelatorioPedidos_Load(object sender, EventArgs e)
         {
-            dgvPedidos.Columns.Add("ID", "ID");
-            dgvPedidos.Columns.Add("Cliente", "Cliente");
-            dgvPedidos.Columns.Add("Data", "Data");
-            dgvPedidos.Columns.Add("Status", "Status");
-            dgvPedidos.Columns.Add("Atendente", "Atendente");
+            Pedidos pedidos = new Pedidos();
+            List<Pedidos> pedido = pedidos.PedidosRelatorio();
+            dgvPedidos.DataSource = pedido;
         }
 
-        private void btnVerDetalhes_Click(object sender, EventArgs e)
+        private void dgvPedidos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            FormDetalhesPedido detalhespedido = new FormDetalhesPedido();
+            DataGridViewRow row = this.dgvPedidos.Rows[e.RowIndex];
+            FormDetalhesPedido detalhespedido = new FormDetalhesPedido((int)row.Cells[0].Value);
             detalhespedido.Show();
         }
     }

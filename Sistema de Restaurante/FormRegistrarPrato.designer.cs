@@ -30,19 +30,21 @@ namespace Restaurante
         private void InitializeComponent()
         {
             this.lblAdicional = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.clbAdicional = new System.Windows.Forms.CheckedListBox();
+            this.clbRetirar = new System.Windows.Forms.CheckedListBox();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.lblRetirar = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtTipo = new System.Windows.Forms.TextBox();
             this.btnSair = new System.Windows.Forms.Button();
             this.lblTipo = new System.Windows.Forms.Label();
             this.lblPratoProduto = new System.Windows.Forms.Label();
             this.lblQualidade = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtOBS = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbPP = new System.Windows.Forms.ComboBox();
+            this.nQuantidade = new System.Windows.Forms.NumericUpDown();
+            this.lblPedido = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.nQuantidade)).BeginInit();
             this.SuspendLayout();
             // 
             // lblAdicional
@@ -53,23 +55,22 @@ namespace Restaurante
             this.lblAdicional.Size = new System.Drawing.Size(50, 13);
             this.lblAdicional.TabIndex = 0;
             this.lblAdicional.Text = "Adicional";
-            this.lblAdicional.Click += new System.EventHandler(this.label1_Click);
             // 
-            // checkedListBox1
+            // clbAdicional
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(118, 221);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
-            this.checkedListBox1.TabIndex = 1;
+            this.clbAdicional.FormattingEnabled = true;
+            this.clbAdicional.Location = new System.Drawing.Point(118, 221);
+            this.clbAdicional.Name = "clbAdicional";
+            this.clbAdicional.Size = new System.Drawing.Size(120, 94);
+            this.clbAdicional.TabIndex = 1;
             // 
-            // checkedListBox2
+            // clbRetirar
             // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(297, 221);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(120, 94);
-            this.checkedListBox2.TabIndex = 2;
+            this.clbRetirar.FormattingEnabled = true;
+            this.clbRetirar.Location = new System.Drawing.Point(297, 221);
+            this.clbRetirar.Name = "clbRetirar";
+            this.clbRetirar.Size = new System.Drawing.Size(120, 94);
+            this.clbRetirar.TabIndex = 2;
             // 
             // btnConfirmar
             // 
@@ -79,6 +80,7 @@ namespace Restaurante
             this.btnConfirmar.TabIndex = 3;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // lblRetirar
             // 
@@ -89,26 +91,14 @@ namespace Restaurante
             this.lblRetirar.TabIndex = 4;
             this.lblRetirar.Text = "Retirar";
             // 
-            // textBox1
+            // txtTipo
             // 
-            this.textBox1.Location = new System.Drawing.Point(228, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(189, 20);
-            this.textBox1.TabIndex = 5;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(228, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(189, 20);
-            this.textBox2.TabIndex = 6;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(228, 85);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(189, 20);
-            this.textBox3.TabIndex = 7;
+            this.txtTipo.Enabled = false;
+            this.txtTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTipo.Location = new System.Drawing.Point(228, 33);
+            this.txtTipo.Name = "txtTipo";
+            this.txtTipo.Size = new System.Drawing.Size(189, 20);
+            this.txtTipo.TabIndex = 6;
             // 
             // btnSair
             // 
@@ -147,13 +137,13 @@ namespace Restaurante
             this.lblQualidade.TabIndex = 11;
             this.lblQualidade.Text = "Qualidade";
             // 
-            // textBox4
+            // txtOBS
             // 
-            this.textBox4.Location = new System.Drawing.Point(184, 125);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(233, 50);
-            this.textBox4.TabIndex = 12;
+            this.txtOBS.Location = new System.Drawing.Point(184, 125);
+            this.txtOBS.Multiline = true;
+            this.txtOBS.Name = "txtOBS";
+            this.txtOBS.Size = new System.Drawing.Size(233, 50);
+            this.txtOBS.TabIndex = 12;
             // 
             // label1
             // 
@@ -164,30 +154,59 @@ namespace Restaurante
             this.label1.TabIndex = 13;
             this.label1.Text = "OBS";
             // 
+            // cbPP
+            // 
+            this.cbPP.FormattingEnabled = true;
+            this.cbPP.Location = new System.Drawing.Point(228, 59);
+            this.cbPP.Name = "cbPP";
+            this.cbPP.Size = new System.Drawing.Size(189, 21);
+            this.cbPP.TabIndex = 14;
+            this.cbPP.SelectedIndexChanged += new System.EventHandler(this.cbPP_SelectedIndexChanged);
+            // 
+            // nQuantidade
+            // 
+            this.nQuantidade.Location = new System.Drawing.Point(228, 90);
+            this.nQuantidade.Name = "nQuantidade";
+            this.nQuantidade.Size = new System.Drawing.Size(120, 20);
+            this.nQuantidade.TabIndex = 15;
+            // 
+            // lblPedido
+            // 
+            this.lblPedido.AutoSize = true;
+            this.lblPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPedido.Location = new System.Drawing.Point(3, 9);
+            this.lblPedido.Name = "lblPedido";
+            this.lblPedido.Size = new System.Drawing.Size(110, 29);
+            this.lblPedido.TabIndex = 16;
+            this.lblPedido.Text = "Pedido #";
+            // 
             // FormRegistrarPrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 391);
+            this.Controls.Add(this.lblPedido);
+            this.Controls.Add(this.nQuantidade);
+            this.Controls.Add(this.cbPP);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtOBS);
             this.Controls.Add(this.lblQualidade);
             this.Controls.Add(this.lblPratoProduto);
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.btnSair);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTipo);
             this.Controls.Add(this.lblRetirar);
             this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.checkedListBox2);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.clbRetirar);
+            this.Controls.Add(this.clbAdicional);
             this.Controls.Add(this.lblAdicional);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormRegistrarPrato";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar Prato";
+            this.Load += new System.EventHandler(this.FormRegistrarPrato_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nQuantidade)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,18 +215,19 @@ namespace Restaurante
         #endregion
 
         private System.Windows.Forms.Label lblAdicional;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.CheckedListBox clbAdicional;
+        private System.Windows.Forms.CheckedListBox clbRetirar;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label lblRetirar;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtTipo;
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblPratoProduto;
         private System.Windows.Forms.Label lblQualidade;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtOBS;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbPP;
+        private System.Windows.Forms.NumericUpDown nQuantidade;
+        private System.Windows.Forms.Label lblPedido;
     }
 }

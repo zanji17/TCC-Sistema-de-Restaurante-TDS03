@@ -37,3 +37,53 @@ C:\Users\gusta\OneDrive\Documentos\TCC 2021\restaurante-main\Sistema de Restaura
 C:\Users\gusta\OneDrive\Documentos\TCC 2021\restaurante-main\Sistema de Restaurante\obj\Debug\Restaurante.FormAtendente.resources
 C:\Users\gusta\OneDrive\Documentos\TCC 2021\restaurante-main\Sistema de Restaurante\obj\Debug\Restaurante.FormIngredientes.resources
 C:\Users\gusta\OneDrive\Documentos\TCC 2021\restaurante-main\Sistema de Restaurante\obj\Debug\Restaurante.FormRegistroPedido.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.mdf
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante_log.ldf
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.exe.config
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.exe
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.pdb
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csprojAssemblyReference.cache
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAcesso.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAtendente.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAtendimento.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormHomeGerente.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormDetalhesPedido.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormRegistroPedido.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormRelatorioPedidos.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormRegistrarPrato.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormLogin.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormHomeAtendente.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormHomeCaixa.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormPratosProdutos.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormHomeCozinha.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.Properties.Resources.resources
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.GenerateResource.cache
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.CoreCompileInputs.cache
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.exe
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.pdb
+C:\Users\gusta\OneDrive\Documentos\TCC 2021\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormIngrediente.resources
+C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.mdf
+C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante_log.ldf
+C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.exe.config
+C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.exe
+C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.pdb
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csprojAssemblyReference.cache
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAcesso.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAtendente.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAtendimento.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormHomeGerente.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormDetalhesPedido.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormIngrediente.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormRegistroPedido.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormRelatorioPedidos.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormRegistrarPrato.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormLogin.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormHomeAtendente.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormHomeCaixa.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormPratosProdutos.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormHomeCozinha.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.Properties.Resources.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.GenerateResource.cache
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.CoreCompileInputs.cache
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.exe
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.pdb

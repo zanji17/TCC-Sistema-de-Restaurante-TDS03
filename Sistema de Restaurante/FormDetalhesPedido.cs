@@ -12,22 +12,21 @@ namespace Restaurante
 {
     public partial class FormDetalhesPedido : Form
     {
-        public FormDetalhesPedido()
+        public int Id { get; set; }
+        public FormDetalhesPedido(int IdPedido)
         {
+            Id = IdPedido;
             InitializeComponent();
         }
 
         private void FormDetalhesPedido_Load(object sender, EventArgs e)
         {
-            dgvRegistro.Columns.Add("ID", "ID");
-            dgvRegistro.Columns.Add("PP", "Prato/Produto");
-            dgvRegistro.Columns.Add("Quantidade", "Quantidade");
-            dgvRegistro.Columns.Add("OBS", "OBS");
-            dgvRegistro.Columns.Add("Adicional", "Adicional");
-            dgvRegistro.Columns.Add("Retirar", "Retirar");
-            dgvRegistro.Columns.Add("Data", "Data");
-            dgvRegistro.Columns.Add("Atendete", "Atendente");
-            dgvRegistro.Columns.Add("Status", "Status");
+            RegistroPedido registro = new RegistroPedido();
+            List<RegistroPedido> lista = registro.listaPratos(Id);
+            dgvRegistro.DataSource = lista;
+            dgvRegistro.Columns.Remove("Mesa");
+            dgvRegistro.Columns.Remove("Cliente");
+            dgvRegistro.Columns.Remove("IdPedido");
         }
     }
 }

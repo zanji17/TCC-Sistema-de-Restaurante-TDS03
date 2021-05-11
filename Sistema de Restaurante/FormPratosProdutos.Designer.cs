@@ -44,6 +44,7 @@ namespace Restaurante
             this.btnSair = new System.Windows.Forms.Button();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblIngredientes = new System.Windows.Forms.Label();
+            this.btnLimpar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPratosProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,7 +142,7 @@ namespace Restaurante
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(267, 126);
+            this.btnEdit.Location = new System.Drawing.Point(267, 155);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 11;
@@ -151,7 +152,7 @@ namespace Restaurante
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(267, 155);
+            this.btnDel.Location = new System.Drawing.Point(267, 184);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 12;
@@ -161,7 +162,7 @@ namespace Restaurante
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(267, 184);
+            this.btnSair.Location = new System.Drawing.Point(267, 213);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(75, 23);
             this.btnSair.TabIndex = 13;
@@ -189,11 +190,22 @@ namespace Restaurante
             this.lblIngredientes.TabIndex = 15;
             this.lblIngredientes.Text = "Ingredientes";
             // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Location = new System.Drawing.Point(267, 126);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpar.TabIndex = 16;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
             // FormPratosProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 364);
+            this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.lblIngredientes);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.btnSair);
@@ -238,6 +250,7 @@ namespace Restaurante
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.Label lblIngredientes;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }
 

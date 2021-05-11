@@ -39,7 +39,7 @@ namespace Restaurante
             // 
             // BtnLogin
             // 
-            this.BtnLogin.Location = new System.Drawing.Point(156, 188);
+            this.BtnLogin.Location = new System.Drawing.Point(273, 189);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(75, 23);
             this.BtnLogin.TabIndex = 0;
@@ -55,7 +55,6 @@ namespace Restaurante
             this.LblEmail.Size = new System.Drawing.Size(33, 13);
             this.LblEmail.TabIndex = 1;
             this.LblEmail.Text = "Login";
-            this.LblEmail.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtLogin
             // 
@@ -82,7 +81,7 @@ namespace Restaurante
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(273, 188);
+            this.btnSair.Location = new System.Drawing.Point(156, 189);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(75, 23);
             this.btnSair.TabIndex = 5;
@@ -107,7 +106,6 @@ namespace Restaurante
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "batata";
-            this.Load += new System.EventHandler(this.F_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

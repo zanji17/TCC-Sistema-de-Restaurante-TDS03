@@ -17,7 +17,7 @@ namespace Restaurante
 
         public string nome { get; set; }
 
-        SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\gusta\\OneDrive\\Documentos\\TCC 2021\\restaurante-main\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
         public FormPratosProdutos()
         {
             InitializeComponent();
@@ -278,6 +278,25 @@ namespace Restaurante
             }
             txtTipo.AutoCompleteCustomSource = sugestaotipo;
             con.Close();
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            clbCategoria.ClearSelected();
+            clbIngredientes.ClearSelected();
+            txtNome.Text = string.Empty;
+            txtTipo.Text = string.Empty;
+            for (var i = 0; i < clbCategoria.Items.Count; i++)
+            {
+                clbCategoria.SetItemChecked(i, false);
+            }
+            for (var i = 0; i < clbIngredientes.Items.Count; i++)
+            {
+                clbIngredientes.SetItemChecked(i, false);
+            }
+            lbIngredientes.Items.Clear();
+            IdPP = 0;
+            nome = string.Empty;
         }
     }
 }
