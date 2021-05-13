@@ -72,5 +72,11 @@ namespace Restaurante
             FormRelatorioPedidos pedidos = new FormRelatorioPedidos();
             pedidos.Show();
         }
+
+        private void modeloDeAdicionalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormModeloAdicional ma = new FormModeloAdicional();
+            ma.Show();
+        }
     }
 }

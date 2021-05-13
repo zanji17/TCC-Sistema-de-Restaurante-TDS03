@@ -44,6 +44,7 @@ namespace Restaurante
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atendimentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modeloDeAdicionalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbCaixa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCozinha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAtendente)).BeginInit();
@@ -130,7 +131,8 @@ namespace Restaurante
             this.atendentesToolStripMenuItem,
             this.ingredientesToolStripMenuItem,
             this.pratosEProdutosToolStripMenuItem,
-            this.acessosToolStripMenuItem});
+            this.acessosToolStripMenuItem,
+            this.modeloDeAdicionalToolStripMenuItem});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
@@ -138,28 +140,28 @@ namespace Restaurante
             // atendentesToolStripMenuItem
             // 
             this.atendentesToolStripMenuItem.Name = "atendentesToolStripMenuItem";
-            this.atendentesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.atendentesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.atendentesToolStripMenuItem.Text = "Atendentes";
             this.atendentesToolStripMenuItem.Click += new System.EventHandler(this.atendentesToolStripMenuItem_Click);
             // 
             // ingredientesToolStripMenuItem
             // 
             this.ingredientesToolStripMenuItem.Name = "ingredientesToolStripMenuItem";
-            this.ingredientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ingredientesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.ingredientesToolStripMenuItem.Text = "Ingredientes";
             this.ingredientesToolStripMenuItem.Click += new System.EventHandler(this.ingredientesToolStripMenuItem_Click);
             // 
             // pratosEProdutosToolStripMenuItem
             // 
             this.pratosEProdutosToolStripMenuItem.Name = "pratosEProdutosToolStripMenuItem";
-            this.pratosEProdutosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pratosEProdutosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.pratosEProdutosToolStripMenuItem.Text = "Pratos e Produtos";
             this.pratosEProdutosToolStripMenuItem.Click += new System.EventHandler(this.pratosEProdutosToolStripMenuItem_Click);
             // 
             // acessosToolStripMenuItem
             // 
             this.acessosToolStripMenuItem.Name = "acessosToolStripMenuItem";
-            this.acessosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.acessosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.acessosToolStripMenuItem.Text = "Acessos";
             this.acessosToolStripMenuItem.Click += new System.EventHandler(this.acessosToolStripMenuItem_Click);
             // 
@@ -175,16 +177,23 @@ namespace Restaurante
             // atendimentoToolStripMenuItem
             // 
             this.atendimentoToolStripMenuItem.Name = "atendimentoToolStripMenuItem";
-            this.atendimentoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.atendimentoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.atendimentoToolStripMenuItem.Text = "Atendimento";
             this.atendimentoToolStripMenuItem.Click += new System.EventHandler(this.atendimentoToolStripMenuItem_Click);
             // 
             // pedidosToolStripMenuItem
             // 
             this.pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
-            this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.pedidosToolStripMenuItem.Text = "Pedidos";
             this.pedidosToolStripMenuItem.Click += new System.EventHandler(this.pedidosToolStripMenuItem_Click);
+            // 
+            // modeloDeAdicionalToolStripMenuItem
+            // 
+            this.modeloDeAdicionalToolStripMenuItem.Name = "modeloDeAdicionalToolStripMenuItem";
+            this.modeloDeAdicionalToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.modeloDeAdicionalToolStripMenuItem.Text = "Modelo de Adicional";
+            this.modeloDeAdicionalToolStripMenuItem.Click += new System.EventHandler(this.modeloDeAdicionalToolStripMenuItem_Click);
             // 
             // FormHomeGerente
             // 
@@ -230,5 +239,6 @@ namespace Restaurante
         private System.Windows.Forms.ToolStripMenuItem relatóriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem atendimentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pedidosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modeloDeAdicionalToolStripMenuItem;
     }
 }

@@ -74,6 +74,7 @@ namespace Restaurante
             // 
             // btnConfirmar
             // 
+            this.btnConfirmar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnConfirmar.Location = new System.Drawing.Point(118, 333);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(120, 27);
@@ -102,6 +103,7 @@ namespace Restaurante
             // 
             // btnSair
             // 
+            this.btnSair.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSair.Location = new System.Drawing.Point(297, 333);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(120, 27);
@@ -182,8 +184,10 @@ namespace Restaurante
             // 
             // FormRegistrarPrato
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnSair;
             this.ClientSize = new System.Drawing.Size(522, 391);
             this.Controls.Add(this.lblPedido);
             this.Controls.Add(this.nQuantidade);

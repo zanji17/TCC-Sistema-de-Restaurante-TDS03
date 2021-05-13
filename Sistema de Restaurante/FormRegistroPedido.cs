@@ -25,8 +25,13 @@ namespace Restaurante
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            FormRegistrarPrato rp = new FormRegistrarPrato(IdPedido);
-            rp.Show();
+            using(FormRegistrarPrato rp = new FormRegistrarPrato(IdPedido) { })
+            {
+                if(rp.ShowDialog() == DialogResult.OK)
+                {
+                    atualizaDGV();
+                }
+            }
         }
 
         private void FormRegistroPedido_Load(object sender, EventArgs e)
@@ -35,12 +40,8 @@ namespace Restaurante
             rp.Localizar(IdPedido);
             lblMesaDelivery.Text = rp.Mesa;
             lblCliente.Text = rp.Cliente;
-            lblPedido.Text = "Pedido: "+IdPedido;  
-            List <RegistroPedido> lista = rp.listaPratos(IdPedido);
-            dgvRegistro.DataSource = lista;
-            dgvRegistro.Columns.Remove("Mesa");
-            dgvRegistro.Columns.Remove("Cliente");
-            dgvRegistro.Columns.Remove("IdPedido");
+            lblPedido.Text = "Pedido: "+IdPedido;
+            atualizaDGV();
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -51,13 +52,32 @@ namespace Restaurante
                 {
                     RegistroPedido registro = new RegistroPedido();
                     registro.Confirmar((int)dgvRegistro.Rows[i].Cells[0].Value, IdAtendente);
-                    List<RegistroPedido> lista = registro.listaPratos(IdPedido);
-                    dgvRegistro.DataSource = lista;
-                    dgvRegistro.Columns.Remove("Mesa");
-                    dgvRegistro.Columns.Remove("Cliente");
-                    dgvRegistro.Columns.Remove("IdPedido");
+                    atualizaDGV();
                 }
             }
+        }
+
+        private void btnServido_Click(object sender, EventArgs e)
+        {
+            for(var i = 0; i < dgvRegistro.SelectedRows.Count; i++)
+            {
+                if((string)dgvRegistro.SelectedRows[i].Cells[8].Value == "Confirmado")
+                {
+                    RegistroPedido registro = new RegistroPedido();
+                    registro.Servido((int)dgvRegistro.SelectedRows[i].Cells[0].Value);
+                    atualizaDGV();
+                }
+            }
+        }
+
+        public void atualizaDGV()
+        {
+            RegistroPedido registro = new RegistroPedido();
+            List<RegistroPedido> lista = registro.listaPratos(IdPedido);
+            dgvRegistro.DataSource = lista;
+            dgvRegistro.Columns.Remove("Mesa");
+            dgvRegistro.Columns.Remove("Cliente");
+            dgvRegistro.Columns.Remove("IdPedido");
         }
     }
 }

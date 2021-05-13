@@ -32,7 +32,6 @@ namespace Restaurante
 
         private void FormRegistrarPrato_Load(object sender, EventArgs e)
         {
-            lblPedido.Text = "Pedido: "+IdPedido;
             con.Open();
             string sql = "SELECT nome FROM PratosProdutos";
             SqlCommand cmd = new SqlCommand(sql, con);

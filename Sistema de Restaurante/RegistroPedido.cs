@@ -128,8 +128,11 @@ namespace Restaurante
                 registro.Quantidade = (int)dt.Rows[i]["quantidade"];
                 registro.OBS = dt.Rows[i]["OBS"].ToString().Trim();
                 registro.Id = (int)dt.Rows[i]["IdPedidoPratoProduto"];
-                DateTime hora = (DateTime)dt.Rows[i]["data"];
-                registro.Data = hora.ToString("HH:mm:ss");
+                if(dt.Rows[i]["data"] != null && dt.Rows[i]["data"].ToString() != "")
+                {
+                    DateTime hora = (DateTime)dt.Rows[i]["data"];
+                    registro.Data = hora.ToString("HH:mm:ss");
+                }
                 registro.Status = dt.Rows[i]["status"].ToString().Trim();
                 con.Open();
                 string sql2 = "SELECT Ingredientes.nome FROM Ingredientes INNER JOIN AdicionaisRetirados ON Ingredientes.IdIngrediente = AdicionaisRetirados.IdIngredientes INNER JOIN PedidosPratosProdutos ON AdicionaisRetirados.IdPedidosPratosProdutos = PedidosPratosProdutos.IdPedidoPratoProduto WHERE AdicionaisRetirados.Status = 'Adicional' AND PedidosPratosProdutos.IdPedidoPratoProduto=@Id";
@@ -247,6 +250,15 @@ namespace Restaurante
             string sql = "UPDATE PedidosPratosProdutos SET IdAtendente = '" + IdAT + "', status = 'Confirmado', data = @data WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@data", SqlDbType.DateTime).Value = DateTime.Now;
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void Servido(int IdPPP)
+        {
+            con.Open();
+            string sql = "UPDATE PedidosPratosProdutos SET status = 'Servido' WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
