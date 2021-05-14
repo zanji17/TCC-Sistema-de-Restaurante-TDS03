@@ -33,7 +33,7 @@ namespace Restaurante
 
         private void btnDetalhes_Click(object sender, EventArgs e)
         {
-            FormDetalhesPedido detalhespedido = new FormDetalhesPedido();
+            FormDetalhesPedido detalhespedido = new FormDetalhesPedido(1);
             detalhespedido.Show();
         }
     }

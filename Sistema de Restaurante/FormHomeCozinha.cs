@@ -12,23 +12,19 @@ namespace Restaurante
 {
     public partial class FormHomeCozinha : Form
     {
-        public FormHomeCozinha()
+        public int IdCozinha { get; set; }
+
+        public FormHomeCozinha(int id)
         {
+            IdCozinha = id;
             InitializeComponent();
         }
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            dgvPratoConfirmado.Columns.Add("ID", "ID");
-            dgvPratoConfirmado.Columns.Add("Pedido", "Pedido");
-            dgvPratoConfirmado.Columns.Add("PP", "Prato/Produto");
-            dgvPratoConfirmado.Columns.Add("Quantidade", "Quantidade");
-            dgvPratoConfirmado.Columns.Add("OBS", "OBS");
-            dgvPratoConfirmado.Columns.Add("Adicional", "Adicional");
-            dgvPratoConfirmado.Columns.Add("Retirar", "Retirar");
-            dgvPratoConfirmado.Columns.Add("Data", "Data");
-            dgvPratoConfirmado.Columns.Add("Atendete", "Atendente");
-            dgvPratoConfirmado.Columns.Add("Status", "Status");
+            RegistroPedido registro = new RegistroPedido();
+            List<RegistroPedido> lista = registro.listaConfirmados();
+            dgvPratoConfirmado.DataSource = lista;
         }
     }
 }

@@ -30,7 +30,6 @@ namespace Restaurante
         private void InitializeComponent()
         {
             this.dgvPedidos = new System.Windows.Forms.DataGridView();
-            this.btnVerDetalhes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,24 +41,13 @@ namespace Restaurante
             this.dgvPedidos.Name = "dgvPedidos";
             this.dgvPedidos.Size = new System.Drawing.Size(637, 266);
             this.dgvPedidos.TabIndex = 0;
-            // 
-            // btnVerDetalhes
-            // 
-            this.btnVerDetalhes.ForeColor = System.Drawing.Color.Black;
-            this.btnVerDetalhes.Location = new System.Drawing.Point(284, 298);
-            this.btnVerDetalhes.Name = "btnVerDetalhes";
-            this.btnVerDetalhes.Size = new System.Drawing.Size(160, 31);
-            this.btnVerDetalhes.TabIndex = 1;
-            this.btnVerDetalhes.Text = "Ver Detalhes";
-            this.btnVerDetalhes.UseVisualStyleBackColor = true;
-            this.btnVerDetalhes.Click += new System.EventHandler(this.btnVerDetalhes_Click);
+            this.dgvPedidos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedidos_CellClick);
             // 
             // FormRelatorioPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 351);
-            this.Controls.Add(this.btnVerDetalhes);
+            this.ClientSize = new System.Drawing.Size(711, 296);
             this.Controls.Add(this.dgvPedidos);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -75,6 +63,5 @@ namespace Restaurante
         #endregion
 
         private System.Windows.Forms.DataGridView dgvPedidos;
-        private System.Windows.Forms.Button btnVerDetalhes;
     }
 }

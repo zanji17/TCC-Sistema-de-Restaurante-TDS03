@@ -76,6 +76,7 @@ namespace Restaurante
             this.dgvPedidosAbertos.Name = "dgvPedidosAbertos";
             this.dgvPedidosAbertos.Size = new System.Drawing.Size(449, 150);
             this.dgvPedidosAbertos.TabIndex = 9;
+            this.dgvPedidosAbertos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedidosAbertos_CellClick);
             // 
             // btnFechar
             // 
