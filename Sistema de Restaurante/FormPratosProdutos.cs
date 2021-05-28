@@ -31,7 +31,7 @@ namespace Restaurante
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                clbCategoria.Items.Add(dr["tipo"].ToString());
+                clbCategoria.Items.Add(dr["tipo"].ToString().Trim());
             }
             con.Close();
             con.Open();
@@ -40,7 +40,7 @@ namespace Restaurante
             SqlDataReader dringred = cmdingred.ExecuteReader();
             while (dringred.Read())
             {
-                clbIngredientes.Items.Add(dringred["nome"].ToString());   
+                clbIngredientes.Items.Add(dringred["nome"].ToString().Trim());   
             }
             con.Close();
             PratosProdutos PP = new PratosProdutos();
@@ -49,11 +49,25 @@ namespace Restaurante
             dgvPratosProdutos.Columns.Remove("IdIng");
             dgvPratosProdutos.Columns.Remove("IdIngRetorno");
             dgvPratosProdutos.Columns.Remove("IdPPRetorno");
+            ModeloAdicional modelo = new ModeloAdicional();
+            List<ModeloAdicional> adicionais = modelo.listarAdicionais();
+            for (int i = 0; i < adicionais.Count; i++)
+            {
+                clbAdicional.Items.Add(adicionais[i].Adicionais);
+            }
+            List<PratosProdutos> modelos = PP.CarregaModelos();
+            cbModelo.Items.Add("none");
+            for (int i = 0; i < modelos.Count; i++)
+            {
+                cbModelo.Items.Add(modelos[i].ingrediente);
+            }
+            cbModelo.SelectedIndex = 0;
         }
 
         private void clbCategoria_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             clbIngredientes.Items.Clear();
+            clbIngredientes.ClearSelected();
             if (e.NewValue != CheckState.Unchecked)
             {
                 if (e.NewValue == CheckState.Checked)
@@ -77,10 +91,10 @@ namespace Restaurante
                 {
                     for (int i = 0; i < linhas; i++)
                     {
-                        clbIngredientes.Items.Add(dt.Rows[i]["nome"].ToString());
-                        foreach (object ingrediente in lbIngredientes.Items)
+                        clbIngredientes.Items.Add(dt.Rows[i]["nome"].ToString().Trim());
+                        for (int j = 0; j < clbRetirar.Items.Count; j++)
                         {
-                            if(dt.Rows[i]["nome"].ToString() == ingrediente.ToString())
+                            if(dt.Rows[i]["nome"].ToString().Trim() == clbRetirar.Items[j].ToString())
                             {
                                 clbIngredientes.SetItemChecked(i, true);
                             }
@@ -102,10 +116,10 @@ namespace Restaurante
                 {
                     for (int i = 0; i < linhas2; i++)
                     {
-                        clbIngredientes.Items.Add(dt2.Rows[i]["nome"].ToString());
-                        foreach (object ingrediente in lbIngredientes.Items)
+                        clbIngredientes.Items.Add(dt2.Rows[i]["nome"].ToString().Trim());
+                        foreach (object ingrediente in clbRetirar.Items)
                         {
-                            if (dt2.Rows[i]["nome"].ToString() == ingrediente.ToString())
+                            if (dt2.Rows[i]["nome"].ToString().Trim() == ingrediente.ToString())
                             {
                                 clbIngredientes.SetItemChecked(i, true);
                             }
@@ -118,23 +132,25 @@ namespace Restaurante
 
         private void clbIngredientes_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (e.NewValue == CheckState.Checked && clbIngredientes.SelectedItem != null) 
+            if (e.NewValue == CheckState.Checked) 
             {
-                lbIngredientes.Items.Clear();
-                for (int i = 0; i < clbIngredientes.CheckedItems.Count; i++)
+                if(clbIngredientes.SelectedItem != null)
                 {
-                    lbIngredientes.Items.Add(clbIngredientes.CheckedItems[i]);
+                    clbRetirar.Items.Add(clbIngredientes.SelectedItem);
                 }
-                lbIngredientes.Items.Add(clbIngredientes.SelectedItem);
             }
-            if(e.NewValue == CheckState.Unchecked && clbIngredientes.SelectedItem != null )
+            else
             {
-                lbIngredientes.Items.Clear();
-                for (int i = 0; i < clbIngredientes.CheckedItems.Count; i++)
+                if (clbIngredientes.SelectedItem != null)
                 {
-                    lbIngredientes.Items.Add(clbIngredientes.CheckedItems[i]);
+                    for (int i = 0; i < clbRetirar.Items.Count; i++)
+                    {
+                        if (clbRetirar.Items[i].ToString() == clbIngredientes.SelectedItem.ToString())
+                        {
+                            clbRetirar.Items.Remove(clbRetirar.Items[i]);
+                        }
+                    }
                 }
-                lbIngredientes.Items.Remove(clbIngredientes.SelectedItem);
             }
         }
 
@@ -143,29 +159,31 @@ namespace Restaurante
             if(txtNome.Text != "" && txtNome.Text != null)
             {
                 PratosProdutos pratosprodutos = new PratosProdutos();
-                pratosprodutos.InserirPrato(txtNome.Text.Trim(), txtTipo.Text.Trim());
+                var cozinha = "N";
+                if (chkCozinha.CheckState == CheckState.Checked)
+                {
+                    cozinha = "S";
+                }
+                pratosprodutos.InserirPrato(txtNome.Text.Trim(), txtTipo.Text.Trim(), cozinha);
                 if (pratosprodutos.IdPPRetorno != 0)
                 {
-                    foreach (var nomeing in lbIngredientes.Items)
+                    for(var i = 0; i < clbRetirar.Items.Count; i++)
+                    {
+                        pratosprodutos.IdIngred(clbRetirar.Items[i].ToString());
+                        var retiravel = "N";
+                        if (clbRetirar.GetItemChecked(i) == true)
+                        {
+                            retiravel = "S";
+                        }
+                        pratosprodutos.PratosIngred(pratosprodutos.IdPPRetorno, pratosprodutos.IdIngRetorno, retiravel);
+                    }
+                    foreach (var nomeing in lbAdicional.Items)
                     {
                         pratosprodutos.IdIngred(nomeing.ToString());
-                        pratosprodutos.PratosIngred(pratosprodutos.IdPPRetorno, pratosprodutos.IdIngRetorno);
+                        pratosprodutos.PratosAdicional(pratosprodutos.IdPPRetorno, pratosprodutos.IdIngRetorno);
                     }
                     MessageBox.Show("Prato ou Produto Cadastrado com Sucesso!!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    List<PratosProdutos> Pratos = pratosprodutos.listaPP();
-                    dgvPratosProdutos.DataSource = Pratos;
-                    dgvPratosProdutos.Columns.Remove("IdIng");
-                    dgvPratosProdutos.Columns.Remove("IdIngRetorno");
-                    dgvPratosProdutos.Columns.Remove("IdPPRetorno");
-                    for (var i = 0; i < clbIngredientes.Items.Count; i++)
-                    {
-                        clbIngredientes.SetItemChecked(i, false);
-                    }
-                    txtNome.Text = string.Empty;
-                    txtTipo.Text = string.Empty;
-                    lbIngredientes.Items.Clear();
-                    con.Close();
-                    clbIngredientes.ClearSelected();
+                    atualizar();
                 }
                 else
                 {
@@ -177,7 +195,10 @@ namespace Restaurante
         private void dgvPratosProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             clbIngredientes.ClearSelected();
-            lbIngredientes.Items.Clear();
+            clbAdicional.ClearSelected();
+            lbAdicional.Items.Clear();
+            clbRetirar.Items.Clear();
+            chkCozinha.Checked = false;
             for (var i = 0; i < clbCategoria.Items.Count; i++)
             {
                 clbCategoria.SetItemChecked(i, false);
@@ -186,11 +207,19 @@ namespace Restaurante
             {
                 clbIngredientes.SetItemChecked(i, false);
             }
+            for (var i = 0; i < clbAdicional.Items.Count; i++)
+            {
+                clbAdicional.SetItemChecked(i, false);
+            }
             DataGridViewRow row = this.dgvPratosProdutos.Rows[e.RowIndex];
             txtNome.Text = row.Cells[1].Value.ToString().Trim();
             txtTipo.Text = row.Cells[2].Value.ToString().Trim();
+            if(row.Cells[5].Value.ToString() == "S")
+            {
+                chkCozinha.Checked = true;
+            }
             con.Open();
-            string sql = "SELECT Ingredientes.nome FROM PratosProdutos INNER JOIN PratosProdutosIngredientes ON PratosProdutos.IdPratoProduto = PratosProdutosIngredientes.IdPratosProdutos INNER JOIN Ingredientes ON PratosProdutosIngredientes.IdIngredientes = Ingredientes.IdIngrediente WHERE IdPratoProduto = @Id ORDER BY nome";
+            string sql = "SELECT Ingredientes.nome, PratosProdutosIngredientes.retiravel FROM PratosProdutos INNER JOIN PratosProdutosIngredientes ON PratosProdutos.IdPratoProduto = PratosProdutosIngredientes.IdPratosProdutos INNER JOIN Ingredientes ON PratosProdutosIngredientes.IdIngredientes = Ingredientes.IdIngrediente WHERE IdPratoProduto = @Id ORDER BY nome";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@Id", SqlDbType.Int).Value = Convert.ToInt32(row.Cells[0].Value);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -200,7 +229,17 @@ namespace Restaurante
                 {
                     if(clbIngredientes.Items[i].ToString().Trim() == dr["nome"].ToString().Trim())
                     {
-                        lbIngredientes.Items.Add(dr["nome"].ToString().Trim());
+                        clbRetirar.Items.Add(dr["nome"].ToString().Trim());
+                        if(dr["retiravel"].ToString().Trim() == "S")
+                        {
+                            for (int j = 0; j < clbRetirar.Items.Count; j++)
+                            {
+                                if(dr["nome"].ToString().Trim() == clbRetirar.Items[j].ToString().Trim())
+                                {
+                                    clbRetirar.SetItemChecked(j, true);
+                                }
+                            }
+                        }
                         clbIngredientes.SetItemChecked(i, true);
                     }
                 }
@@ -208,6 +247,19 @@ namespace Restaurante
             con.Close();
             IdPP = Convert.ToInt32(row.Cells[0].Value);
             nome = row.Cells[1].Value.ToString();
+            PratosProdutos PP = new PratosProdutos();
+            List<PratosProdutos> adicionais = PP.listarAdicionais(IdPP);
+            for (int i = 0; i < adicionais.Count; i++)
+            {
+                lbAdicional.Items.Add(adicionais[i].ingrediente);
+                for (int j = 0; j < clbAdicional.Items.Count; j++)
+                {
+                    if(clbAdicional.Items[j].ToString() == adicionais[i].ingrediente.ToString())
+                    {
+                        clbAdicional.SetItemChecked(j, true);
+                    }
+                }
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -215,26 +267,30 @@ namespace Restaurante
             if (txtNome.Text != "" && txtNome.Text != null)
             {
                 PratosProdutos PP = new PratosProdutos();
-                PP.atualizarPrato(txtNome.Text.Trim(), txtTipo.Text.Trim(), IdPP);
+                var cozinha = "N";
+                if (chkCozinha.CheckState == CheckState.Checked)
+                {
+                    cozinha = "S";
+                }
+                PP.atualizarPrato(txtNome.Text.Trim(), txtTipo.Text.Trim(), IdPP, cozinha);
                 PP.RenovarIng(IdPP);
-                foreach (var nomeing in lbIngredientes.Items)
+                for (int i = 0; i < clbRetirar.Items.Count; i++)
+                {
+                    PP.IdIngred(clbRetirar.Items[i].ToString());
+                    var retiravel = "N";
+                    if (clbRetirar.GetItemChecked(i) == true)
+                    {
+                        retiravel = "S";
+                    }
+                    PP.PratosIngred(IdPP, PP.IdIngRetorno, retiravel);
+                }
+                foreach (var nomeing in lbAdicional.Items)
                 {
                     PP.IdIngred(nomeing.ToString());
-                    PP.PratosIngred(IdPP, PP.IdIngRetorno);
+                    PP.PratosAdicional(IdPP, PP.IdIngRetorno);
                 }
                 MessageBox.Show("Prato ou Produto Atualizado com Sucesso!!", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                List<PratosProdutos> Pratos = PP.listaPP();
-                dgvPratosProdutos.DataSource = Pratos;
-                dgvPratosProdutos.Columns.Remove("IdIng");
-                dgvPratosProdutos.Columns.Remove("IdIngRetorno");
-                dgvPratosProdutos.Columns.Remove("IdPPRetorno");
-                for (var i = 0; i < clbIngredientes.Items.Count; i++)
-                {
-                    clbIngredientes.SetItemChecked(i, false);
-                }
-                txtNome.Text = string.Empty;
-                txtTipo.Text = string.Empty;
-                lbIngredientes.Items.Clear();
+                atualizar();
             }
         }
 
@@ -245,18 +301,7 @@ namespace Restaurante
                 PratosProdutos PP = new PratosProdutos();
                 PP.apagarPrato(IdPP);
                 MessageBox.Show("'" + nome + "' foi apagado com sucesso!", "Apagado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                List<PratosProdutos> Pratos = PP.listaPP();
-                dgvPratosProdutos.DataSource = Pratos;
-                dgvPratosProdutos.Columns.Remove("IdIng");
-                dgvPratosProdutos.Columns.Remove("IdIngRetorno");
-                dgvPratosProdutos.Columns.Remove("IdPPRetorno");
-                for (var i = 0; i < clbIngredientes.Items.Count; i++)
-                {
-                    clbIngredientes.SetItemChecked(i, false);
-                }
-                txtNome.Text = string.Empty;
-                txtTipo.Text = string.Empty;
-                lbIngredientes.Items.Clear();
+                atualizar();
             }
         }
 
@@ -282,21 +327,75 @@ namespace Restaurante
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            clbCategoria.ClearSelected();
-            clbIngredientes.ClearSelected();
-            txtNome.Text = string.Empty;
-            txtTipo.Text = string.Empty;
-            for (var i = 0; i < clbCategoria.Items.Count; i++)
+            atualizar();
+        }
+
+        private void cbModelo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ModeloAdicional modelo = new ModeloAdicional();
+            lbAdicional.Items.Clear();
+            clbAdicional.ClearSelected();
+            for (int i = 0; i < clbAdicional.Items.Count; i++)
             {
-                clbCategoria.SetItemChecked(i, false);
+                clbAdicional.SetItemChecked(i, false);
             }
+            if (cbModelo.SelectedItem.ToString() != "none")
+            {
+                List<ModeloAdicional> marcar = modelo.BuscaAdicionais(cbModelo.SelectedItem.ToString());
+                for (int i = 0; i < marcar.Count; i++)
+                {
+                    lbAdicional.Items.Add(marcar[i].Adicionais);
+                    for (int j = 0; j < clbAdicional.Items.Count; j++)
+                    {
+                        if (clbAdicional.Items[j].ToString() == marcar[i].Adicionais.ToString())
+                        {
+                            clbAdicional.SetItemChecked(j, true);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void clbAdicional_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.NewValue == CheckState.Checked)
+            {
+                if (clbAdicional.SelectedItem != null)
+                {
+                    lbAdicional.Items.Add(clbAdicional.SelectedItem);
+                }
+            }
+            else
+            {
+                lbAdicional.Items.Remove(clbAdicional.SelectedItem);
+            }
+        }
+
+        public void atualizar()
+        {
+            PratosProdutos PP = new PratosProdutos();
+            List<PratosProdutos> Pratos = PP.listaPP();
+            dgvPratosProdutos.DataSource = Pratos;
+            dgvPratosProdutos.Columns.Remove("IdIng");
+            dgvPratosProdutos.Columns.Remove("IdIngRetorno");
+            dgvPratosProdutos.Columns.Remove("IdPPRetorno");
             for (var i = 0; i < clbIngredientes.Items.Count; i++)
             {
                 clbIngredientes.SetItemChecked(i, false);
             }
-            lbIngredientes.Items.Clear();
+            for (var i = 0; i < clbAdicional.Items.Count; i++)
+            {
+                clbAdicional.SetItemChecked(i, false);
+            }
+            txtNome.Text = string.Empty;
+            txtTipo.Text = string.Empty;
+            clbAdicional.ClearSelected();
+            clbIngredientes.ClearSelected();
+            lbAdicional.Items.Clear();
+            clbRetirar.Items.Clear();
             IdPP = 0;
             nome = string.Empty;
+            chkCozinha.Checked = false;
         }
     }
 }

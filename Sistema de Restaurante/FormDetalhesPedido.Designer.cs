@@ -52,7 +52,7 @@ namespace Restaurante
             this.MinimizeBox = false;
             this.Name = "FormDetalhesPedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Detalhes Pedido";
             this.Load += new System.EventHandler(this.FormDetalhesPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistro)).EndInit();
             this.ResumeLayout(false);

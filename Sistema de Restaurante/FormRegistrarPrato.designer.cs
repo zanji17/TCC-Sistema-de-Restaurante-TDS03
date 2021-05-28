@@ -43,7 +43,6 @@ namespace Restaurante
             this.label1 = new System.Windows.Forms.Label();
             this.cbPP = new System.Windows.Forms.ComboBox();
             this.nQuantidade = new System.Windows.Forms.NumericUpDown();
-            this.lblPedido = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nQuantidade)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,16 +171,6 @@ namespace Restaurante
             this.nQuantidade.Size = new System.Drawing.Size(120, 20);
             this.nQuantidade.TabIndex = 15;
             // 
-            // lblPedido
-            // 
-            this.lblPedido.AutoSize = true;
-            this.lblPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPedido.Location = new System.Drawing.Point(3, 9);
-            this.lblPedido.Name = "lblPedido";
-            this.lblPedido.Size = new System.Drawing.Size(110, 29);
-            this.lblPedido.TabIndex = 16;
-            this.lblPedido.Text = "Pedido #";
-            // 
             // FormRegistrarPrato
             // 
             this.AcceptButton = this.btnConfirmar;
@@ -189,7 +178,6 @@ namespace Restaurante
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSair;
             this.ClientSize = new System.Drawing.Size(522, 391);
-            this.Controls.Add(this.lblPedido);
             this.Controls.Add(this.nQuantidade);
             this.Controls.Add(this.cbPP);
             this.Controls.Add(this.label1);
@@ -232,6 +220,5 @@ namespace Restaurante
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbPP;
         private System.Windows.Forms.NumericUpDown nQuantidade;
-        private System.Windows.Forms.Label lblPedido;
     }
 }

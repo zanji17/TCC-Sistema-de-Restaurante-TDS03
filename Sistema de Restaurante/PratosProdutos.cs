@@ -25,6 +25,10 @@ namespace Restaurante
 
         public string ingrediente { get; set; }
 
+        public string Adicional { get; set; }
+
+        public string Cozinha { get; set; }
+
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
         public List<PratosProdutos> listaPP()
@@ -45,6 +49,7 @@ namespace Restaurante
                     PP.Id = (int)dt.Rows[i]["IdPratoProduto"];
                     PP.nome = dt.Rows[i]["nome"].ToString().Trim();
                     PP.tipo = dt.Rows[i]["tipo"].ToString().Trim();
+                    PP.Cozinha = dt.Rows[i]["cozinha"].ToString().Trim();
                     con.Close();
                     con.Open();
                     string sql2 = "SELECT Ingredientes.nome FROM PratosProdutos INNER JOIN PratosProdutosIngredientes ON PratosProdutos.IdPratoProduto = PratosProdutosIngredientes.IdPratosProdutos INNER JOIN Ingredientes ON PratosProdutosIngredientes.IdIngredientes = Ingredientes.IdIngrediente WHERE IdPratoProduto = '" + PP.Id + "' ORDER BY nome";
@@ -59,6 +64,22 @@ namespace Restaurante
                             PP.ingrediente += ", ";
                         }
                         PP.ingrediente += dr["nome"].ToString().Trim();
+                        cont++;
+                    }
+                    cont = 0;
+                    con.Close();
+                    con.Open();
+                    string sql3 = "SELECT Ingredientes.nome FROM Ingredientes INNER JOIN Adicional ON Ingredientes.IdIngrediente = Adicional.IdIngrediente INNER JOIN PratosProdutos ON Adicional.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE PratosProdutos.IdPratoProduto = '" + PP.Id + "'";
+                    SqlCommand cmd3 = new SqlCommand(sql3, con);
+                    SqlDataReader dr2 = cmd3.ExecuteReader();
+                    PP.Adicional = "";
+                    while (dr2.Read())
+                    {
+                        if (cont > 0)
+                        {
+                            PP.Adicional += ", ";
+                        }
+                        PP.Adicional += dr2["nome"].ToString().Trim();
                         cont++;
                     }
                     li.Add(PP);
@@ -84,7 +105,7 @@ namespace Restaurante
             return li;
         }
 
-        public void InserirPrato(string nome, string tipo)
+        public void InserirPrato(string nome, string tipo, string cozinha)
         {
             con.Open();
             string sql3 = "SELECT * FROM PratosProdutos WHERE nome='" + nome + "'";
@@ -92,7 +113,7 @@ namespace Restaurante
             SqlDataReader dr2 = cmd3.ExecuteReader(); 
             if (!dr2.Read()) {
                 con.Open();
-                string sql = "INSERT INTO PratosProdutos(nome,tipo) VALUES ('" + nome + "', '" + tipo + "')";
+                string sql = "INSERT INTO PratosProdutos(nome,tipo,cozinha) VALUES ('" + nome + "', '" + tipo + "', '"+cozinha+"')";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
 
@@ -105,7 +126,7 @@ namespace Restaurante
             }
         }
 
-        public void atualizarPrato(string nome, string tipo, int Id)
+        public void atualizarPrato(string nome, string tipo, int Id, string cozinha)
         {
             con.Open();
             string sql1 = "SELECT IdPratoProduto FROM PratosProdutos WHERE nome = '" + nome + "'";
@@ -117,7 +138,7 @@ namespace Restaurante
                 {
                     con.Close();
                     con.Open();
-                    string sql = "UPDATE PratosProdutos SET nome = '" + nome + "', tipo = '" + tipo + "' WHERE IdPratoProduto = '" + Id + "' ";
+                    string sql = "UPDATE PratosProdutos SET nome = '" + nome + "', tipo = '" + tipo + "', cozinha='"+cozinha+"' WHERE IdPratoProduto = '" + Id + "' ";
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -153,14 +174,24 @@ namespace Restaurante
         }
 
 
-        public void PratosIngred(int Id, int IdIng)
+        public void PratosIngred(int Id, int IdIng, string retiravel)
         {
             con.Open();
-            string sql = "INSERT INTO PratosProdutosIngredientes(IdPratosProdutos,IdIngredientes) VALUES ('"+Id+"','"+IdIng+"')";
+            string sql = "INSERT INTO PratosProdutosIngredientes(IdPratosProdutos,IdIngredientes,retiravel) VALUES ('"+Id+"','"+IdIng+"','"+retiravel+"')";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
+
+        public void PratosAdicional(int IdPP, int IdIng)
+        {
+            con.Open();
+            string sql = "INSERT INTO Adicional(IdPratoProduto, IdIngrediente) VALUES('" + IdPP + "', '" + IdIng + "')";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
         public void IdIngred(string nome)
         {
             con.Open();
@@ -179,7 +210,42 @@ namespace Restaurante
             string sql = "DELETE FROM PratosProdutosIngredientes WHERE IdPratosProdutos = '" + Id + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
+            string sql2 = "DELETE FROM Adicional WHERE IdPratoProduto = '" + Id + "'";
+            SqlCommand cmd2 = new SqlCommand(sql2, con);
+            cmd2.ExecuteNonQuery();
             con.Close();
+        }
+
+        public List<PratosProdutos> CarregaModelos()
+        {
+            List<PratosProdutos> lista = new List<PratosProdutos>();
+            con.Open();
+            string sql = "SELECT DISTINCT nome FROM ModeloAdicional";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                PratosProdutos PP = new PratosProdutos();
+                PP.ingrediente = dr["nome"].ToString().Trim();
+                lista.Add(PP);
+            }
+            return lista;
+        }
+
+        public List<PratosProdutos> listarAdicionais(int id)
+        {
+            List<PratosProdutos> lista = new List<PratosProdutos>();
+            con.Open();
+            string sql = "SELECT Ingredientes.nome FROM Ingredientes INNER JOIN Adicional ON Ingredientes.IdIngrediente = Adicional.IdIngrediente INNER JOIN PratosProdutos ON Adicional.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE PratosProdutos.IdPratoProduto = '"+id+"'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                PratosProdutos PP = new PratosProdutos();
+                PP.ingrediente = dr["nome"].ToString().Trim();
+                lista.Add(PP);
+            }
+            return lista;
         }
     }
 }

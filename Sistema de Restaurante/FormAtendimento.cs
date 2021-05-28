@@ -19,22 +19,43 @@ namespace Restaurante
 
         private void FormAtendimento_Load(object sender, EventArgs e)
         {
-            dgvAtendentes.Columns.Add("ID", "ID");
-            dgvAtendentes.Columns.Add("nome", "Nome");
-            dgvAtendentes.Columns.Add("cpf", "CPF");
-            dgvAtendentes.Columns.Add("pedidos", "Nº de Pedidos");
-            dgvAtendentes.Columns.Add("pratos", "Nº Pratos");
-
-            dgvPedidos.Columns.Add("ID", "ID");
-            dgvPedidos.Columns.Add("Cliente", "Cliente");
-            dgvPedidos.Columns.Add("Data", "Data");
-            dgvPedidos.Columns.Add("Status", "Status");
+            Pedidos pedido = new Pedidos();
+            List<Pedidos> lista = pedido.ListarAtendimento();
+            dgvAtendentes.DataSource = lista;
+            dgvAtendentes.Columns.Remove("IdPedido");
+            dgvAtendentes.Columns.Remove("Cliente");
+            dgvAtendentes.Columns.Remove("Mesa");
+            dgvAtendentes.Columns.Remove("Pessoas");
+            dgvAtendentes.Columns.Remove("Data");
+            dgvAtendentes.Columns.Remove("Status");
         }
 
-        private void btnDetalhes_Click(object sender, EventArgs e)
+        private void dgvAtendentes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            FormDetalhesPedido detalhespedido = new FormDetalhesPedido(1);
-            detalhespedido.Show();
+            DataGridViewRow row = this.dgvAtendentes.Rows[e.RowIndex];
+            Pedidos pedido = new Pedidos();
+            List<Pedidos> lista = pedido.ListarPedidos((int)row.Cells[0].Value);
+            dgvPedidos.DataSource = lista;
+            dgvPedidos.Columns.Remove("IdAtendente");
+            dgvPedidos.Columns.Remove("Atendente");
+            dgvPedidos.Columns.Remove("CPF");
+            dgvPedidos.Columns.Remove("NumeroPedidos");
+            dgvPedidos.Columns.Remove("NumeroPratos");
+            List<Pedidos> lista2 = pedido.ListarAtendimento();
+            dgvAtendentes.DataSource = lista2;
+            dgvAtendentes.Columns.Remove("IdPedido");
+            dgvAtendentes.Columns.Remove("Cliente");
+            dgvAtendentes.Columns.Remove("Mesa");
+            dgvAtendentes.Columns.Remove("Pessoas");
+            dgvAtendentes.Columns.Remove("Data");
+            dgvAtendentes.Columns.Remove("Status");
+        }
+
+        private void dgvPedidos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = this.dgvPedidos.Rows[e.RowIndex];
+            FormDetalhesPedido dp = new FormDetalhesPedido((int)row.Cells[0].Value);
+            dp.Show();
         }
     }
 }

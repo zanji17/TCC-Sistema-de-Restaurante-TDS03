@@ -52,7 +52,7 @@ namespace Restaurante
             {
                 con.Close();
                 con.Open();
-                string sql2 = "INSERT INTO Ingredientes( nome, Tipo, Adicional, detalhe) VALUES('" + Nome + "','" + Tipo + "', '" + Adicional + "', '"+Detalhes+"')";
+                string sql2 = "INSERT INTO Ingredientes( nome, Tipo, Adicional, detalhe) VALUES('" + Nome + "','" + Tipo + "', '" + Adicional + "','"+Detalhes+"')";
                 SqlCommand cmd2 = new SqlCommand(sql2, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
@@ -63,6 +63,7 @@ namespace Restaurante
                 con.Close();
             }
         }
+
         public void Atualizar(string Nome, string Tipo, string Adicional, string Detalhes, int Id)
         {
             con.Open();
@@ -96,6 +97,7 @@ namespace Restaurante
                 }
             }
         }
+
         public void Apagar(int Id)
         {
             con.Open();

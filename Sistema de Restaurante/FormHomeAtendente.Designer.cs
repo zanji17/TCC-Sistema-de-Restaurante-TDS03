@@ -164,6 +164,7 @@ namespace Restaurante
             this.Name = "FormHomeAtendente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home do Atendente";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormHomeAtendente_FormClosed);
             this.Load += new System.EventHandler(this.FormHomeAtendente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMeusPedidos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTodosPedidos)).EndInit();

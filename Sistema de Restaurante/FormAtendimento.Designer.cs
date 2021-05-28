@@ -31,7 +31,7 @@ namespace Restaurante
         {
             this.dgvAtendentes = new System.Windows.Forms.DataGridView();
             this.dgvPedidos = new System.Windows.Forms.DataGridView();
-            this.btnDetalhes = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAtendentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
             this.SuspendLayout();
@@ -40,36 +40,36 @@ namespace Restaurante
             // 
             this.dgvAtendentes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvAtendentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAtendentes.Location = new System.Drawing.Point(84, 36);
+            this.dgvAtendentes.Location = new System.Drawing.Point(12, 73);
             this.dgvAtendentes.Name = "dgvAtendentes";
-            this.dgvAtendentes.Size = new System.Drawing.Size(617, 180);
+            this.dgvAtendentes.Size = new System.Drawing.Size(658, 180);
             this.dgvAtendentes.TabIndex = 0;
+            this.dgvAtendentes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAtendentes_CellClick);
             // 
             // dgvPedidos
             // 
             this.dgvPedidos.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPedidos.Location = new System.Drawing.Point(84, 231);
+            this.dgvPedidos.Location = new System.Drawing.Point(12, 259);
             this.dgvPedidos.Name = "dgvPedidos";
-            this.dgvPedidos.Size = new System.Drawing.Size(617, 174);
+            this.dgvPedidos.Size = new System.Drawing.Size(658, 174);
             this.dgvPedidos.TabIndex = 1;
+            this.dgvPedidos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedidos_CellClick);
             // 
-            // btnDetalhes
+            // dateTimePicker1
             // 
-            this.btnDetalhes.Location = new System.Drawing.Point(314, 421);
-            this.btnDetalhes.Name = "btnDetalhes";
-            this.btnDetalhes.Size = new System.Drawing.Size(147, 31);
-            this.btnDetalhes.TabIndex = 2;
-            this.btnDetalhes.Text = "Ver Detalhes";
-            this.btnDetalhes.UseVisualStyleBackColor = true;
-            this.btnDetalhes.Click += new System.EventHandler(this.btnDetalhes_Click);
+            this.dateTimePicker1.Location = new System.Drawing.Point(12, 47);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(138, 20);
+            this.dateTimePicker1.TabIndex = 2;
+            this.dateTimePicker1.Value = new System.DateTime(2021, 5, 27, 13, 50, 15, 0);
             // 
             // FormAtendimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 478);
-            this.Controls.Add(this.btnDetalhes);
+            this.ClientSize = new System.Drawing.Size(682, 445);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dgvPedidos);
             this.Controls.Add(this.dgvAtendentes);
             this.MaximizeBox = false;
@@ -88,6 +88,6 @@ namespace Restaurante
 
         private System.Windows.Forms.DataGridView dgvAtendentes;
         private System.Windows.Forms.DataGridView dgvPedidos;
-        private System.Windows.Forms.Button btnDetalhes;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

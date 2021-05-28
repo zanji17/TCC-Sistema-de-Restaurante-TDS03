@@ -13,15 +13,19 @@ namespace Restaurante
     public partial class FormHomeGerente : Form
     {
         public int IdGerente { get; set; }
-        public FormHomeGerente(int id)
+
+        public string cargo { get; set; }
+
+        public FormHomeGerente(int id, string tipo)
         {
             IdGerente = id;
+            cargo = tipo;
             InitializeComponent();
         }
 
         private void pbAtendente_Click(object sender, EventArgs e)
         {
-            FormHomeAtendente ha = new FormHomeAtendente(IdGerente);
+            FormHomeAtendente ha = new FormHomeAtendente(IdGerente, cargo);
             ha.Show();
         }
 

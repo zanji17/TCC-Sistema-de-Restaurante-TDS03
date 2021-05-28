@@ -83,6 +83,7 @@ namespace Restaurante
             this.btnInserir.TabIndex = 4;
             this.btnInserir.Text = "Criar";
             this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // dgvModelos
             // 
@@ -103,6 +104,7 @@ namespace Restaurante
             this.btnEditar.TabIndex = 6;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnDel
             // 
@@ -113,6 +115,7 @@ namespace Restaurante
             this.btnDel.TabIndex = 7;
             this.btnDel.Text = "Apagar";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnLimpar
             // 
@@ -123,6 +126,7 @@ namespace Restaurante
             this.btnLimpar.TabIndex = 8;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnSair
             // 
@@ -133,6 +137,7 @@ namespace Restaurante
             this.btnSair.TabIndex = 9;
             this.btnSair.Text = "Sair";
             this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // FormModeloAdicional
             // 

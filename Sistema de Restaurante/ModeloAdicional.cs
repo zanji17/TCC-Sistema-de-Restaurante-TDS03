@@ -16,9 +16,31 @@ namespace Restaurante
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
-        public void Criar()
+        public void Criar(string Nome, string Adicionais)
         {
-            
+            con.Open();
+            string sql = "SELECT IdIngrediente FROM Ingredientes WHERE nome = '" + Adicionais + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                int Id = (int)dr["IdIngrediente"];
+                con.Close();
+                con.Open();
+                string sql2 = "INSERT INTO ModeloAdicional(nome, IdIngrediente) VALUES('" + Nome + "', '" + Id + "')";
+                SqlCommand cmd2 = new SqlCommand(sql2, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        public void Deletar(string Nome)
+        {
+            con.Open();
+            string sql = "DELETE * FROM ModeloAdicional WHERE nome = '" + Nome + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
 
         public List<ModeloAdicional> listarModelos()
@@ -53,13 +75,14 @@ namespace Restaurante
                 }
                 lista.Add(modelo);
             }
+            con.Close();
             return lista;
         }
 
         public List<ModeloAdicional> BuscaAdicionais(string Nome)
         {
             con.Open();
-            List<ModeloAdicional> lista = new < ModeloAdicional > ();
+            List<ModeloAdicional> lista = new List<ModeloAdicional>();
             string sql = "SELECT Ingredientes.nome FROM ModeloAdicional INNER JOIN Ingredientes ON ModeloAdicional.IdIngrediente = Ingredientes.IdIngrediente WHERE ModeloAdicional.nome = '" + Nome + "' ORDER BY Ingredientes.nome";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -69,8 +92,25 @@ namespace Restaurante
                 modelo.Adicionais = dr["nome"].ToString().Trim();
                 lista.Add(modelo);
             }
-            return lista;
             con.Close();
+            return lista;
+        }
+
+        public List<ModeloAdicional> listarAdicionais()
+        {
+            List<ModeloAdicional> lista = new List<ModeloAdicional>();
+            con.Open();
+            string sql = "SELECT nome FROM Ingredientes WHERE Adicional = 'S'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                ModeloAdicional modelo = new ModeloAdicional();
+                modelo.Adicionais = dr["nome"].ToString().Trim();
+                lista.Add(modelo);
+            }
+            con.Close();
+            return (lista);
         }
     }
 }

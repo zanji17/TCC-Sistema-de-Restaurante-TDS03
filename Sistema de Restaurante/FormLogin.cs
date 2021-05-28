@@ -26,26 +26,46 @@ namespace Restaurante
                 if(log.cargo == "Gerente")
                 {
                     this.Hide();
-                    FormHomeGerente hg = new FormHomeGerente(log.Id);
-                    hg.Show();
+                    using (FormHomeGerente hg = new FormHomeGerente(log.Id, log.cargo) { })
+                    {
+                        if(hg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            this.Show();
+                        }
+                    }
                 }
                 else if (log.cargo == "Atendente")
                 {
                     this.Hide();
-                    FormHomeAtendente ha = new FormHomeAtendente(log.Id);
-                    ha.Show();
+                    using (FormHomeAtendente ha = new FormHomeAtendente(log.Id, log.cargo) { })
+                    {
+                        if (ha.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            this.Show();
+                        }
+                    }
                 }
                 else if (log.cargo == "Cozinha")
                 {
                     this.Hide();
-                    FormHomeCozinha hcozinha = new FormHomeCozinha(log.Id);
-                    hcozinha.Show();
+                    using (FormHomeCozinha hcozinha = new FormHomeCozinha(log.Id) { })
+                    {
+                        if (hcozinha.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            this.Show();
+                        }
+                    }
                 }
                 if (log.cargo == "Caixa")
                 {
                     this.Hide();
-                    FormHomeCaixa hcaixa = new FormHomeCaixa(log.Id);
-                    hcaixa.Show();
+                    using (FormHomeCaixa hcaixa = new FormHomeCaixa(log.Id) { })
+                    {
+                        if(hcaixa.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            this.Show();
+                        }
+                    }
                 }
             }
         }

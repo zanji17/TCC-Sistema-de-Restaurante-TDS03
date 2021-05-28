@@ -26,7 +26,13 @@ namespace Restaurante
 
         public string Atendente { get; set; }
 
-        public
+        public string Status { get; set; }
+
+        public string CPF { get; set; }
+
+        public int NumeroPedidos { get; set; }
+
+        public int NumeroPratos { get; set; }
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
@@ -159,6 +165,77 @@ namespace Restaurante
                 pedido.Atendente = dr["atendente"].ToString().Trim();
                 pedido.IdPedido = (int)dr["IdPedido"];
                 pedido.IdAtendente = (int)dr["IdAtendente"];
+                lista.Add(pedido);
+            }
+            con.Close();
+            return lista;
+        }
+
+        public void CancelaPedido(int IdPedido)
+        {
+            con.Open();
+            string sql = "UPDATE Pedidos SET status = 'Cancelado' WHERE IdPedido = '"+IdPedido+"'";
+            SqlCommand cmd = new SqlCommand(sql,con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public List<Pedidos> ListarAtendimento()
+        {
+            List<Pedidos> lista = new List<Pedidos>();
+            con.Open();
+            string sql = "SELECT * FROM Atendentes";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            int linhas = dt.Rows.Count;
+            for (int i = 0; i < linhas; i++)
+            {
+                con.Close();
+                Pedidos pedido = new Pedidos();
+                pedido.IdAtendente = (int)dt.Rows[i]["IdAtendente"];
+                pedido.Atendente = dt.Rows[i]["nome"].ToString().Trim();
+                pedido.CPF = dt.Rows[i]["cpf"].ToString().Trim();
+                con.Open();
+                string sql2 = "SELECT COUNT(*) as pedidos FROM Pedidos WHERE IdAtendente = '" + pedido.IdAtendente + "'";
+                SqlCommand cmd2 = new SqlCommand(sql2, con);
+                SqlDataReader dr = cmd2.ExecuteReader();
+                if (dr.Read())
+                {
+                    pedido.NumeroPedidos = (int)dr["pedidos"];
+                    con.Close();
+                    con.Open();
+                    string sql3 = "SELECT COUNT(*) as registro FROM PedidosPratosProdutos WHERE IdAtendente = '" + pedido.IdAtendente + "'";
+                    SqlCommand cmd3 = new SqlCommand(sql3, con);
+                    SqlDataReader dr2 = cmd3.ExecuteReader();
+                    if (dr2.Read())
+                    {
+                        pedido.NumeroPratos = (int)dr2["registro"];
+                        con.Close();
+                    }
+                }
+                lista.Add(pedido);
+            }
+            return lista;
+        }
+
+        public List<Pedidos> ListarPedidos(int IdAtendente)
+        {
+            List<Pedidos> lista = new List<Pedidos>();
+            con.Open();
+            string sql = "SELECT * FROM Pedidos WHERE IdAtendente = '" + IdAtendente + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Pedidos pedido = new Pedidos();
+                pedido.IdPedido = (int)dr["IdPedido"];
+                pedido.Cliente = dr["nome"].ToString().Trim();
+                pedido.Mesa = dr["mesa"].ToString().Trim();
+                pedido.Pessoas = (int)dr["quantidade"];
+                pedido.Status = dr["status"].ToString().Trim();
+                pedido.Data = dr["data"].ToString().Trim();
                 lista.Add(pedido);
             }
             con.Close();

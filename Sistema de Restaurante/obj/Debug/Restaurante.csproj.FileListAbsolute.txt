@@ -87,3 +87,4 @@ C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.Gen
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.CoreCompileInputs.cache
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.exe
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.pdb
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormModeloAdicional.resources
