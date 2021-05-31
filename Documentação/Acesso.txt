@@ -1,0 +1,8 @@
+(atendente)
+login e senha:
+teste
+
+(gerente)
+login e senha:
+gerente
+
