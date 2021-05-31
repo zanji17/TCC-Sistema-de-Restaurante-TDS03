@@ -20,7 +20,7 @@ namespace Restaurante
         public void Logar(string login, string senha)
         {
             con.Open();
-            string sql = "SELECT * FROM Acessos WHERE login = '" + login + "' AND senha = '" + senha + "'";
+            string sql = "SELECT * FROM Acessos WHERE login = '" + Base64.Base64Encode(login) + "' AND senha = '" + Base64.Base64Encode(senha) + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())

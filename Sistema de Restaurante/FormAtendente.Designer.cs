@@ -29,9 +29,6 @@ namespace Restaurante
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnLocalizar = new System.Windows.Forms.Button();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.lblId = new System.Windows.Forms.Label();
             this.dgvAtend = new System.Windows.Forms.DataGridView();
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnDeletar = new System.Windows.Forms.Button();
@@ -48,31 +45,6 @@ namespace Restaurante
             ((System.ComponentModel.ISupportInitialize)(this.dgvAtend)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnLocalizar
-            // 
-            this.btnLocalizar.Location = new System.Drawing.Point(111, 35);
-            this.btnLocalizar.Name = "btnLocalizar";
-            this.btnLocalizar.Size = new System.Drawing.Size(75, 20);
-            this.btnLocalizar.TabIndex = 27;
-            this.btnLocalizar.Text = "Localizar";
-            this.btnLocalizar.UseVisualStyleBackColor = true;
-            // 
-            // txtId
-            // 
-            this.txtId.Location = new System.Drawing.Point(22, 35);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(75, 20);
-            this.txtId.TabIndex = 11;
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(19, 18);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(18, 13);
-            this.lblId.TabIndex = 25;
-            this.lblId.Text = "ID";
-            // 
             // dgvAtend
             // 
             this.dgvAtend.AccessibleName = "";
@@ -80,37 +52,40 @@ namespace Restaurante
             this.dgvAtend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAtend.Location = new System.Drawing.Point(192, 35);
             this.dgvAtend.Name = "dgvAtend";
-            this.dgvAtend.Size = new System.Drawing.Size(407, 238);
+            this.dgvAtend.Size = new System.Drawing.Size(407, 182);
             this.dgvAtend.TabIndex = 24;
+            this.dgvAtend.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAtend_CellClick);
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(103, 289);
+            this.btnAtualizar.Location = new System.Drawing.Point(103, 235);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(75, 23);
             this.btnAtualizar.TabIndex = 21;
             this.btnAtualizar.Text = "Atualizar ";
             this.btnAtualizar.UseVisualStyleBackColor = true;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click_1);
             // 
             // btnDeletar
             // 
-            this.btnDeletar.Location = new System.Drawing.Point(182, 289);
+            this.btnDeletar.Location = new System.Drawing.Point(182, 235);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(75, 23);
             this.btnDeletar.TabIndex = 23;
             this.btnDeletar.Text = "Deletar";
             this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click_1);
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(22, 194);
+            this.txtLogin.Location = new System.Drawing.Point(17, 138);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(161, 20);
             this.txtLogin.TabIndex = 18;
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(25, 253);
+            this.txtSenha.Location = new System.Drawing.Point(20, 197);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(158, 20);
             this.txtSenha.TabIndex = 19;
@@ -118,14 +93,14 @@ namespace Restaurante
             // 
             // txtCpf
             // 
-            this.txtCpf.Location = new System.Drawing.Point(22, 141);
+            this.txtCpf.Location = new System.Drawing.Point(17, 85);
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(161, 20);
             this.txtCpf.TabIndex = 13;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(22, 91);
+            this.txtNome.Location = new System.Drawing.Point(17, 35);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(161, 20);
             this.txtNome.TabIndex = 12;
@@ -133,7 +108,7 @@ namespace Restaurante
             // lblCpfCadAtend
             // 
             this.lblCpfCadAtend.AutoSize = true;
-            this.lblCpfCadAtend.Location = new System.Drawing.Point(22, 124);
+            this.lblCpfCadAtend.Location = new System.Drawing.Point(17, 68);
             this.lblCpfCadAtend.Name = "lblCpfCadAtend";
             this.lblCpfCadAtend.Size = new System.Drawing.Size(27, 13);
             this.lblCpfCadAtend.TabIndex = 17;
@@ -142,7 +117,7 @@ namespace Restaurante
             // lbLoginCadAtend
             // 
             this.lbLoginCadAtend.AutoSize = true;
-            this.lbLoginCadAtend.Location = new System.Drawing.Point(19, 177);
+            this.lbLoginCadAtend.Location = new System.Drawing.Point(14, 121);
             this.lbLoginCadAtend.Name = "lbLoginCadAtend";
             this.lbLoginCadAtend.Size = new System.Drawing.Size(33, 13);
             this.lbLoginCadAtend.TabIndex = 16;
@@ -151,7 +126,7 @@ namespace Restaurante
             // lblSenhaCadAntend
             // 
             this.lblSenhaCadAntend.AutoSize = true;
-            this.lblSenhaCadAntend.Location = new System.Drawing.Point(22, 236);
+            this.lblSenhaCadAntend.Location = new System.Drawing.Point(17, 180);
             this.lblSenhaCadAntend.Name = "lblSenhaCadAntend";
             this.lblSenhaCadAntend.Size = new System.Drawing.Size(38, 13);
             this.lblSenhaCadAntend.TabIndex = 15;
@@ -160,7 +135,7 @@ namespace Restaurante
             // lblNomeCadAtend
             // 
             this.lblNomeCadAtend.AutoSize = true;
-            this.lblNomeCadAtend.Location = new System.Drawing.Point(19, 74);
+            this.lblNomeCadAtend.Location = new System.Drawing.Point(14, 18);
             this.lblNomeCadAtend.Name = "lblNomeCadAtend";
             this.lblNomeCadAtend.Size = new System.Drawing.Size(38, 13);
             this.lblNomeCadAtend.TabIndex = 14;
@@ -168,30 +143,29 @@ namespace Restaurante
             // 
             // btnSairCadAtend
             // 
-            this.btnSairCadAtend.Location = new System.Drawing.Point(262, 289);
+            this.btnSairCadAtend.Location = new System.Drawing.Point(262, 235);
             this.btnSairCadAtend.Name = "btnSairCadAtend";
             this.btnSairCadAtend.Size = new System.Drawing.Size(75, 23);
             this.btnSairCadAtend.TabIndex = 26;
             this.btnSairCadAtend.Text = "Sair";
             this.btnSairCadAtend.UseVisualStyleBackColor = true;
+            this.btnSairCadAtend.Click += new System.EventHandler(this.btnSairCadAtend_Click_1);
             // 
             // btnCadAtend
             // 
-            this.btnCadAtend.Location = new System.Drawing.Point(22, 289);
+            this.btnCadAtend.Location = new System.Drawing.Point(22, 235);
             this.btnCadAtend.Name = "btnCadAtend";
             this.btnCadAtend.Size = new System.Drawing.Size(75, 23);
             this.btnCadAtend.TabIndex = 20;
             this.btnCadAtend.Text = "Cadastrar";
             this.btnCadAtend.UseVisualStyleBackColor = true;
+            this.btnCadAtend.Click += new System.EventHandler(this.btnCadAtend_Click_1);
             // 
             // FormAtendente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 344);
-            this.Controls.Add(this.btnLocalizar);
-            this.Controls.Add(this.txtId);
-            this.Controls.Add(this.lblId);
+            this.ClientSize = new System.Drawing.Size(626, 292);
             this.Controls.Add(this.dgvAtend);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.btnDeletar);
@@ -210,6 +184,7 @@ namespace Restaurante
             this.Name = "FormAtendente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Atendentes";
+            this.Load += new System.EventHandler(this.FormAtendente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAtend)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -217,10 +192,6 @@ namespace Restaurante
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnLocalizar;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.DataGridView dgvAtend;
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Button btnDeletar;

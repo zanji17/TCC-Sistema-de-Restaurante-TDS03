@@ -32,8 +32,15 @@ namespace Restaurante
         {
             voltar = false;
             Pedidos pedido = new Pedidos();
-            pedido.LocalizaAtendente(IdAtendente);
-            IdAtendente = pedido.IdAtendente;
+            if (cargo == "Gerente")
+            {
+                IdAtendente = 0;
+            }
+            else
+            {
+                pedido.LocalizaAtendente(IdAtendente);
+                IdAtendente = pedido.IdAtendente;
+            }
             atualizar();
         }
 
@@ -43,8 +50,13 @@ namespace Restaurante
             {
                 Pedidos pedido = new Pedidos();
                 pedido.CriarPedido(IdAtendente, txtCliente.Text.ToString().Trim(), txtMesa.Text.ToString().Trim(), (int)nPessoas.Value);
-                FormRegistroPedido rp = new FormRegistroPedido((int)pedido.IdPedido, (int)IdAtendente);
-                rp.Show();
+                using (FormRegistroPedido rp = new FormRegistroPedido((int)pedido.IdPedido, (int)IdAtendente) { }) 
+                { 
+                    if(rp.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        atualizar();
+                    }
+                }
             }
         }
 
@@ -85,8 +97,16 @@ namespace Restaurante
             dgvMeusPedidos.DataSource = meuspedidos;
             dgvMeusPedidos.Columns.Remove("Atendente");
             dgvMeusPedidos.Columns.Remove("IdAtendente");
+            dgvMeusPedidos.Columns.Remove("NumeroPedidos");
+            dgvMeusPedidos.Columns.Remove("NumeroPratos");
+            dgvMeusPedidos.Columns.Remove("CPF");
+            dgvMeusPedidos.Columns.Remove("Status");
             List<Pedidos> pedidosgeral = pedido.PedidosGeral(IdAtendente);
             dgvTodosPedidos.DataSource = pedidosgeral;
+            dgvTodosPedidos.Columns.Remove("NumeroPedidos");
+            dgvTodosPedidos.Columns.Remove("NumeroPratos");
+            dgvTodosPedidos.Columns.Remove("CPF");
+            dgvTodosPedidos.Columns.Remove("Status");
             nPessoas.Value = 1;
         }
 

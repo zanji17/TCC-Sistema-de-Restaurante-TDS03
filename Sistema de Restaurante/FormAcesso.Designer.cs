@@ -68,6 +68,7 @@ namespace Restaurante
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(199, 20);
             this.txtSenha.TabIndex = 19;
+            this.txtSenha.UseSystemPasswordChar = true;
             // 
             // btnSair
             // 

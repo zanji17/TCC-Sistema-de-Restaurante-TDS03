@@ -34,7 +34,6 @@ namespace Restaurante
             this.clbRetirar = new System.Windows.Forms.CheckedListBox();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.lblRetirar = new System.Windows.Forms.Label();
-            this.txtTipo = new System.Windows.Forms.TextBox();
             this.btnSair = new System.Windows.Forms.Button();
             this.lblTipo = new System.Windows.Forms.Label();
             this.lblPratoProduto = new System.Windows.Forms.Label();
@@ -43,6 +42,11 @@ namespace Restaurante
             this.label1 = new System.Windows.Forms.Label();
             this.cbPP = new System.Windows.Forms.ComboBox();
             this.nQuantidade = new System.Windows.Forms.NumericUpDown();
+            this.lbResultado = new System.Windows.Forms.ListBox();
+            this.txtPesquisa = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblDescricao = new System.Windows.Forms.Label();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.nQuantidade)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,15 +94,6 @@ namespace Restaurante
             this.lblRetirar.Size = new System.Drawing.Size(38, 13);
             this.lblRetirar.TabIndex = 4;
             this.lblRetirar.Text = "Retirar";
-            // 
-            // txtTipo
-            // 
-            this.txtTipo.Enabled = false;
-            this.txtTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipo.Location = new System.Drawing.Point(228, 33);
-            this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(189, 20);
-            this.txtTipo.TabIndex = 6;
             // 
             // btnSair
             // 
@@ -171,13 +166,63 @@ namespace Restaurante
             this.nQuantidade.Size = new System.Drawing.Size(120, 20);
             this.nQuantidade.TabIndex = 15;
             // 
+            // lbResultado
+            // 
+            this.lbResultado.FormattingEnabled = true;
+            this.lbResultado.Location = new System.Drawing.Point(477, 66);
+            this.lbResultado.Name = "lbResultado";
+            this.lbResultado.Size = new System.Drawing.Size(120, 134);
+            this.lbResultado.TabIndex = 16;
+            this.lbResultado.SelectedIndexChanged += new System.EventHandler(this.lbResultado_SelectedIndexChanged);
+            // 
+            // txtPesquisa
+            // 
+            this.txtPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesquisa.Location = new System.Drawing.Point(477, 33);
+            this.txtPesquisa.Name = "txtPesquisa";
+            this.txtPesquisa.Size = new System.Drawing.Size(139, 20);
+            this.txtPesquisa.TabIndex = 17;
+            this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(474, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Pesquisar Ingrendiente";
+            // 
+            // lblDescricao
+            // 
+            this.lblDescricao.AutoSize = true;
+            this.lblDescricao.Location = new System.Drawing.Point(474, 221);
+            this.lblDescricao.Name = "lblDescricao";
+            this.lblDescricao.Size = new System.Drawing.Size(65, 13);
+            this.lblDescricao.TabIndex = 19;
+            this.lblDescricao.Text = "\"Descrição\"";
+            // 
+            // cbTipo
+            // 
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Location = new System.Drawing.Point(228, 28);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(189, 21);
+            this.cbTipo.TabIndex = 20;
+            this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.cbTipo_SelectedIndexChanged);
+            // 
             // FormRegistrarPrato
             // 
             this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSair;
-            this.ClientSize = new System.Drawing.Size(522, 391);
+            this.ClientSize = new System.Drawing.Size(654, 391);
+            this.Controls.Add(this.cbTipo);
+            this.Controls.Add(this.lblDescricao);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtPesquisa);
+            this.Controls.Add(this.lbResultado);
             this.Controls.Add(this.nQuantidade);
             this.Controls.Add(this.cbPP);
             this.Controls.Add(this.label1);
@@ -186,7 +231,6 @@ namespace Restaurante
             this.Controls.Add(this.lblPratoProduto);
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.btnSair);
-            this.Controls.Add(this.txtTipo);
             this.Controls.Add(this.lblRetirar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.clbRetirar);
@@ -211,7 +255,6 @@ namespace Restaurante
         private System.Windows.Forms.CheckedListBox clbRetirar;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label lblRetirar;
-        private System.Windows.Forms.TextBox txtTipo;
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblPratoProduto;
@@ -220,5 +263,10 @@ namespace Restaurante
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbPP;
         private System.Windows.Forms.NumericUpDown nQuantidade;
+        private System.Windows.Forms.ListBox lbResultado;
+        private System.Windows.Forms.TextBox txtPesquisa;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDescricao;
+        private System.Windows.Forms.ComboBox cbTipo;
     }
 }

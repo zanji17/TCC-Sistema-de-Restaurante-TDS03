@@ -112,6 +112,7 @@ namespace Restaurante
             SqlCommand cmd3 = new SqlCommand(sql3, con);
             SqlDataReader dr2 = cmd3.ExecuteReader(); 
             if (!dr2.Read()) {
+                con.Close();
                 con.Open();
                 string sql = "INSERT INTO PratosProdutos(nome,tipo,cozinha) VALUES ('" + nome + "', '" + tipo + "', '"+cozinha+"')";
                 SqlCommand cmd = new SqlCommand(sql, con);

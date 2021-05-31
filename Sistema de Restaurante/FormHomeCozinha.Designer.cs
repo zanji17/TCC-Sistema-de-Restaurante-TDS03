@@ -29,9 +29,6 @@ namespace Restaurante
         /// </summary>
         private void InitializeComponent()
         {
-            this.TextBoxAtendente = new System.Windows.Forms.TextBox();
-            this.btnChamar = new System.Windows.Forms.Button();
-            this.lblAtendente = new System.Windows.Forms.Label();
             this.dgvPratoConfirmado = new System.Windows.Forms.DataGridView();
             this.dgvPC = new System.Windows.Forms.DataGridView();
             this.dgvPR = new System.Windows.Forms.DataGridView();
@@ -44,31 +41,6 @@ namespace Restaurante
             ((System.ComponentModel.ISupportInitialize)(this.dgvPC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPR)).BeginInit();
             this.SuspendLayout();
-            // 
-            // TextBoxAtendente
-            // 
-            this.TextBoxAtendente.Location = new System.Drawing.Point(469, 288);
-            this.TextBoxAtendente.Name = "TextBoxAtendente";
-            this.TextBoxAtendente.Size = new System.Drawing.Size(100, 20);
-            this.TextBoxAtendente.TabIndex = 0;
-            // 
-            // btnChamar
-            // 
-            this.btnChamar.Location = new System.Drawing.Point(575, 285);
-            this.btnChamar.Name = "btnChamar";
-            this.btnChamar.Size = new System.Drawing.Size(75, 23);
-            this.btnChamar.TabIndex = 1;
-            this.btnChamar.Text = "Chamar";
-            this.btnChamar.UseVisualStyleBackColor = true;
-            // 
-            // lblAtendente
-            // 
-            this.lblAtendente.AutoSize = true;
-            this.lblAtendente.Location = new System.Drawing.Point(407, 291);
-            this.lblAtendente.Name = "lblAtendente";
-            this.lblAtendente.Size = new System.Drawing.Size(56, 13);
-            this.lblAtendente.TabIndex = 2;
-            this.lblAtendente.Text = "Atendente";
             // 
             // dgvPratoConfirmado
             // 
@@ -159,9 +131,6 @@ namespace Restaurante
             this.Controls.Add(this.dgvPR);
             this.Controls.Add(this.dgvPC);
             this.Controls.Add(this.dgvPratoConfirmado);
-            this.Controls.Add(this.lblAtendente);
-            this.Controls.Add(this.btnChamar);
-            this.Controls.Add(this.TextBoxAtendente);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormHomeCozinha";
@@ -177,10 +146,6 @@ namespace Restaurante
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox TextBoxAtendente;
-        private System.Windows.Forms.Button btnChamar;
-        private System.Windows.Forms.Label lblAtendente;
         private System.Windows.Forms.DataGridView dgvPratoConfirmado;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mesaDeliveryDataGridViewTextBoxColumn;

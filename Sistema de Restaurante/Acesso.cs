@@ -25,15 +25,15 @@ namespace Restaurante
         {
             List<Acesso> listaAcesso = new List<Acesso>();
             con.Open();
-            string sql = "SELECT * FROM Acessos";
+            string sql = "SELECT * FROM Acessos WHERE cargo != 'Atendente'";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 Acesso acesso = new Acesso();
                 acesso.Id = (int)dr["Idacesso"];
-                acesso.Login = dr["login"].ToString().Trim();
-                acesso.Senha = dr["senha"].ToString().Trim();
+                acesso.Login = Base64.Base64Decode(dr["login"].ToString().Trim());
+                acesso.Senha = Base64.Base64Decode(dr["senha"].ToString().Trim());
                 acesso.Cargo = dr["cargo"].ToString().Trim();
                 listaAcesso.Add(acesso);
             }
@@ -43,14 +43,14 @@ namespace Restaurante
         public void Inserir(string Login, string Senha, string Cargo)
         {
             con.Open();
-            string sql = "SELECT login FROM Acessos WHERE login = '"+Login+"'";
+            string sql = "SELECT login FROM Acessos WHERE login = '"+ Base64.Base64Encode(Login) +"'";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             if (!dr.Read()) 
             {
                 con.Close();
                 con.Open();
-                string sql2 = "INSERT INTO Acessos( login, senha, cargo) VALUES('" + Login + "','" + Senha + "', '" + Cargo + "')";
+                string sql2 = "INSERT INTO Acessos( login, senha, cargo) VALUES('" + Base64.Base64Encode(Login) + "','" + Base64.Base64Encode(Senha) + "', '" + Cargo + "')";
                 SqlCommand cmd2 = new SqlCommand(sql2, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
@@ -64,14 +64,14 @@ namespace Restaurante
         public void Atualizar(string Login, string Senha, string Cargo, int Id)
         {
             con.Open();
-            string sql = "SELECT Idacesso FROM Acessos WHERE login = '" + Login + "'";
+            string sql = "SELECT Idacesso FROM Acessos WHERE login = '" + Base64.Base64Encode(Login) + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             if (!dr.Read())
             {
                 con.Close();
                 con.Open();
-                string sql2 = "UPDATE Acessos SET login = '" + Login + "', senha = '" + Senha + "', cargo = '" + Cargo + "' WHERE Idacesso = '"+Id+"'";
+                string sql2 = "UPDATE Acessos SET login = '" + Base64.Base64Encode(Login) + "', senha = '" + Base64.Base64Encode(Senha) + "', cargo = '" + Cargo + "' WHERE Idacesso = '"+Id+"'";
                 SqlCommand cmd2 = new SqlCommand(sql2, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
@@ -82,7 +82,7 @@ namespace Restaurante
                 {
                     con.Close();
                     con.Open();
-                    string sql2 = "UPDATE Acessos SET login = '" + Login + "', senha = '" + Senha + "', cargo = '" + Cargo + "' WHERE Idacesso = '" + Id + "'";
+                    string sql2 = "UPDATE Acessos SET login = '" + Base64.Base64Encode(Login) + "', senha = '" + Base64.Base64Encode(Senha) + "', cargo = '" + Cargo + "' WHERE Idacesso = '" + Id + "'";
                     SqlCommand cmd2 = new SqlCommand(sql2, con);
                     cmd2.ExecuteNonQuery();
                     con.Close();

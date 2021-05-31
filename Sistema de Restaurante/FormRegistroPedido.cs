@@ -160,7 +160,7 @@ namespace Restaurante
                 }
                 if (dgvRegistro.Rows[Row].Cells[8].Value.ToString() != "Servido")
                 {
-                    if (DialogResult.Yes == MessageBox.Show("Deseja mesmo cancelar esse registro?", "Apagar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                    if (DialogResult.Yes == MessageBox.Show("Deseja mesmo cancelar esse registro?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
                     {
                         RegistroPedido registro = new RegistroPedido();
                         registro.Cancelado((int)dgvRegistro.Rows[Row].Cells[0].Value);
@@ -173,13 +173,24 @@ namespace Restaurante
         private void btnCancelarTudo_Click(object sender, EventArgs e)
         {
             RegistroPedido registro = new RegistroPedido();
-            if (DialogResult.Yes == MessageBox.Show("Deseja mesmo cancelar todos os registros?", "Apagar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+            if (DialogResult.Yes == MessageBox.Show("Deseja mesmo cancelar todos os registros?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
             {
                 for (int i = 0; i < dgvRegistro.Rows.Count; i++)
                 {
-                    if(dgvRegistro.Rows[i].Cells[8].Value.ToString() != "Servido")
+                    if(dgvRegistro.Rows[i].Cells[8].Value.ToString() == "Confirmado")
                     {
                         registro.Cancelado((int)dgvRegistro.Rows[i].Cells[0].Value);
+                    }
+                }
+                if(DialogResult.Yes == MessageBox.Show("Deseja Apagar todos os registros vazios?", "Apagar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                {
+                    for (int i = 0; i < dgvRegistro.Rows.Count; i++)
+                    {
+                        if (dgvRegistro.Rows[i].Cells[8].Value.ToString() == "")
+                        {
+                            registro.DeletarPrato((int)dgvRegistro.Rows[i].Cells[0].Value);
+                            registro.DeletarAdicionaisRetirados((int)dgvRegistro.Rows[i].Cells[0].Value);
+                        }
                     }
                 }
                 atualizaDGV();

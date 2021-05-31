@@ -34,15 +34,16 @@ namespace Restaurante
         private void FormRegistrarPrato_Load(object sender, EventArgs e)
         {
             con.Open();
-            string sql = "SELECT nome FROM PratosProdutos";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            string sql3 = "SELECT DISTINCT tipo FROM PratosProdutos";
+            SqlCommand cmd3 = new SqlCommand(sql3, con);
+            SqlDataReader dr3 = cmd3.ExecuteReader();
+            cbTipo.Items.Add("none");
+            while (dr3.Read())
             {
-                cbPP.Items.Add(dr["nome"].ToString().Trim());
+                cbTipo.Items.Add(dr3["tipo"].ToString().Trim());
             }
             con.Close();
-            cbPP.SelectedIndex = 0;
+            cbTipo.SelectedIndex = 0;
             nQuantidade.Value = 1;
             if(IdPPP > 0)
             {
@@ -71,7 +72,6 @@ namespace Restaurante
             cmd2.Parameters.AddWithValue("@nome", SqlDbType.NChar).Value = cbPP.SelectedItem.ToString();
             SqlDataReader dr2 = cmd2.ExecuteReader();
             dr2.Read();
-            txtTipo.Text = dr2["tipo"].ToString().Trim();
             IdPP = (int)dr2["IdPratoProduto"];
             con.Close();
 
@@ -171,6 +171,57 @@ namespace Restaurante
                     }
                     this.Close();
                 }
+            }
+        }
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            lbResultado.Items.Clear();
+            if(txtPesquisa.Text != null && txtPesquisa.Text != "")
+            {
+                Ingrediente ingred = new Ingrediente();
+                List<Ingrediente> lista = ingred.Pesquisar(txtPesquisa.Text);
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    lbResultado.Items.Add(lista[i].Nome);
+                }
+            }
+        }
+
+        private void cbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbPP.Items.Clear();
+            con.Open();
+            string sql = "SELECT nome FROM PratosProdutos";
+            if(cbTipo.SelectedItem.ToString() != "none")
+            {
+                sql += " WHERE tipo=@tipo";
+            }
+            SqlCommand cmd = new SqlCommand(sql, con);
+            if (cbTipo.SelectedItem.ToString() != "none")
+            {
+                cmd.Parameters.AddWithValue("@tipo", SqlDbType.NChar).Value = cbTipo.SelectedItem.ToString();
+            }
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                cbPP.Items.Add(dr["nome"].ToString().Trim());
+            }
+            con.Close();
+            cbPP.SelectedIndex = 0;
+        }
+
+        private void lbResultado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            con.Open();
+            string sql = "SELECT detalhe FROM Ingredientes WHERE nome = @nome";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@nome", SqlDbType.NChar).Value = lbResultado.SelectedItem.ToString().Trim();
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                lblDescricao.Text = lbResultado.SelectedItem.ToString().Trim()+": "+dr["detalhe"].ToString().Trim();
+                con.Close();
             }
         }
     }

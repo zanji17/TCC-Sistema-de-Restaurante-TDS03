@@ -106,5 +106,22 @@ namespace Restaurante
             cmd.ExecuteNonQuery();
             con.Close();
         }
+
+        public List<Ingrediente> Pesquisar(string nome)
+        {
+            List<Ingrediente> lista = new List<Ingrediente>();
+            con.Open();
+            string sql = "SELECT nome FROM Ingredientes WHERE nome LIKE '"+ nome + "%'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Ingrediente ingred = new Ingrediente();
+                ingred.Nome = dr["nome"].ToString().Trim();
+                lista.Add(ingred);
+            }
+            con.Close();
+            return lista;
+        }
     }
 }

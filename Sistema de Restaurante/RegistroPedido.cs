@@ -415,7 +415,7 @@ namespace Restaurante
         {
             List<RegistroPedido> lista = new List<RegistroPedido>();
             con.Open();
-            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE PedidosPratosProdutos.status = 'Cancelado' AND PratosProdutos.cozinha = 'S' ORDER BY data DESC";
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE PedidosPratosProdutos.status = 'Cancelado' AND PratosProdutos.cozinha = 'S' AND Pedidos.status = 'Aberto' ORDER BY data DESC";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -499,6 +499,15 @@ namespace Restaurante
             }
             con.Close();
             return lista;
+        }
+
+        public void fecharPedido(int IdPedido)
+        {
+            con.Open();
+            string sql = "UPDATE Pedidos SET status = 'Fechado' WHERE IdPedido = '" + IdPedido + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Restaurante
             this.lblMeusPedidos = new System.Windows.Forms.Label();
             this.dgvPedidosAbertos = new System.Windows.Forms.DataGridView();
             this.btnFechar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLimpar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistroPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosAbertos)).BeginInit();
             this.SuspendLayout();
@@ -86,22 +86,24 @@ namespace Restaurante
             this.btnFechar.TabIndex = 7;
             this.btnFechar.Text = "Fechar Pedido";
             this.btnFechar.UseVisualStyleBackColor = true;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
-            // button1
+            // btnLimpar
             // 
-            this.button1.Location = new System.Drawing.Point(430, 394);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 36);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Limpar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLimpar.Location = new System.Drawing.Point(430, 394);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(101, 36);
+            this.btnLimpar.TabIndex = 14;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // FormHomeCaixa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvRegistroPedido);
             this.Controls.Add(this.lblMeusPedidos);
@@ -127,6 +129,6 @@ namespace Restaurante
         private System.Windows.Forms.Label lblMeusPedidos;
         private System.Windows.Forms.DataGridView dgvPedidosAbertos;
         private System.Windows.Forms.Button btnFechar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }

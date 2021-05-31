@@ -106,7 +106,7 @@ namespace Restaurante
         {
             List<Pedidos> lista = new List<Pedidos>();
             con.Open();
-            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Atendentes.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE Pedidos.IdAtendente != '" + Id + "' AND status = 'Aberto' ORDER BY mesa";
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Pedidos.IdAtendente, Pedidos.IdPedido FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE Pedidos.IdAtendente != '" + Id + "' AND status = 'Aberto' ORDER BY mesa";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -116,7 +116,14 @@ namespace Restaurante
                 pedido.Mesa = dr["mesa"].ToString().Trim();
                 pedido.Pessoas = (int)dr["quantidade"];
                 pedido.Data = dr["data"].ToString().Trim();
-                pedido.Atendente = dr["atendente"].ToString().Trim();
+                if ((int)dr["IdAtendente"] == 0)
+                {
+                    pedido.Atendente = "Gerente";
+                }
+                else
+                {
+                    pedido.Atendente = dr["atendente"].ToString().Trim();
+                }
                 pedido.IdPedido = (int)dr["IdPedido"];
                 pedido.IdAtendente = (int)dr["IdAtendente"];
                 lista.Add(pedido);
@@ -129,7 +136,7 @@ namespace Restaurante
         {
             List<Pedidos> lista = new List<Pedidos>();
             con.Open();
-            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Atendentes.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE status = 'Aberto' ORDER BY mesa";
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Pedidos.IdAtendente, Pedidos.IdPedido FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE status = 'Aberto' ORDER BY mesa";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -139,7 +146,14 @@ namespace Restaurante
                 pedido.Mesa = dr["mesa"].ToString().Trim();
                 pedido.Pessoas = (int)dr["quantidade"];
                 pedido.Data = dr["data"].ToString().Trim();
-                pedido.Atendente = dr["atendente"].ToString().Trim();
+                if ((int)dr["IdAtendente"] == 0)
+                {
+                    pedido.Atendente = "Gerente";
+                }
+                else
+                {
+                    pedido.Atendente = dr["atendente"].ToString().Trim();
+                }
                 pedido.IdPedido = (int)dr["IdPedido"];
                 pedido.IdAtendente = (int)dr["IdAtendente"];
                 lista.Add(pedido);
@@ -148,11 +162,11 @@ namespace Restaurante
             return lista;
         }
 
-        public List<Pedidos> PedidosRelatorio()
+        public List<Pedidos> PedidosRelatorio(string datainicial, string datafinal)
         {
             List<Pedidos> lista = new List<Pedidos>();
             con.Open();
-            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Pedidos.IdPedido, Atendentes.IdAtendente FROM Pedidos INNER JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente ORDER BY data";
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Pedidos.IdPedido, Pedidos.IdAtendente FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE Pedidos.data >= '"+datainicial+"' AND Pedidos.data <= '"+datafinal+"' ORDER BY data";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -162,7 +176,14 @@ namespace Restaurante
                 pedido.Mesa = dr["mesa"].ToString().Trim();
                 pedido.Pessoas = (int)dr["quantidade"];
                 pedido.Data = dr["data"].ToString().Trim();
-                pedido.Atendente = dr["atendente"].ToString().Trim();
+                if ((int)dr["IdAtendente"] == 0)
+                {
+                    pedido.Atendente = "Gerente";
+                }
+                else
+                {
+                    pedido.Atendente = dr["atendente"].ToString().Trim();
+                }
                 pedido.IdPedido = (int)dr["IdPedido"];
                 pedido.IdAtendente = (int)dr["IdAtendente"];
                 lista.Add(pedido);
@@ -180,7 +201,7 @@ namespace Restaurante
             con.Close();
         }
 
-        public List<Pedidos> ListarAtendimento()
+        public List<Pedidos> ListarAtendimento(string datainicial, string datafinal)
         {
             List<Pedidos> lista = new List<Pedidos>();
             con.Open();
@@ -198,7 +219,7 @@ namespace Restaurante
                 pedido.Atendente = dt.Rows[i]["nome"].ToString().Trim();
                 pedido.CPF = dt.Rows[i]["cpf"].ToString().Trim();
                 con.Open();
-                string sql2 = "SELECT COUNT(*) as pedidos FROM Pedidos WHERE IdAtendente = '" + pedido.IdAtendente + "'";
+                string sql2 = "SELECT COUNT(*) as pedidos FROM Pedidos WHERE IdAtendente = '" + pedido.IdAtendente + "' AND data>='"+datainicial+"' AND data<='"+datafinal+"'";
                 SqlCommand cmd2 = new SqlCommand(sql2, con);
                 SqlDataReader dr = cmd2.ExecuteReader();
                 if (dr.Read())
@@ -206,7 +227,7 @@ namespace Restaurante
                     pedido.NumeroPedidos = (int)dr["pedidos"];
                     con.Close();
                     con.Open();
-                    string sql3 = "SELECT COUNT(*) as registro FROM PedidosPratosProdutos WHERE IdAtendente = '" + pedido.IdAtendente + "'";
+                    string sql3 = "SELECT COUNT(*) as registro FROM PedidosPratosProdutos INNER JOIN Pedidos ON PedidosPratosProdutos.IdPedido = Pedidos.IdPedido WHERE PedidosPratosProdutos.IdAtendente = '" + pedido.IdAtendente + "' AND Pedidos.data>='" + datainicial + "' AND Pedidos.data<='" + datafinal + "'";
                     SqlCommand cmd3 = new SqlCommand(sql3, con);
                     SqlDataReader dr2 = cmd3.ExecuteReader();
                     if (dr2.Read())
@@ -220,11 +241,11 @@ namespace Restaurante
             return lista;
         }
 
-        public List<Pedidos> ListarPedidos(int IdAtendente)
+        public List<Pedidos> ListarPedidos(int IdAtendente, string datainicial, string datafinal)
         {
             List<Pedidos> lista = new List<Pedidos>();
             con.Open();
-            string sql = "SELECT * FROM Pedidos WHERE IdAtendente = '" + IdAtendente + "'";
+            string sql = "SELECT * FROM Pedidos WHERE IdAtendente = '" + IdAtendente + "' AND data>='" + datainicial + "' AND data<='" + datafinal + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
