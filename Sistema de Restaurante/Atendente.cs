@@ -20,6 +20,7 @@ namespace Restaurante
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
+        //Atendente
         public void Inserir(string nome, string cpf, string login, string senha)
         {
             con.Open();
@@ -200,5 +201,6 @@ namespace Restaurante
             cmd2.ExecuteNonQuery();
             con.Close();
         }
+        //---------------------------------------------------------------------
     }
 }

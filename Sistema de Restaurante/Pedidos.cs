@@ -36,6 +36,7 @@ namespace Restaurante
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
+        //Home Atendente
         public void LocalizaAtendente(int Id)
         {
             con.Open();
@@ -131,7 +132,9 @@ namespace Restaurante
             con.Close();
             return lista;
         }
+        //------------------------------------------------------------------------------
 
+        //Home Caixa
         public List<Pedidos> PedidosCaixa()
         {
             List<Pedidos> lista = new List<Pedidos>();
@@ -162,6 +165,7 @@ namespace Restaurante
             return lista;
         }
 
+        //Relatório de Pedidos
         public List<Pedidos> PedidosRelatorio(string datainicial, string datafinal)
         {
             List<Pedidos> lista = new List<Pedidos>();
@@ -191,7 +195,9 @@ namespace Restaurante
             con.Close();
             return lista;
         }
+        //-------------------------------------------------------------------------------
 
+        //Registro Pedido
         public void CancelaPedido(int IdPedido)
         {
             con.Open();
@@ -201,6 +207,7 @@ namespace Restaurante
             con.Close();
         }
 
+        //Relatório de Atendimento
         public List<Pedidos> ListarAtendimento(string datainicial, string datafinal)
         {
             List<Pedidos> lista = new List<Pedidos>();
@@ -262,5 +269,6 @@ namespace Restaurante
             con.Close();
             return lista;
         }
+        //---------------------------------------------------------------------------------------
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Restaurante
 {
@@ -20,21 +21,30 @@ namespace Restaurante
             InitializeComponent();
         }
 
+        public void AtualizaAuto()
+        {
+            while (true)
+            {
+                Thread.Sleep(1000);
+                string resposta = Atualizar.CountCozinha(dgvPratoConfirmado.Rows.Count + dgvPR.Rows.Count);
+                if (resposta == "sim")
+                {
+                    AtualizarDGV();
+                }
+            }
+        }
+
         private void Form3_Load(object sender, EventArgs e)
         {
+            Thread t = new Thread(new ThreadStart(AtualizaAuto));
             RegistroPedido registro = new RegistroPedido();
-            string[] arrayPR = new string[clbPR.CheckedItems.Count];
-            List<RegistroPedido> lista = registro.listaConfirmados(arrayPR);
-            dgvPratoConfirmado.DataSource = lista;
-            List<RegistroPedido> lista2 = registro.listaPC();
-            dgvPC.DataSource = lista2;
             List<RegistroPedido> lista3 = registro.listarTipos();
             for (int i = 0; i < lista3.Count; i++)
             {
                 clbPR.Items.Add(lista3[i].PratoProduto);
             }
-            List<RegistroPedido> lista5 = registro.listaPR(arrayPR);
-            dgvPR.DataSource = lista5;
+            AtualizarDGV();
+            t.Start();
         }
 
         private void clbPR_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -70,6 +80,40 @@ namespace Restaurante
                 dgvPratoConfirmado.DataSource = lista;
                 List<RegistroPedido> lista2 = registro.listaPR(arrayPR);
                 dgvPR.DataSource = lista2;
+            }
+        }
+
+        public void AtualizarDGV()
+        {
+            RegistroPedido registro = new RegistroPedido();
+            string[] arrayPR = new string[clbPR.CheckedItems.Count];
+            for (int i = 0; i < clbPR.CheckedItems.Count; i++)
+            {
+                arrayPR[i] = clbPR.CheckedItems[i].ToString();
+            }
+            List<RegistroPedido> lista = registro.listaConfirmados(arrayPR);
+            if (dgvPratoConfirmado.InvokeRequired)
+            {
+                dgvPratoConfirmado.Invoke((MethodInvoker)delegate
+                {
+                    dgvPratoConfirmado.DataSource = lista;
+                });
+            }
+            List<RegistroPedido> lista2 = registro.listaPC();
+            if (dgvPC.InvokeRequired)
+            {
+                dgvPC.Invoke((MethodInvoker)delegate
+                {
+                    dgvPC.DataSource = lista2;
+                });
+            }
+            List<RegistroPedido> lista5 = registro.listaPR(arrayPR);
+            if (dgvPR.InvokeRequired)
+            {
+                dgvPR.Invoke((MethodInvoker)delegate
+                {
+                    dgvPR.DataSource = lista5;
+                });
             }
         }
     }

@@ -31,6 +31,58 @@ namespace Restaurante
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
+        //Pratos e Produtos
+        public List<PratosProdutos> listaTiposIngredientes()
+        {
+            List<PratosProdutos> lista = new List<PratosProdutos>();
+            con.Open();
+            string sql = "SELECT DISTINCT tipo FROM Ingredientes";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                PratosProdutos PP = new PratosProdutos();
+                PP.tipo = dr["tipo"].ToString().Trim();
+                lista.Add(PP);
+            }
+            con.Close();
+            return lista;
+        }
+
+        public List<PratosProdutos> listaIngredientes()
+        {
+            List<PratosProdutos> lista = new List<PratosProdutos>();
+            con.Open();
+            string ingred = "SELECT nome FROM Ingredientes ORDER BY nome";
+            SqlCommand cmdingred = new SqlCommand(ingred, con);
+            SqlDataReader dringred = cmdingred.ExecuteReader();
+            while (dringred.Read())
+            {
+                PratosProdutos PP = new PratosProdutos();
+                PP.ingrediente = dringred["nome"].ToString().Trim();
+                lista.Add(PP);
+            }
+            con.Close();
+            return lista;
+        }
+
+        public List<PratosProdutos> listaIngredientesPorTipo(string tipo)
+        {
+            List<PratosProdutos> lista = new List<PratosProdutos>();
+            con.Open();
+            string sql = "SELECT nome FROM Ingredientes WHERE Tipo = '"+tipo+"' ORDER BY nome";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                PratosProdutos PP = new PratosProdutos();
+                PP.ingrediente = dr["nome"].ToString().Trim();
+                lista.Add(PP);
+            }
+            con.Close();
+            return lista;
+        }
+
         public List<PratosProdutos> listaPP()
         {
             con.Open();
@@ -88,21 +140,40 @@ namespace Restaurante
             con.Close();
             return li;
         }
-        public List<PratosProdutos> filtrartipo()
+
+        public List<PratosProdutos> listaTipoPP()
         {
-            List<PratosProdutos> li = new List<PratosProdutos>();
+            List<PratosProdutos> lista = new List<PratosProdutos>();
             con.Open();
-            string sql = "SELECT DISTINCT tipo FROM Ingredientes";
+            string sql = "SELECT DISTINCT tipo FROM PratosProdutos";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                PratosProdutos pp = new PratosProdutos();
-                pp.tipo = dr["tipo"].ToString();
-                li.Add(pp);
+                PratosProdutos PP = new PratosProdutos();
+                PP.tipo = dr["tipo"].ToString().Trim();
+                lista.Add(PP);
             }
             con.Close();
-            return li;
+            return lista;
+        }
+
+        public List<PratosProdutos> listaPPIngredientes(int IdPP)
+        {
+            List<PratosProdutos> lista = new List<PratosProdutos>();
+            con.Open();
+            string sql = "SELECT Ingredientes.nome, PratosProdutosIngredientes.retiravel FROM PratosProdutos INNER JOIN PratosProdutosIngredientes ON PratosProdutos.IdPratoProduto = PratosProdutosIngredientes.IdPratosProdutos INNER JOIN Ingredientes ON PratosProdutosIngredientes.IdIngredientes = Ingredientes.IdIngrediente WHERE IdPratoProduto = '"+IdPP+"' ORDER BY nome";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                PratosProdutos PP = new PratosProdutos();
+                PP.ingrediente = dr["nome"].ToString().Trim();
+                PP.tipo = dr["retiravel"].ToString().Trim();
+                lista.Add(PP);
+            }
+            con.Close();
+            return lista;
         }
 
         public void InserirPrato(string nome, string tipo, string cozinha)
@@ -248,5 +319,6 @@ namespace Restaurante
             }
             return lista;
         }
+        //-----------------------------------------------------------------------------
     }
 }

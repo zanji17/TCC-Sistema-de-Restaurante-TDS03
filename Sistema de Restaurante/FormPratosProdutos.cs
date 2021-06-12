@@ -25,25 +25,17 @@ namespace Restaurante
 
         private void FormPratosProdutos_Load(object sender, EventArgs e)
         {
-            con.Open();
-            string sql = "SELECT DISTINCT tipo FROM Ingredientes";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                clbCategoria.Items.Add(dr["tipo"].ToString().Trim());
-            }
-            con.Close();
-            con.Open();
-            string ingred = "SELECT nome FROM Ingredientes ORDER BY nome";
-            SqlCommand cmdingred = new SqlCommand(ingred, con);
-            SqlDataReader dringred = cmdingred.ExecuteReader();
-            while (dringred.Read())
-            {
-                clbIngredientes.Items.Add(dringred["nome"].ToString().Trim());   
-            }
-            con.Close();
             PratosProdutos PP = new PratosProdutos();
+            List<PratosProdutos> lista = PP.listaTiposIngredientes();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                clbCategoria.Items.Add(lista[i].tipo);
+            }
+            List<PratosProdutos> lista2 = PP.listaIngredientes();
+            for (int i = 0; i < lista2.Count; i++)
+            {
+                clbIngredientes.Items.Add(lista2[i].ingrediente);   
+            }
             List<PratosProdutos> Pratos = PP.listaPP();
             dgvPratosProdutos.DataSource = Pratos;
             dgvPratosProdutos.Columns.Remove("IdIng");
@@ -68,6 +60,7 @@ namespace Restaurante
         {
             clbIngredientes.Items.Clear();
             clbIngredientes.ClearSelected();
+            PratosProdutos PP = new PratosProdutos();
             if (e.NewValue != CheckState.Unchecked)
             {
                 if (e.NewValue == CheckState.Checked)
@@ -79,54 +72,33 @@ namespace Restaurante
                     }
                 }
                 clbIngredientes.Items.Clear();
-                con.Open();
-                string tipo = "SELECT nome FROM Ingredientes WHERE Tipo = @tipo ORDER BY nome";
-                SqlCommand cmd = new SqlCommand(tipo, con);
-                cmd.Parameters.AddWithValue("@tipo", SqlDbType.NChar).Value = clbCategoria.SelectedItem.ToString();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                int linhas = dt.Rows.Count;
-                if (dt.Rows.Count > 0)
+                List<PratosProdutos> lista = PP.listaIngredientesPorTipo(clbCategoria.SelectedItem.ToString());
+                for (int i = 0; i < lista.Count; i++)
                 {
-                    for (int i = 0; i < linhas; i++)
+                    clbIngredientes.Items.Add(lista[i].ingrediente);
+                    for (int j = 0; j < clbRetirar.Items.Count; j++)
                     {
-                        clbIngredientes.Items.Add(dt.Rows[i]["nome"].ToString().Trim());
-                        for (int j = 0; j < clbRetirar.Items.Count; j++)
+                        if(lista[i].ingrediente == clbRetirar.Items[j].ToString())
                         {
-                            if(dt.Rows[i]["nome"].ToString().Trim() == clbRetirar.Items[j].ToString())
-                            {
-                                clbIngredientes.SetItemChecked(i, true);
-                            }
+                            clbIngredientes.SetItemChecked(i, true);
                         }
                     }
                 }
-                con.Close();
             }
             else
             {
-                con.Open();
-                string ingred = "SELECT nome FROM Ingredientes ORDER BY nome";
-                SqlCommand cmd2 = new SqlCommand(ingred, con);
-                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-                DataTable dt2 = new DataTable();
-                da2.Fill(dt2);
-                int linhas2 = dt2.Rows.Count;
-                if (dt2.Rows.Count > 0)
+                List<PratosProdutos> lista = PP.listaIngredientes();
+                for (int i = 0; i < lista.Count; i++)
                 {
-                    for (int i = 0; i < linhas2; i++)
+                    clbIngredientes.Items.Add(lista[i].ingrediente);
+                    for (int j = 0; j < clbRetirar.Items.Count; j++)
                     {
-                        clbIngredientes.Items.Add(dt2.Rows[i]["nome"].ToString().Trim());
-                        foreach (object ingrediente in clbRetirar.Items)
+                        if (lista[i].ingrediente == clbRetirar.Items[j].ToString())
                         {
-                            if (dt2.Rows[i]["nome"].ToString().Trim() == ingrediente.ToString())
-                            {
-                                clbIngredientes.SetItemChecked(i, true);
-                            }
+                            clbIngredientes.SetItemChecked(i, true);
                         }
                     }
                 }
-                con.Close();
             }
         }
 
@@ -194,69 +166,68 @@ namespace Restaurante
 
         private void dgvPratosProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            clbIngredientes.ClearSelected();
-            clbAdicional.ClearSelected();
-            lbAdicional.Items.Clear();
-            clbRetirar.Items.Clear();
-            chkCozinha.Checked = false;
-            for (var i = 0; i < clbCategoria.Items.Count; i++)
+            if(e.RowIndex >= 0)
             {
-                clbCategoria.SetItemChecked(i, false);
-            }
-            for (var i = 0; i < clbIngredientes.Items.Count; i++)
-            {
-                clbIngredientes.SetItemChecked(i, false);
-            }
-            for (var i = 0; i < clbAdicional.Items.Count; i++)
-            {
-                clbAdicional.SetItemChecked(i, false);
-            }
-            DataGridViewRow row = this.dgvPratosProdutos.Rows[e.RowIndex];
-            txtNome.Text = row.Cells[1].Value.ToString().Trim();
-            txtTipo.Text = row.Cells[2].Value.ToString().Trim();
-            if(row.Cells[5].Value.ToString() == "S")
-            {
-                chkCozinha.Checked = true;
-            }
-            con.Open();
-            string sql = "SELECT Ingredientes.nome, PratosProdutosIngredientes.retiravel FROM PratosProdutos INNER JOIN PratosProdutosIngredientes ON PratosProdutos.IdPratoProduto = PratosProdutosIngredientes.IdPratosProdutos INNER JOIN Ingredientes ON PratosProdutosIngredientes.IdIngredientes = Ingredientes.IdIngrediente WHERE IdPratoProduto = @Id ORDER BY nome";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Id", SqlDbType.Int).Value = Convert.ToInt32(row.Cells[0].Value);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
+                clbIngredientes.ClearSelected();
+                clbAdicional.ClearSelected();
+                lbAdicional.Items.Clear();
+                clbRetirar.Items.Clear();
+                chkCozinha.Checked = false;
+                PratosProdutos PP = new PratosProdutos();
+                for (var i = 0; i < clbCategoria.Items.Count; i++)
+                {
+                    clbCategoria.SetItemChecked(i, false);
+                }
                 for (var i = 0; i < clbIngredientes.Items.Count; i++)
                 {
-                    if(clbIngredientes.Items[i].ToString().Trim() == dr["nome"].ToString().Trim())
+                    clbIngredientes.SetItemChecked(i, false);
+                }
+                for (var i = 0; i < clbAdicional.Items.Count; i++)
+                {
+                    clbAdicional.SetItemChecked(i, false);
+                }
+                DataGridViewRow row = this.dgvPratosProdutos.Rows[e.RowIndex];
+                txtNome.Text = row.Cells[1].Value.ToString().Trim();
+                txtTipo.Text = row.Cells[2].Value.ToString().Trim();
+                if (row.Cells[5].Value.ToString() == "S")
+                {
+                    chkCozinha.Checked = true;
+                }
+                List<PratosProdutos> lista = PP.listaPPIngredientes((int)row.Cells[0].Value);
+                for (int k = 0; k < lista.Count; k++)
+                {
+                    for (var i = 0; i < clbIngredientes.Items.Count; i++)
                     {
-                        clbRetirar.Items.Add(dr["nome"].ToString().Trim());
-                        if(dr["retiravel"].ToString().Trim() == "S")
+                        if (clbIngredientes.Items[i].ToString().Trim() == lista[k].ingrediente)
                         {
-                            for (int j = 0; j < clbRetirar.Items.Count; j++)
+                            clbRetirar.Items.Add(lista[k].ingrediente);
+                            if (lista[k].tipo == "S")
                             {
-                                if(dr["nome"].ToString().Trim() == clbRetirar.Items[j].ToString().Trim())
+                                for (int j = 0; j < clbRetirar.Items.Count; j++)
                                 {
-                                    clbRetirar.SetItemChecked(j, true);
+                                    if (lista[k].ingrediente == clbRetirar.Items[j].ToString().Trim())
+                                    {
+                                        clbRetirar.SetItemChecked(j, true);
+                                    }
                                 }
                             }
+                            clbIngredientes.SetItemChecked(i, true);
                         }
-                        clbIngredientes.SetItemChecked(i, true);
                     }
                 }
-            }
-            con.Close();
-            IdPP = Convert.ToInt32(row.Cells[0].Value);
-            nome = row.Cells[1].Value.ToString();
-            PratosProdutos PP = new PratosProdutos();
-            List<PratosProdutos> adicionais = PP.listarAdicionais(IdPP);
-            for (int i = 0; i < adicionais.Count; i++)
-            {
-                lbAdicional.Items.Add(adicionais[i].ingrediente);
-                for (int j = 0; j < clbAdicional.Items.Count; j++)
+                con.Close();
+                IdPP = Convert.ToInt32(row.Cells[0].Value);
+                nome = row.Cells[1].Value.ToString();
+                List<PratosProdutos> adicionais = PP.listarAdicionais(IdPP);
+                for (int i = 0; i < adicionais.Count; i++)
                 {
-                    if(clbAdicional.Items[j].ToString() == adicionais[i].ingrediente.ToString())
+                    lbAdicional.Items.Add(adicionais[i].ingrediente);
+                    for (int j = 0; j < clbAdicional.Items.Count; j++)
                     {
-                        clbAdicional.SetItemChecked(j, true);
+                        if (clbAdicional.Items[j].ToString() == adicionais[i].ingrediente.ToString())
+                        {
+                            clbAdicional.SetItemChecked(j, true);
+                        }
                     }
                 }
             }
@@ -313,13 +284,11 @@ namespace Restaurante
         private void txtTipo_Enter(object sender, EventArgs e)
         {
             AutoCompleteStringCollection sugestaotipo = new AutoCompleteStringCollection();
-            con.Open();
-            string sql = "SELECT DISTINCT tipo FROM PratosProdutos";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            PratosProdutos PP = new PratosProdutos();
+            List<PratosProdutos> lista = PP.listaTipoPP();
+            for (int i = 0; i < lista.Count; i++)
             {
-                sugestaotipo.Add(dr["tipo"].ToString().Trim()); 
+                sugestaotipo.Add(lista[i].tipo); 
             }
             txtTipo.AutoCompleteCustomSource = sugestaotipo;
             con.Close();

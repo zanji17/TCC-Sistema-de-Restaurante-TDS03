@@ -80,11 +80,14 @@ namespace Restaurante
 
         private void dgvAcesso_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = this.dgvAcesso.Rows[e.RowIndex];
-            txtLogin.Text = row.Cells[1].Value.ToString().Trim();
-            txtSenha.Text = row.Cells[2].Value.ToString().Trim();
-            cbCargo.SelectedItem = row.Cells[3].Value.ToString().Trim();
-            Id = (int) row.Cells[0].Value;
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dgvAcesso.Rows[e.RowIndex];
+                txtLogin.Text = row.Cells[1].Value.ToString().Trim();
+                txtSenha.Text = row.Cells[2].Value.ToString().Trim();
+                cbCargo.SelectedItem = row.Cells[3].Value.ToString().Trim();
+                Id = (int)row.Cells[0].Value;
+            }
         }
 
         private void btnSair_Click(object sender, EventArgs e)

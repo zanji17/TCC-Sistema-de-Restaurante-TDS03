@@ -91,20 +91,23 @@ namespace Restaurante
 
         private void dgvIngred_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = this.dgvIngred.Rows[e.RowIndex];
-            txtNome.Text = row.Cells[1].Value.ToString().Trim();
-            txtTipo.Text = row.Cells[2].Value.ToString().Trim();
-            if (row.Cells[3].Value.ToString().Trim() == "S") 
+            if (e.RowIndex>=0)
             {
-                ckAdicional.Checked = true;
+                DataGridViewRow row = this.dgvIngred.Rows[e.RowIndex];
+                txtNome.Text = row.Cells[1].Value.ToString().Trim();
+                txtTipo.Text = row.Cells[2].Value.ToString().Trim();
+                if (row.Cells[3].Value.ToString().Trim() == "S")
+                {
+                    ckAdicional.Checked = true;
+                }
+                else
+                {
+                    ckAdicional.Checked = false;
+                }
+                txtDetalhes.Text = row.Cells[4].Value.ToString().Trim();
+                Id = (int)row.Cells[0].Value;
+                nome = row.Cells[1].Value.ToString().Trim();
             }
-            else
-            {
-                ckAdicional.Checked = false;
-            }
-            txtDetalhes.Text = row.Cells[4].Value.ToString().Trim();
-            Id = (int)row.Cells[0].Value;
-            nome = row.Cells[1].Value.ToString().Trim();
         }
 
         private void txtTipo_Enter(object sender, EventArgs e)

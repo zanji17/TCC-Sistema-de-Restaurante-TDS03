@@ -74,13 +74,16 @@ namespace Restaurante
 
         private void dgvAtend_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = this.dgvAtend.Rows[e.RowIndex];
-            txtNome.Text = row.Cells[1].Value.ToString();
-            txtCpf.Text = row.Cells[2].Value.ToString();          
-            txtLogin.Text = row.Cells[4].Value.ToString();
-            txtSenha.Text = row.Cells[5].Value.ToString();
-            IdAtendente = (int)row.Cells[0].Value;
-            IdAcesso = (int)row.Cells[3].Value;
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dgvAtend.Rows[e.RowIndex];
+                txtNome.Text = row.Cells[1].Value.ToString();
+                txtCpf.Text = row.Cells[2].Value.ToString();
+                txtLogin.Text = row.Cells[4].Value.ToString();
+                txtSenha.Text = row.Cells[5].Value.ToString();
+                IdAtendente = (int)row.Cells[0].Value;
+                IdAcesso = (int)row.Cells[3].Value;
+            }
         }
 
         private void FormAtendente_Load(object sender, EventArgs e)

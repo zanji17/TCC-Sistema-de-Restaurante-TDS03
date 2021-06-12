@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Restaurante
 {
@@ -25,15 +26,33 @@ namespace Restaurante
         private void FormHomeCaixa_Load(object sender, EventArgs e)
         {
             atualizarDGV();
+            Thread t = new Thread(new ThreadStart(atualizarPedidos));
+            t.Start();
+        }
+
+        public void atualizarPedidos()
+        {
+            string resposta;
+            while (true)
+            {
+                Thread.Sleep(1000);
+                resposta = Atualizar.CountPedidosCaixa(dgvPedidosAbertos.Rows.Count);
+                if(resposta == "sim")
+                {
+                    atualizarDGV();
+                }
+            }
         }
 
         private void dgvPedidosAbertos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             RegistroPedido registro = new RegistroPedido();
+            lblPedido.Text = string.Empty;
             if(e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dgvPedidosAbertos.Rows[e.RowIndex];
                 List<RegistroPedido> lista = registro.listaPratos((int)row.Cells[0].Value);
+                lblPedido.Text = row.Cells[0].Value.ToString();
                 dgvRegistroPedido.DataSource = lista;
                 dgvRegistroPedido.Columns.Remove("Cliente");
                 dgvRegistroPedido.Columns.Remove("Mesa");
@@ -56,10 +75,22 @@ namespace Restaurante
                     {
                         Row = dgvPedidosAbertos.CurrentRow.Index;
                     }
+                    var confirmado = false;
+                    for (int i = 0; i < dgvRegistroPedido.Rows.Count; i++)
+                    {
+                        if (dgvRegistroPedido.Rows[i].Cells[7].Value.ToString() == "Confirmado" || dgvRegistroPedido.Rows[i].Cells[7].Value.ToString() == "")
+                        {
+                            confirmado = true;
+                        }
+                    }
                     RegistroPedido registro = new RegistroPedido();
-                    registro.fecharPedido((int)dgvPedidosAbertos.Rows[Row].Cells[0].Value);
-                    MessageBox.Show("O Pedido Foi Finalizado com Sucesso!", "Fechado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    atualizarDGV();
+                    if (confirmado == false)
+                    {
+                        registro.fecharPedido((int)dgvPedidosAbertos.Rows[Row].Cells[0].Value);
+                        MessageBox.Show("O Pedido Foi Finalizado com Sucesso!", "Fechado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        atualizarDGV();
+                        dgvRegistroPedido.Columns.Clear();
+                    }
                 }
             }
         }
@@ -68,18 +99,24 @@ namespace Restaurante
         {
             Pedidos pedidos = new Pedidos();
             List<Pedidos> pedido = pedidos.PedidosCaixa();
-            dgvPedidosAbertos.DataSource = pedido;
-            dgvPedidosAbertos.Columns.Remove("CPF");
-            dgvPedidosAbertos.Columns.Remove("NumeroPedidos");
-            dgvPedidosAbertos.Columns.Remove("NumeroPratos");
-            dgvPedidosAbertos.Columns.Remove("Status");
-            dgvRegistroPedido.Columns.Clear();
+            if (dgvPedidosAbertos.InvokeRequired)
+            {
+                dgvPedidosAbertos.Invoke((MethodInvoker)delegate
+                {
+                    dgvPedidosAbertos.DataSource = pedido;
+                    dgvPedidosAbertos.Columns.Remove("CPF");
+                    dgvPedidosAbertos.Columns.Remove("NumeroPedidos");
+                    dgvPedidosAbertos.Columns.Remove("NumeroPratos");
+                    dgvPedidosAbertos.Columns.Remove("Status");
+                });
+            }
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             dgvRegistroPedido.Columns.Clear();
             dgvPedidosAbertos.ClearSelection();
+            lblPedido.Text = string.Empty;
         }
     }
 }

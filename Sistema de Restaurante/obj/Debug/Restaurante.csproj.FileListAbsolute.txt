@@ -67,7 +67,6 @@ C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante_log.ldf
 C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.exe.config
 C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.exe
 C:\Programas\Restaurante\Sistema de Restaurante\bin\Debug\Restaurante.pdb
-C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csprojAssemblyReference.cache
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAcesso.resources
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAtendente.resources
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormAtendimento.resources
@@ -88,3 +87,4 @@ C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.Cor
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.exe
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.pdb
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormModeloAdicional.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.AssemblyReference.cache

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace Restaurante
 {
@@ -42,6 +43,54 @@ namespace Restaurante
                 IdAtendente = pedido.IdAtendente;
             }
             atualizar();
+            Thread t = new Thread(new ThreadStart(atualizarTodosPedidos));
+            t.Start();
+        }
+
+        public void atualizarTodosPedidos()
+        {
+            Pedidos pedido = new Pedidos();
+            string resposta;
+            while (true)
+            {
+                Thread.Sleep(1000);
+
+                resposta = Atualizar.CountMeusPedidos(IdAtendente, dgvMeusPedidos.Rows.Count);
+                if (resposta == "sim")
+                {
+                    List<Pedidos> meuspedidos = pedido.MeusPedidos(IdAtendente);
+                    if (dgvMeusPedidos.InvokeRequired)
+                    {
+                        dgvMeusPedidos.Invoke((MethodInvoker)delegate
+                        {
+                            dgvMeusPedidos.DataSource = meuspedidos;
+                            dgvMeusPedidos.Columns.Remove("Atendente");
+                            dgvMeusPedidos.Columns.Remove("IdAtendente");
+                            dgvMeusPedidos.Columns.Remove("NumeroPedidos");
+                            dgvMeusPedidos.Columns.Remove("NumeroPratos");
+                            dgvMeusPedidos.Columns.Remove("CPF");
+                            dgvMeusPedidos.Columns.Remove("Status");
+                        });
+                    }
+                }
+
+                resposta = Atualizar.CountTodosPedidos(IdAtendente, dgvTodosPedidos.Rows.Count);
+                if (resposta == "sim")
+                {
+                    List<Pedidos> pedidosgeral = pedido.PedidosGeral(IdAtendente);
+                    if (dgvTodosPedidos.InvokeRequired)
+                    {
+                        dgvTodosPedidos.Invoke((MethodInvoker)delegate
+                        {
+                            dgvTodosPedidos.DataSource = pedidosgeral;
+                            dgvTodosPedidos.Columns.Remove("NumeroPedidos");
+                            dgvTodosPedidos.Columns.Remove("NumeroPratos");
+                            dgvTodosPedidos.Columns.Remove("CPF");
+                            dgvTodosPedidos.Columns.Remove("Status");
+                        });
+                    }
+                }
+            }
         }
 
         private void btnCriarPedido_Click(object sender, EventArgs e)

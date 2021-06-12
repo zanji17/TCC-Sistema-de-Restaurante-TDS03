@@ -22,6 +22,7 @@ namespace Restaurante
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
+        //Ingredientes
         public List<Ingrediente> listarIngred()
         {
             List<Ingrediente> listaIngred = new List<Ingrediente>();
@@ -106,7 +107,9 @@ namespace Restaurante
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        //----------------------------------------------------------------------------------
 
+        //Registrar Prato
         public List<Ingrediente> Pesquisar(string nome)
         {
             List<Ingrediente> lista = new List<Ingrediente>();
@@ -123,5 +126,6 @@ namespace Restaurante
             con.Close();
             return lista;
         }
+        //-----------------------------------------------------------
     }
 }

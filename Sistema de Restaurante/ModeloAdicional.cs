@@ -16,6 +16,7 @@ namespace Restaurante
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
+        //Modelo de Adicional
         public void Criar(string Nome, string Adicionais)
         {
             con.Open();
@@ -78,7 +79,9 @@ namespace Restaurante
             con.Close();
             return lista;
         }
+        //--------------------------------------------------------------
 
+        //Modelo de Adiconais e Pratos e Produtos
         public List<ModeloAdicional> BuscaAdicionais(string Nome)
         {
             con.Open();

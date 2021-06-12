@@ -21,6 +21,7 @@ namespace Restaurante
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
+        //Acesso
         public List<Acesso> listarAcesso()
         {
             List<Acesso> listaAcesso = new List<Acesso>();
@@ -102,5 +103,6 @@ namespace Restaurante
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        //------------------------------------------------------------------------
     }
 }
