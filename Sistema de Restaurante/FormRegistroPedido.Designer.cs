@@ -43,6 +43,7 @@ namespace Restaurante
             this.btnDel = new System.Windows.Forms.Button();
             this.btnCancelarPedido = new System.Windows.Forms.Button();
             this.btnCancelarTudo = new System.Windows.Forms.Button();
+            this.btnSair = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,9 +68,9 @@ namespace Restaurante
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(686, 99);
+            this.btnRegistrar.Location = new System.Drawing.Point(658, 25);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(102, 32);
+            this.btnRegistrar.Size = new System.Drawing.Size(130, 54);
             this.btnRegistrar.TabIndex = 2;
             this.btnRegistrar.Text = "Registrar Prato";
             this.btnRegistrar.UseVisualStyleBackColor = true;
@@ -77,7 +78,7 @@ namespace Restaurante
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(686, 137);
+            this.btnConfirmar.Location = new System.Drawing.Point(686, 99);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(102, 32);
             this.btnConfirmar.TabIndex = 3;
@@ -87,7 +88,7 @@ namespace Restaurante
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(686, 232);
+            this.btnEditar.Location = new System.Drawing.Point(686, 271);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(102, 32);
             this.btnEditar.TabIndex = 4;
@@ -97,7 +98,7 @@ namespace Restaurante
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(686, 308);
+            this.btnCancelar.Location = new System.Drawing.Point(686, 175);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(102, 32);
             this.btnCancelar.TabIndex = 5;
@@ -147,7 +148,7 @@ namespace Restaurante
             // 
             // btnServido
             // 
-            this.btnServido.Location = new System.Drawing.Point(686, 175);
+            this.btnServido.Location = new System.Drawing.Point(686, 137);
             this.btnServido.Name = "btnServido";
             this.btnServido.Size = new System.Drawing.Size(102, 32);
             this.btnServido.TabIndex = 11;
@@ -157,7 +158,7 @@ namespace Restaurante
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(686, 270);
+            this.btnDel.Location = new System.Drawing.Point(686, 309);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(102, 32);
             this.btnDel.TabIndex = 12;
@@ -177,7 +178,7 @@ namespace Restaurante
             // 
             // btnCancelarTudo
             // 
-            this.btnCancelarTudo.Location = new System.Drawing.Point(686, 346);
+            this.btnCancelarTudo.Location = new System.Drawing.Point(686, 213);
             this.btnCancelarTudo.Name = "btnCancelarTudo";
             this.btnCancelarTudo.Size = new System.Drawing.Size(102, 32);
             this.btnCancelarTudo.TabIndex = 14;
@@ -185,11 +186,22 @@ namespace Restaurante
             this.btnCancelarTudo.UseVisualStyleBackColor = true;
             this.btnCancelarTudo.Click += new System.EventHandler(this.btnCancelarTudo_Click);
             // 
+            // btnSair
+            // 
+            this.btnSair.Location = new System.Drawing.Point(686, 347);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(102, 32);
+            this.btnSair.TabIndex = 15;
+            this.btnSair.Text = "Sair";
+            this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
             // FormRegistroPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 387);
+            this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnCancelarTudo);
             this.Controls.Add(this.btnCancelarPedido);
             this.Controls.Add(this.btnDel);
@@ -233,5 +245,6 @@ namespace Restaurante
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Button btnCancelarPedido;
         private System.Windows.Forms.Button btnCancelarTudo;
+        private System.Windows.Forms.Button btnSair;
     }
 }

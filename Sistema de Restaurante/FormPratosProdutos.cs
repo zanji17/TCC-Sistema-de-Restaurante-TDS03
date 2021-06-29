@@ -291,7 +291,6 @@ namespace Restaurante
                 sugestaotipo.Add(lista[i].tipo); 
             }
             txtTipo.AutoCompleteCustomSource = sugestaotipo;
-            con.Close();
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)

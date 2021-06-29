@@ -383,7 +383,7 @@ namespace Restaurante
             return lista;
         }
 
-        //Registro Pedido
+        //Registro Pedido e RegistroDelivery
         public void Localizar(int Id)
         {
             con.Open();
@@ -396,25 +396,6 @@ namespace Restaurante
                 Cliente = dr["nome"].ToString().Trim();
                 con.Close();
             }
-            con.Close();
-        }
-
-        public void Confirmar(int IdPPP, int IdAT)
-        {
-            con.Open();
-            string sql = "UPDATE PedidosPratosProdutos SET IdAtendente = '" + IdAT + "', status = 'Confirmado', data = @data WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@data", SqlDbType.DateTime).Value = DateTime.Now;
-            cmd.ExecuteNonQuery();
-            con.Close();
-        }
-
-        public void Servido(int IdPPP)
-        {
-            con.Open();
-            string sql = "UPDATE PedidosPratosProdutos SET status = 'Servido' WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.ExecuteNonQuery();
             con.Close();
         }
 
@@ -432,6 +413,26 @@ namespace Restaurante
             con.Open();
             string sql = "UPDATE PedidosPratosProdutos SET status = 'Cancelado' WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        //Registro Pedido
+        public void Servido(int IdPPP)
+        {
+            con.Open();
+            string sql = "UPDATE PedidosPratosProdutos SET status = 'Servido' WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void Confirmar(int IdPPP, int IdAT)
+        {
+            con.Open();
+            string sql = "UPDATE PedidosPratosProdutos SET IdAtendente = '" + IdAT + "', status = 'Confirmado', data = @data WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@data", SqlDbType.DateTime).Value = DateTime.Now;
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -523,5 +524,25 @@ namespace Restaurante
             con.Close();
         }
         //-------------------------------------------------------------------
+
+        //Registro Delivery
+        public void ConfirmarDelivery(int IdPPP)
+        {
+            con.Open();
+            string sql = "UPDATE PedidosPratosProdutos SET status = 'Confirmado', data = @data WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@data", SqlDbType.DateTime).Value = DateTime.Now;
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void Pronto(int IdPPP)
+        {
+            con.Open();
+            string sql = "UPDATE PedidosPratosProdutos SET status = 'Pronto' WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 }

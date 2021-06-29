@@ -34,6 +34,15 @@ namespace Restaurante
 
         public int NumeroPratos { get; set; }
 
+        public string endereco { get; set; }
+
+        public string telefone { get; set; }
+
+        public string bairro { get; set; }
+
+        public string complemento { get; set; }
+
+
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
         //Home Atendente
@@ -86,7 +95,7 @@ namespace Restaurante
         {
             List<Pedidos> lista = new List<Pedidos>();
             con.Open();
-            string sql = "SELECT * FROM Pedidos WHERE IdAtendente = '" + IdAtendente + "' AND status = 'Aberto' ORDER BY mesa";
+            string sql = "SELECT * FROM Pedidos WHERE IdAtendente = '" + IdAtendente + "' AND status = 'Aberto' AND mesa != 'Delivery' ORDER BY mesa";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -107,7 +116,7 @@ namespace Restaurante
         {
             List<Pedidos> lista = new List<Pedidos>();
             con.Open();
-            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Pedidos.IdAtendente, Pedidos.IdPedido FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE Pedidos.IdAtendente != '" + Id + "' AND status = 'Aberto' ORDER BY mesa";
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Pedidos.IdAtendente, Pedidos.IdPedido FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE Pedidos.IdAtendente != '" + Id + "' AND status = 'Aberto' AND mesa != Delivery ORDER BY mesa";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -139,7 +148,7 @@ namespace Restaurante
         {
             List<Pedidos> lista = new List<Pedidos>();
             con.Open();
-            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Pedidos.IdAtendente, Pedidos.IdPedido FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE status = 'Aberto' ORDER BY mesa";
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.quantidade, Pedidos.data, Atendentes.nome as atendente, Pedidos.IdAtendente, Pedidos.IdPedido FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE status = 'Aberto' AND mesa != 'Delivery' ORDER BY mesa";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -264,6 +273,140 @@ namespace Restaurante
                 pedido.Pessoas = (int)dr["quantidade"];
                 pedido.Status = dr["status"].ToString().Trim();
                 pedido.Data = dr["data"].ToString().Trim();
+                lista.Add(pedido);
+            }
+            con.Close();
+            return lista;
+        }
+        //---------------------------------------------------------------------------------------
+        
+        //Delivery
+        public void CriarPedidoDelivery(string nome, string telefone, string endereco, string bairro, string complemento)
+        {
+            con.Open();
+            string sql = "SELECT cliente FROM Cliente WHERE cliente = '" + nome + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                con.Close();
+                con.Open();
+                string sql2 = "UPDATE Cliente SET telefone = '" + telefone + "', endereco = '" + endereco + "', bairro = '" + bairro + "', complemento = '" + complemento + "' WHERE cliente = '" + nome + "'";
+                SqlCommand cmd2 = new SqlCommand(sql2, con);
+                cmd2.ExecuteNonQuery();
+            }
+            else
+            {
+                con.Close();
+                con.Open();
+                string sql2 = "INSERT INTO Cliente (cliente, telefone, endereco, bairro, complemento) VALUES('" + nome + "','" + telefone + "', '" + endereco + "', '" + bairro + "', '" + complemento + "')";
+                SqlCommand cmd2 = new SqlCommand(sql2, con);
+                cmd2.ExecuteNonQuery();
+            }
+            string sql3 = "INSERT INTO Pedidos(mesa, nome, data, status) VALUES('Delivery','" + nome + "', @data, 'Aberto')";
+            SqlCommand cmd3 = new SqlCommand(sql3, con);
+            cmd3.Parameters.AddWithValue("@data", SqlDbType.DateTime).Value = DateTime.Now;
+            cmd3.ExecuteNonQuery();
+            con.Close();
+            con.Open();
+            string sql4 = "SELECT TOP 1 * FROM Pedidos WHERE mesa = 'Delivery' AND nome = '"+nome+"' AND status= 'Aberto' ORDER BY IdPedido DESC";
+            SqlCommand cmd4 = new SqlCommand(sql4, con);
+            SqlDataReader dr1 = cmd4.ExecuteReader();
+            while (dr1.Read())
+            {
+                IdPedido = (int)dr1["IdPedido"];
+            }
+            con.Close();
+        }
+
+        public void EditarInfoCliente(string nome, string telefone, string endereco, string bairro, string complemento)
+        {
+            con.Open();
+            string sql = "SELECT cliente FROM Cliente WHERE cliente = '" + nome + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                con.Close();
+                con.Open();
+                string sql2 = "UPDATE Cliente SET telefone = '" + telefone + "', endereco = '" + endereco + "', bairro = '" + bairro + "', complemento = '" + complemento + "' WHERE cliente = '" + nome + "'";
+                SqlCommand cmd2 = new SqlCommand(sql2, con);
+                cmd2.ExecuteNonQuery();
+            }
+        }
+
+        public List<Pedidos> PedidosAbertosDelivery()
+        {
+            List<Pedidos> lista = new List<Pedidos>();
+            con.Open();
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.data, Pedidos.IdPedido FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE status = 'Aberto' AND mesa = 'Delivery' ORDER BY mesa";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Pedidos pedido = new Pedidos();
+                pedido.Cliente = dr["cliente"].ToString().Trim();
+                pedido.Mesa = dr["mesa"].ToString().Trim();
+                pedido.Data = dr["data"].ToString().Trim();
+                pedido.IdPedido = (int)dr["IdPedido"];
+                lista.Add(pedido);
+            }
+            con.Close();
+            return lista;
+        }
+
+        public List<Pedidos> PedidosFinalizadosDelivery()
+        {
+            List<Pedidos> lista = new List<Pedidos>();
+            con.Open();
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, Pedidos.data, Pedidos.IdPedido FROM Pedidos LEFT JOIN Atendentes ON Pedidos.IdAtendente = Atendentes.IdAtendente WHERE status != 'Aberto' AND mesa = 'Delivery' ORDER BY Pedidos.data DESC";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Pedidos pedido = new Pedidos();
+                pedido.Cliente = dr["cliente"].ToString().Trim();
+                pedido.Mesa = dr["mesa"].ToString().Trim();
+                pedido.Data = dr["data"].ToString().Trim();
+                pedido.IdPedido = (int)dr["IdPedido"];
+                lista.Add(pedido);
+            }
+            con.Close();
+            return lista;
+        }
+
+        public List<Pedidos> listarClientes()
+        {
+            con.Open();
+            List<Pedidos> lista = new List<Pedidos>();
+            string sql = "SELECT cliente FROM Cliente";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Pedidos pedido = new Pedidos();
+                pedido.Cliente = dr["cliente"].ToString().Trim();
+                lista.Add(pedido);
+            }
+            con.Close();
+            return lista;
+        }
+
+        public List<Pedidos> BuscaCliente(string nome)
+        {
+            con.Open();
+            List<Pedidos> lista = new List<Pedidos>();
+            string sql = "SELECT * FROM Cliente WHERE cliente='"+nome+"'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Pedidos pedido = new Pedidos();
+                pedido.Cliente = dr["cliente"].ToString().Trim();
+                pedido.telefone = dr["telefone"].ToString().Trim();
+                pedido.endereco = dr["endereco"].ToString().Trim();
+                pedido.bairro = dr["bairro"].ToString().Trim();
+                pedido.complemento = dr["complemento"].ToString().Trim();
                 lista.Add(pedido);
             }
             con.Close();

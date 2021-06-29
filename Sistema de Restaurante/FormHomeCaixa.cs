@@ -108,6 +108,10 @@ namespace Restaurante
                     dgvPedidosAbertos.Columns.Remove("NumeroPedidos");
                     dgvPedidosAbertos.Columns.Remove("NumeroPratos");
                     dgvPedidosAbertos.Columns.Remove("Status");
+                    dgvPedidosAbertos.Columns.Remove("endereco");
+                    dgvPedidosAbertos.Columns.Remove("bairro");
+                    dgvPedidosAbertos.Columns.Remove("complemento");
+                    dgvPedidosAbertos.Columns.Remove("telefone");
                 });
             }
         }
@@ -117,6 +121,12 @@ namespace Restaurante
             dgvRegistroPedido.Columns.Clear();
             dgvPedidosAbertos.ClearSelection();
             lblPedido.Text = string.Empty;
+        }
+
+        private void btnDelivery_Click(object sender, EventArgs e)
+        {
+            FormDelivery d = new FormDelivery();
+            d.Show();
         }
     }
 }

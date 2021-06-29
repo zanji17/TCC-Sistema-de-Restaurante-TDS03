@@ -29,17 +29,17 @@ namespace Restaurante
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvPP = new System.Windows.Forms.DataGridView();
+            this.dgvRegistro = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnApagar = new System.Windows.Forms.Button();
+            this.btnCancelarPedido = new System.Windows.Forms.Button();
+            this.btnSair = new System.Windows.Forms.Button();
+            this.btnConfirmar = new System.Windows.Forms.Button();
+            this.btnFecharPedido = new System.Windows.Forms.Button();
             this.lblTelefone = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblEndereco = new System.Windows.Forms.Label();
@@ -48,17 +48,18 @@ namespace Restaurante
             this.label7 = new System.Windows.Forms.Label();
             this.lblComplemento = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPP)).BeginInit();
+            this.btnServido = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegistro)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvPP
+            // dgvRegistro
             // 
-            this.dgvPP.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dgvPP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPP.Location = new System.Drawing.Point(16, 125);
-            this.dgvPP.Name = "dgvPP";
-            this.dgvPP.Size = new System.Drawing.Size(552, 272);
-            this.dgvPP.TabIndex = 0;
+            this.dgvRegistro.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvRegistro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegistro.Location = new System.Drawing.Point(16, 125);
+            this.dgvRegistro.Name = "dgvRegistro";
+            this.dgvRegistro.Size = new System.Drawing.Size(552, 272);
+            this.dgvRegistro.TabIndex = 0;
             // 
             // label1
             // 
@@ -80,77 +81,85 @@ namespace Restaurante
             this.lblCliente.TabIndex = 4;
             this.lblCliente.Text = "Cliente #";
             // 
-            // button1
+            // btnRegistrar
             // 
-            this.button1.Location = new System.Drawing.Point(593, 123);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 39);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Registrar Prato";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Location = new System.Drawing.Point(593, 74);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(117, 39);
+            this.btnRegistrar.TabIndex = 5;
+            this.btnRegistrar.Text = "Registrar Prato";
+            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
-            // button2
+            // btnEditar
             // 
-            this.button2.Location = new System.Drawing.Point(593, 266);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(117, 39);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Editar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEditar.Location = new System.Drawing.Point(593, 266);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(117, 39);
+            this.btnEditar.TabIndex = 6;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // button3
+            // btnCancelar
             // 
-            this.button3.Location = new System.Drawing.Point(593, 213);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 39);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Cancelar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(593, 209);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(117, 39);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // button4
+            // btnApagar
             // 
-            this.button4.Location = new System.Drawing.Point(593, 311);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(117, 39);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Apagar";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnApagar.Location = new System.Drawing.Point(593, 311);
+            this.btnApagar.Name = "btnApagar";
+            this.btnApagar.Size = new System.Drawing.Size(117, 39);
+            this.btnApagar.TabIndex = 8;
+            this.btnApagar.Text = "Apagar";
+            this.btnApagar.UseVisualStyleBackColor = true;
+            this.btnApagar.Click += new System.EventHandler(this.btnApagar_Click);
             // 
-            // button5
+            // btnCancelarPedido
             // 
-            this.button5.Location = new System.Drawing.Point(16, 11);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(117, 26);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "Cancelar Pedido";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnCancelarPedido.Location = new System.Drawing.Point(16, 11);
+            this.btnCancelarPedido.Name = "btnCancelarPedido";
+            this.btnCancelarPedido.Size = new System.Drawing.Size(117, 26);
+            this.btnCancelarPedido.TabIndex = 9;
+            this.btnCancelarPedido.Text = "Cancelar Pedido";
+            this.btnCancelarPedido.UseVisualStyleBackColor = true;
+            this.btnCancelarPedido.Click += new System.EventHandler(this.btnCancelarPedido_Click);
             // 
-            // button6
+            // btnSair
             // 
-            this.button6.Location = new System.Drawing.Point(593, 356);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(117, 39);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "Sair";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnSair.Location = new System.Drawing.Point(593, 356);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(117, 39);
+            this.btnSair.TabIndex = 10;
+            this.btnSair.Text = "Sair";
+            this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
-            // button7
+            // btnConfirmar
             // 
-            this.button7.Location = new System.Drawing.Point(593, 168);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(117, 39);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Confirmar";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Location = new System.Drawing.Point(593, 119);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(117, 39);
+            this.btnConfirmar.TabIndex = 11;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // button8
+            // btnFecharPedido
             // 
-            this.button8.Location = new System.Drawing.Point(16, 45);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(117, 26);
-            this.button8.TabIndex = 12;
-            this.button8.Text = "Fechar Pedido";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnFecharPedido.Location = new System.Drawing.Point(16, 45);
+            this.btnFecharPedido.Name = "btnFecharPedido";
+            this.btnFecharPedido.Size = new System.Drawing.Size(117, 48);
+            this.btnFecharPedido.TabIndex = 12;
+            this.btnFecharPedido.Text = "Fechar Pedido";
+            this.btnFecharPedido.UseVisualStyleBackColor = true;
+            this.btnFecharPedido.Click += new System.EventHandler(this.btnFecharPedido_Click);
             // 
             // lblTelefone
             // 
@@ -232,11 +241,22 @@ namespace Restaurante
             this.label4.TabIndex = 19;
             this.label4.Text = "Complemento: ";
             // 
+            // btnServido
+            // 
+            this.btnServido.Location = new System.Drawing.Point(593, 164);
+            this.btnServido.Name = "btnServido";
+            this.btnServido.Size = new System.Drawing.Size(117, 39);
+            this.btnServido.TabIndex = 21;
+            this.btnServido.Text = "Pronto";
+            this.btnServido.UseVisualStyleBackColor = true;
+            this.btnServido.Click += new System.EventHandler(this.btnServido_Click);
+            // 
             // FormRegistroDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 407);
+            this.Controls.Add(this.btnServido);
             this.Controls.Add(this.lblComplemento);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblBairro);
@@ -245,20 +265,21 @@ namespace Restaurante
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblTelefone);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnFecharPedido);
+            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.btnSair);
+            this.Controls.Add(this.btnCancelarPedido);
+            this.Controls.Add(this.btnApagar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.lblCliente);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgvPP);
+            this.Controls.Add(this.dgvRegistro);
             this.Name = "FormRegistroDelivery";
             this.Text = "Registro Delivery";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPP)).EndInit();
+            this.Load += new System.EventHandler(this.FormRegistroDelivery_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegistro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,17 +287,17 @@ namespace Restaurante
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvPP;
+        private System.Windows.Forms.DataGridView dgvRegistro;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblCliente;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnApagar;
+        private System.Windows.Forms.Button btnCancelarPedido;
+        private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Button btnFecharPedido;
         private System.Windows.Forms.Label lblTelefone;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblEndereco;
@@ -285,5 +306,6 @@ namespace Restaurante
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblComplemento;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnServido;
     }
 }

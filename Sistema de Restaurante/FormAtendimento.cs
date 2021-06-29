@@ -58,6 +58,10 @@ namespace Restaurante
             dgvPedidos.Columns.Remove("CPF");
             dgvPedidos.Columns.Remove("NumeroPedidos");
             dgvPedidos.Columns.Remove("NumeroPratos");
+            dgvPedidos.Columns.Remove("endereco");
+            dgvPedidos.Columns.Remove("bairro");
+            dgvPedidos.Columns.Remove("complemento");
+            dgvPedidos.Columns.Remove("telefone");
             List<Pedidos> lista2 = pedido.ListarAtendimento(datainicial, datafinal);
             dgvAtendentes.DataSource = lista2;
             dgvAtendentes.Columns.Remove("IdPedido");
@@ -66,6 +70,10 @@ namespace Restaurante
             dgvAtendentes.Columns.Remove("Pessoas");
             dgvAtendentes.Columns.Remove("Data");
             dgvAtendentes.Columns.Remove("Status");
+            dgvAtendentes.Columns.Remove("endereco");
+            dgvAtendentes.Columns.Remove("bairro");
+            dgvAtendentes.Columns.Remove("complemento");
+            dgvAtendentes.Columns.Remove("telefone");
         }
 
         private void dgvPedidos_CellClick(object sender, DataGridViewCellEventArgs e)

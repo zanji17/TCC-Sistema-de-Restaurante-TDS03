@@ -70,6 +70,10 @@ namespace Restaurante
                             dgvMeusPedidos.Columns.Remove("NumeroPratos");
                             dgvMeusPedidos.Columns.Remove("CPF");
                             dgvMeusPedidos.Columns.Remove("Status");
+                            dgvMeusPedidos.Columns.Remove("endereco");
+                            dgvMeusPedidos.Columns.Remove("bairro");
+                            dgvMeusPedidos.Columns.Remove("complemento");
+                            dgvMeusPedidos.Columns.Remove("telefone");
                         });
                     }
                 }
@@ -87,6 +91,10 @@ namespace Restaurante
                             dgvTodosPedidos.Columns.Remove("NumeroPratos");
                             dgvTodosPedidos.Columns.Remove("CPF");
                             dgvTodosPedidos.Columns.Remove("Status");
+                            dgvTodosPedidos.Columns.Remove("endereco");
+                            dgvTodosPedidos.Columns.Remove("bairro");
+                            dgvTodosPedidos.Columns.Remove("complemento");
+                            dgvTodosPedidos.Columns.Remove("telefone");
                         });
                     }
                 }
@@ -150,12 +158,20 @@ namespace Restaurante
             dgvMeusPedidos.Columns.Remove("NumeroPratos");
             dgvMeusPedidos.Columns.Remove("CPF");
             dgvMeusPedidos.Columns.Remove("Status");
+            dgvMeusPedidos.Columns.Remove("endereco");
+            dgvMeusPedidos.Columns.Remove("bairro");
+            dgvMeusPedidos.Columns.Remove("complemento");
+            dgvMeusPedidos.Columns.Remove("telefone");
             List<Pedidos> pedidosgeral = pedido.PedidosGeral(IdAtendente);
             dgvTodosPedidos.DataSource = pedidosgeral;
             dgvTodosPedidos.Columns.Remove("NumeroPedidos");
             dgvTodosPedidos.Columns.Remove("NumeroPratos");
             dgvTodosPedidos.Columns.Remove("CPF");
             dgvTodosPedidos.Columns.Remove("Status");
+            dgvTodosPedidos.Columns.Remove("endereco");
+            dgvTodosPedidos.Columns.Remove("bairro");
+            dgvTodosPedidos.Columns.Remove("complemento");
+            dgvTodosPedidos.Columns.Remove("telefone");
             nPessoas.Value = 1;
         }
 

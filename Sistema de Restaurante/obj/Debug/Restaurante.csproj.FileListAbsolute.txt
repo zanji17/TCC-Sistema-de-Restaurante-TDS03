@@ -88,3 +88,5 @@ C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.exe
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.pdb
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormModeloAdicional.resources
 C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.csproj.AssemblyReference.cache
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormRegistroDelivery.resources
+C:\Programas\Restaurante\Sistema de Restaurante\obj\Debug\Restaurante.FormDelivery.resources

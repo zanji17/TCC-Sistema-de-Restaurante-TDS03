@@ -117,6 +117,7 @@ namespace Restaurante
             this.btnDelivery.TabIndex = 16;
             this.btnDelivery.Text = "Delivery";
             this.btnDelivery.UseVisualStyleBackColor = true;
+            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
             // FormHomeCaixa
             // 

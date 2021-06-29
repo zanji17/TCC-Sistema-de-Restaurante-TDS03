@@ -88,6 +88,13 @@ namespace Restaurante
             Pedidos pedidos = new Pedidos();
             List<Pedidos> pedido = pedidos.PedidosRelatorio(datainicial, datafinal);
             dgvPedidos.DataSource = pedido;
+            dgvPedidos.Columns.Remove("endereco");
+            dgvPedidos.Columns.Remove("bairro");
+            dgvPedidos.Columns.Remove("complemento");
+            dgvPedidos.Columns.Remove("telefone");
+            dgvPedidos.Columns.Remove("CPF");
+            dgvPedidos.Columns.Remove("NumeroPedidos");
+            dgvPedidos.Columns.Remove("NumeroPedidos");
         }
     }
 }

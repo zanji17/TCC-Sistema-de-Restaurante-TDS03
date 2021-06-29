@@ -9,8 +9,6 @@ namespace Restaurante
 {
     class Atualizar
     {
-        SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
-
         //Home Cozinha
         public static string CountCozinha(int PConfirmados)
         {
@@ -56,7 +54,7 @@ namespace Restaurante
         {
             SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
             con.Open();
-            string sql = "SELECT COUNT(*) as pedidos FROM Pedidos WHERE status='Aberto' AND IdAtendente!='" + atendente + "'";
+            string sql = "SELECT COUNT(*) as pedidos FROM Pedidos WHERE status='Aberto' AND IdAtendente!='" + atendente + "' AND mesa='Delivery'";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
@@ -76,7 +74,7 @@ namespace Restaurante
         {
             SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
             con.Open();
-            string sql = "SELECT COUNT(*) as pedidos FROM Pedidos WHERE status='Aberto'";
+            string sql = "SELECT COUNT(*) as pedidos FROM Pedidos WHERE status='Aberto' AND mesa='Delivery' ";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
@@ -89,6 +87,25 @@ namespace Restaurante
                 return "sim";
             }
         }
+        //------------------------------------------------------------------------------
 
+        //Delivery
+        public static string CountPedidosDelivery(int pedidos)
+        {
+            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
+            con.Open();
+            string sql = "SELECT COUNT(*) as pedidos FROM Pedidos WHERE status='Aberto' AND mesa='Delivery'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+            if ((int)dr["pedidos"] == pedidos)
+            {
+                return "não";
+            }
+            else
+            {
+                return "sim";
+            }
+        }
     }
 }
