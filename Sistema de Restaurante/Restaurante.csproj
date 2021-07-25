@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -48,6 +48,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Guna.UI2, Version=2.0.1.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Guna.UI2.WinForms.2.0.1.4\lib\net40\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,6 +73,82 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acesso.cs" />
+    <Compile Include="Atendente.cs" />
+    <Compile Include="Atualizar.cs" />
+    <Compile Include="Base64.cs" />
+    <Compile Include="erro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="erro.Designer.cs">
+      <DependentUpon>erro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDelivery.designer.cs">
+      <DependentUpon>FormDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPratosProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPratosProdutos.designer.cs">
+      <DependentUpon>FormPratosProdutos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistrarPrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistrarPrato.designer.cs">
+      <DependentUpon>FormRegistrarPrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistroDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistroDelivery.designer.cs">
+      <DependentUpon>FormRegistroDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ingrediente.cs" />
+    <Compile Include="Login.cs" />
+    <Compile Include="ModeloAdicional.cs" />
+    <Compile Include="Pedidos.cs" />
+    <Compile Include="pesquisar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pesquisar.designer.cs">
+      <DependentUpon>pesquisar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PratosProdutos.cs" />
+    <Compile Include="RegistroPedido.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sucesso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sucesso.Designer.cs">
+      <DependentUpon>sucesso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModeloAdicional.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModeloAdicional.Designer.cs">
+      <DependentUpon>FormModeloAdicional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIngrediente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIngrediente.Designer.cs">
+      <DependentUpon>FormIngrediente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAcesso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAcesso.Designer.cs">
+      <DependentUpon>FormAcesso.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRegistroPedido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,29 +179,11 @@
     <Compile Include="FormDetalhesPedido.Designer.cs">
       <DependentUpon>FormDetalhesPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormIngredientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormIngredientes.designer.cs">
-      <DependentUpon>FormIngredientes.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormRelatorioPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRelatorioPedidos.designer.cs">
       <DependentUpon>FormRelatorioPedidos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormRegistrarPrato.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormRegistrarPrato.designer.cs">
-      <DependentUpon>FormRegistrarPrato.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormAcesso.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAcesso.Designer.cs">
-      <DependentUpon>FormAcesso.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
@@ -133,21 +203,55 @@
     <Compile Include="FormHomeAtendente.Designer.cs">
       <DependentUpon>FormHomeAtendente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPratosProdutos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPratosProdutos.Designer.cs">
-      <DependentUpon>FormPratosProdutos.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormHomeCozinha.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormHomeCozinha.Designer.cs">
       <DependentUpon>FormHomeCozinha.cs</DependentUpon>
     </Compile>
-    <Compile Include="PratosProdutos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="sugestao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sugestao.Designer.cs">
+      <DependentUpon>sugestao.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="erro.resx">
+      <DependentUpon>erro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDelivery.resx">
+      <DependentUpon>FormDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPratosProdutos.resx">
+      <DependentUpon>FormPratosProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrarPrato.resx">
+      <DependentUpon>FormRegistrarPrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistroDelivery.resx">
+      <DependentUpon>FormRegistroDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pesquisar.resx">
+      <DependentUpon>pesquisar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sucesso.resx">
+      <DependentUpon>sucesso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModeloAdicional.resx">
+      <DependentUpon>FormModeloAdicional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAcesso.resx">
+      <DependentUpon>FormAcesso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAtendente.resx">
       <DependentUpon>FormAtendente.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,20 +264,14 @@
     <EmbeddedResource Include="FormDetalhesPedido.resx">
       <DependentUpon>FormDetalhesPedido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormIngredientes.resx">
-      <DependentUpon>FormIngredientes.cs</DependentUpon>
+    <EmbeddedResource Include="FormIngrediente.resx">
+      <DependentUpon>FormIngrediente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistroPedido.resx">
       <DependentUpon>FormRegistroPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRelatorioPedidos.resx">
       <DependentUpon>FormRelatorioPedidos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistrarPrato.resx">
-      <DependentUpon>FormRegistrarPrato.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAcesso.resx">
-      <DependentUpon>FormAcesso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -184,22 +282,18 @@
     <EmbeddedResource Include="FormHomeCaixa.resx">
       <DependentUpon>FormHomeCaixa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPratosProdutos.resx">
-      <DependentUpon>FormPratosProdutos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormHomeCozinha.resx">
       <DependentUpon>FormHomeCozinha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="sugestao.resx">
+      <DependentUpon>sugestao.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -223,13 +317,41 @@
     <None Include="Resources\Icon Ingredientes.png" />
     <None Include="Resources\Icon Pedido.png" />
     <None Include="Resources\Icon Pratos.png" />
-    <Content Include="Restaurante.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Restaurante_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Restaurante.mdf</DependentUpon>
-    </Content>
+    <None Include="Resources\53450.png" />
+    <None Include="Resources\cash-machine.png" />
+    <None Include="Resources\240_F_210079401_F4ONbo2mipFYjZbCNWqGluCYzhQv4LdA.jpg" />
+    <None Include="Resources\Design sem nome.png" />
+    <None Include="Resources\Design sem nome %281%29.png" />
+    <None Include="Resources\Design sem nome %282%29.png" />
+    <None Include="Resources\WhatsApp_Image_2021-05-15_at_20.51.51-removebg-preview-removebg-preview.png" />
+    <None Include="Resources\logo azul.png" />
+    <None Include="Resources\asd.png" />
+    <None Include="Resources\logo azul 2.png" />
+    <None Include="Resources\botão\Checkmark_28px.png" />
+    <None Include="Resources\botão\Error_28px.png" />
+    <None Include="Resources\botão\Info_28px.png" />
+    <None Include="Resources\botão\Multiply_18px.png" />
+    <None Include="Resources\botão\Warning_28px.png" />
+    <None Include="Resources\botão\bot~es so q azul\Error_28px.png" />
+    <None Include="Resources\icons8-erro-100.png" />
+    <None Include="Resources\icons8-selecionado-100.png" />
+    <None Include="Resources\question_mark_24px.png" />
+    <None Include="Resources\4201dd79-8751-48ca-945f-92d2c815f7ca.png" />
+    <None Include="Resources\question_mark_24px1.png" />
+    <None Include="Resources\depositphotos_380379218-stock-illustration-question-icon-vector-question-mark.jpg" />
+    <None Include="Resources\tenor.gif" />
+    <None Include="Resources\cashier2_118071.png" />
+    <None Include="Resources\chef_icon-icons.com_55046.png" />
+    <None Include="Resources\gentleman_icon-icons.com_55044 %283%29.png" />
+    <None Include="Resources\fone azul.png" />
+    <None Include="Resources\caixa resistradora azul.png" />
+    <None Include="Resources\Chapel azul.png" />
+    <None Include="Resources\Checkmark_28px.png" />
+    <None Include="Resources\Checkmark_28px1.png" />
+    <None Include="Resources\pesquisar branco.png" />
+    <None Include="Resources\pesquisar branco1.png" />
+    <None Include="Resources\pesquisar branco2.png" />
+    <None Include="Resources\fundo bunito splash screen.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -242,6 +364,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Restaurante.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Restaurante_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Restaurante.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

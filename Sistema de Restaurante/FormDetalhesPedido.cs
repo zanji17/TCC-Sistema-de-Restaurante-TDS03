@@ -12,22 +12,36 @@ namespace Restaurante
 {
     public partial class FormDetalhesPedido : Form
     {
-        public FormDetalhesPedido()
+        public int Id { get; set; }
+        public FormDetalhesPedido(int IdPedido)
         {
+            Id = IdPedido;
             InitializeComponent();
         }
 
         private void FormDetalhesPedido_Load(object sender, EventArgs e)
         {
-            dgvRegistro.Columns.Add("ID", "ID");
-            dgvRegistro.Columns.Add("PP", "Prato/Produto");
-            dgvRegistro.Columns.Add("Quantidade", "Quantidade");
-            dgvRegistro.Columns.Add("OBS", "OBS");
-            dgvRegistro.Columns.Add("Adicional", "Adicional");
-            dgvRegistro.Columns.Add("Retirar", "Retirar");
-            dgvRegistro.Columns.Add("Data", "Data");
-            dgvRegistro.Columns.Add("Atendete", "Atendente");
-            dgvRegistro.Columns.Add("Status", "Status");
+            RegistroPedido registro = new RegistroPedido();
+            List<RegistroPedido> lista = registro.listaPratos(Id);
+            dgvRegistro.DataSource = lista;
+            dgvRegistro.Columns.Remove("Mesa");
+            dgvRegistro.Columns.Remove("Cliente");
+            dgvRegistro.Columns.Remove("IdPedido");
+            dgvRegistro.Columns[8].HeaderText = "Situação";
+            dgvRegistro.Columns[1].HeaderText = "Qtd";
+            dgvRegistro.Columns[2].HeaderText = "Prato/Produto";
+            dgvRegistro.Columns[0].Width = 45;
+            dgvRegistro.Columns[1].Width = 50;
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pbFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
