@@ -198,9 +198,9 @@ namespace Restaurante
             this.lblTodosPedidos.ForeColor = System.Drawing.Color.Black;
             this.lblTodosPedidos.Location = new System.Drawing.Point(499, 320);
             this.lblTodosPedidos.Name = "lblTodosPedidos";
-            this.lblTodosPedidos.Size = new System.Drawing.Size(212, 29);
+            this.lblTodosPedidos.Size = new System.Drawing.Size(190, 29);
             this.lblTodosPedidos.TabIndex = 59;
-            this.lblTodosPedidos.Text = "Deliverys Finalizados";
+            this.lblTodosPedidos.Text = "Delivery Finalizado";
             // 
             // lblMeusPedidos
             // 
@@ -209,9 +209,9 @@ namespace Restaurante
             this.lblMeusPedidos.ForeColor = System.Drawing.Color.Black;
             this.lblMeusPedidos.Location = new System.Drawing.Point(506, 111);
             this.lblMeusPedidos.Name = "lblMeusPedidos";
-            this.lblMeusPedidos.Size = new System.Drawing.Size(199, 29);
+            this.lblMeusPedidos.Size = new System.Drawing.Size(188, 29);
             this.lblMeusPedidos.TabIndex = 60;
-            this.lblMeusPedidos.Text = "Deliverys em aberto";
+            this.lblMeusPedidos.Text = "Delivery em aberto";
             // 
             // guna2BorderlessForm1
             // 

@@ -173,7 +173,7 @@ namespace Restaurante
             this.btnRegistrarPedido.ShadowDecoration.Parent = this.btnRegistrarPedido;
             this.btnRegistrarPedido.Size = new System.Drawing.Size(162, 44);
             this.btnRegistrarPedido.TabIndex = 54;
-            this.btnRegistrarPedido.Text = "Registrar Pedido";
+            this.btnRegistrarPedido.Text = "Registrar Prato";
             this.btnRegistrarPedido.UseTransparentBackground = true;
             this.btnRegistrarPedido.Click += new System.EventHandler(this.btnRegistrarPedido_Click);
             // 
