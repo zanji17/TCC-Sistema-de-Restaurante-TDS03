@@ -30,9 +30,9 @@ namespace Restaurante
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.clbCategoria = new System.Windows.Forms.CheckedListBox();
             this.clbIngredientes = new System.Windows.Forms.CheckedListBox();
             this.lblCategoria = new System.Windows.Forms.Label();
@@ -65,6 +65,7 @@ namespace Restaurante
             this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
             this.dgvPratosProdutos = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.txtValor = new Guna.UI2.WinForms.Guna2TextBox();
             this.painel_botoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.paiel_topo.SuspendLayout();
@@ -406,7 +407,7 @@ namespace Restaurante
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Yu Gothic", 10.25F);
-            this.label3.Location = new System.Drawing.Point(343, 538);
+            this.label3.Location = new System.Drawing.Point(343, 528);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 18);
             this.label3.TabIndex = 65;
@@ -428,7 +429,7 @@ namespace Restaurante
             this.cbModelo.HoverState.Parent = this.cbModelo;
             this.cbModelo.ItemHeight = 30;
             this.cbModelo.ItemsAppearance.Parent = this.cbModelo;
-            this.cbModelo.Location = new System.Drawing.Point(254, 559);
+            this.cbModelo.Location = new System.Drawing.Point(254, 549);
             this.cbModelo.Name = "cbModelo";
             this.cbModelo.ShadowDecoration.Parent = this.cbModelo;
             this.cbModelo.Size = new System.Drawing.Size(274, 36);
@@ -514,30 +515,30 @@ namespace Restaurante
             // 
             // dgvPratosProdutos
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvPratosProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvPratosProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvPratosProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPratosProdutos.BackgroundColor = System.Drawing.Color.White;
             this.dgvPratosProdutos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPratosProdutos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvPratosProdutos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPratosProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPratosProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvPratosProdutos.ColumnHeadersHeight = 21;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPratosProdutos.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPratosProdutos.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvPratosProdutos.EnableHeadersVisualStyles = false;
             this.dgvPratosProdutos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvPratosProdutos.Location = new System.Drawing.Point(549, 81);
@@ -571,12 +572,46 @@ namespace Restaurante
             this.dgvPratosProdutos.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvPratosProdutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPratosProdutos_CellClick_1);
             // 
+            // txtValor
+            // 
+            this.txtValor.Animated = true;
+            this.txtValor.AutoRoundedCorners = true;
+            this.txtValor.BackColor = System.Drawing.Color.Transparent;
+            this.txtValor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtValor.BorderRadius = 17;
+            this.txtValor.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtValor.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtValor.DefaultText = "";
+            this.txtValor.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtValor.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtValor.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtValor.DisabledState.Parent = this.txtValor;
+            this.txtValor.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtValor.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtValor.FocusedState.Parent = this.txtValor;
+            this.txtValor.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtValor.ForeColor = System.Drawing.Color.Black;
+            this.txtValor.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtValor.HoverState.Parent = this.txtValor;
+            this.txtValor.Location = new System.Drawing.Point(254, 597);
+            this.txtValor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtValor.Name = "txtValor";
+            this.txtValor.PasswordChar = '\0';
+            this.txtValor.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtValor.PlaceholderText = "Preço";
+            this.txtValor.SelectedText = "";
+            this.txtValor.ShadowDecoration.Parent = this.txtValor;
+            this.txtValor.Size = new System.Drawing.Size(274, 36);
+            this.txtValor.TabIndex = 122;
+            this.txtValor.TextChanged += new System.EventHandler(this.txtValor_TextChanged);
+            // 
             // FormPratosProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Restaurante.Properties.Resources.Design_sem_nome__2_;
             this.ClientSize = new System.Drawing.Size(930, 697);
+            this.Controls.Add(this.txtValor);
             this.Controls.Add(this.dgvPratosProdutos);
             this.Controls.Add(this.guna2Separator2);
             this.Controls.Add(this.guna2VSeparator2);
@@ -653,6 +688,7 @@ namespace Restaurante
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPratosProdutos;
+        private Guna.UI2.WinForms.Guna2TextBox txtValor;
     }
 }
 

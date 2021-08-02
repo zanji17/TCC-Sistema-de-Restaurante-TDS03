@@ -97,6 +97,7 @@ namespace Restaurante
 
         private void FormIngrediente_Load(object sender, EventArgs e)
         {
+            txtValor.Text = "R$0,00";
             atualizaDGV();
         }
 
@@ -137,6 +138,39 @@ namespace Restaurante
         private void pbFechar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtValor_TextChanged(object sender, EventArgs e)
+        {
+            string valor = txtValor.Text.Replace(",", "").Replace(".", "").Replace("R$", "");
+            if (valor == "")
+            {
+                txtValor.Text = "R$0,00";
+            }
+            else if(valor.Length >= 4)
+            {
+                if(valor.Substring(0, 1) == "0")
+                {
+                    txtValor.Text = "R$" + valor.Substring(1, 1)+","+valor.Substring(2, 2);
+                }
+                else
+                {
+                    txtValor.Text = "R$" + valor.Substring(0, valor.Length - 2) + "," + valor.Substring(valor.Length - 2, 2);
+                }
+            }
+            else if(valor.Length < 3)
+            {
+                txtValor.Text = "R$" + 0 + "," + valor;
+            }
+            txtValor.SelectionStart = txtValor.Text.Length;
+        }
+
+        private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -30,9 +30,9 @@ namespace Restaurante
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSair = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnEditar = new Guna.UI2.WinForms.Guna2Button();
@@ -51,6 +51,7 @@ namespace Restaurante
             this.txtTipo = new Guna.UI2.WinForms.Guna2TextBox();
             this.ckAdicional = new Guna.UI2.WinForms.Guna2CheckBox();
             this.txtDetalhes = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtValor = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngred)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource4)).BeginInit();
             this.painel_botoes.SuspendLayout();
@@ -118,7 +119,7 @@ namespace Restaurante
             this.btnCad.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnCad.ForeColor = System.Drawing.Color.White;
             this.btnCad.HoverState.Parent = this.btnCad;
-            this.btnCad.Location = new System.Drawing.Point(97, 437);
+            this.btnCad.Location = new System.Drawing.Point(97, 450);
             this.btnCad.Name = "btnCad";
             this.btnCad.ShadowDecoration.Parent = this.btnCad;
             this.btnCad.Size = new System.Drawing.Size(193, 34);
@@ -174,30 +175,30 @@ namespace Restaurante
             // 
             // dgvIngred
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvIngred.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvIngred.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvIngred.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvIngred.BackgroundColor = System.Drawing.Color.White;
             this.dgvIngred.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvIngred.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvIngred.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIngred.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIngred.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvIngred.ColumnHeadersHeight = 21;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIngred.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIngred.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvIngred.EnableHeadersVisualStyles = false;
             this.dgvIngred.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvIngred.Location = new System.Drawing.Point(396, 119);
@@ -403,8 +404,42 @@ namespace Restaurante
             this.txtDetalhes.PlaceholderText = "Detalhes";
             this.txtDetalhes.SelectedText = "";
             this.txtDetalhes.ShadowDecoration.Parent = this.txtDetalhes;
-            this.txtDetalhes.Size = new System.Drawing.Size(340, 130);
+            this.txtDetalhes.Size = new System.Drawing.Size(340, 88);
             this.txtDetalhes.TabIndex = 59;
+            // 
+            // txtValor
+            // 
+            this.txtValor.Animated = true;
+            this.txtValor.AutoRoundedCorners = true;
+            this.txtValor.BackColor = System.Drawing.Color.Transparent;
+            this.txtValor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtValor.BorderRadius = 17;
+            this.txtValor.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtValor.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtValor.DefaultText = "";
+            this.txtValor.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtValor.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtValor.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtValor.DisabledState.Parent = this.txtValor;
+            this.txtValor.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtValor.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtValor.FocusedState.Parent = this.txtValor;
+            this.txtValor.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtValor.ForeColor = System.Drawing.Color.Black;
+            this.txtValor.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtValor.HoverState.Parent = this.txtValor;
+            this.txtValor.Location = new System.Drawing.Point(23, 394);
+            this.txtValor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtValor.Name = "txtValor";
+            this.txtValor.PasswordChar = '\0';
+            this.txtValor.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtValor.PlaceholderText = "Preço";
+            this.txtValor.SelectedText = "";
+            this.txtValor.ShadowDecoration.Parent = this.txtValor;
+            this.txtValor.Size = new System.Drawing.Size(340, 36);
+            this.txtValor.TabIndex = 60;
+            this.txtValor.TextChanged += new System.EventHandler(this.txtValor_TextChanged);
+            this.txtValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValor_KeyPress);
             // 
             // FormIngrediente
             // 
@@ -413,6 +448,7 @@ namespace Restaurante
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::Restaurante.Properties.Resources.Design_sem_nome__2_;
             this.ClientSize = new System.Drawing.Size(890, 650);
+            this.Controls.Add(this.txtValor);
             this.Controls.Add(this.txtDetalhes);
             this.Controls.Add(this.ckAdicional);
             this.Controls.Add(this.txtTipo);
@@ -469,5 +505,6 @@ namespace Restaurante
         private Guna.UI2.WinForms.Guna2TextBox txtDetalhes;
         private Guna.UI2.WinForms.Guna2CheckBox ckAdicional;
         private Guna.UI2.WinForms.Guna2ControlBox pbFechar;
+        private Guna.UI2.WinForms.Guna2TextBox txtValor;
     }
 }
