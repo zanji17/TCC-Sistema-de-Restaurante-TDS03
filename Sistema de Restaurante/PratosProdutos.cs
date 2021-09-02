@@ -29,6 +29,8 @@ namespace Restaurante
 
         public string Cozinha { get; set; }
 
+        public string Valor { get; set; }
+
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
         //Pratos e Produtos
@@ -102,6 +104,7 @@ namespace Restaurante
                     PP.nome = dt.Rows[i]["nome"].ToString().Trim();
                     PP.tipo = dt.Rows[i]["tipo"].ToString().Trim();
                     PP.Cozinha = dt.Rows[i]["cozinha"].ToString().Trim();
+                    PP.Valor = dt.Rows[i]["preco"].ToString().Trim();
                     con.Close();
                     con.Open();
                     string sql2 = "SELECT Ingredientes.nome FROM PratosProdutos INNER JOIN PratosProdutosIngredientes ON PratosProdutos.IdPratoProduto = PratosProdutosIngredientes.IdPratosProdutos INNER JOIN Ingredientes ON PratosProdutosIngredientes.IdIngredientes = Ingredientes.IdIngrediente WHERE IdPratoProduto = '" + PP.Id + "' ORDER BY nome";
@@ -176,7 +179,7 @@ namespace Restaurante
             return lista;
         }
 
-        public void InserirPrato(string nome, string tipo, string cozinha)
+        public void InserirPrato(string nome, string tipo, string cozinha, string Valor)
         {
             con.Open();
             string sql3 = "SELECT * FROM PratosProdutos WHERE nome='" + nome + "'";
@@ -185,7 +188,7 @@ namespace Restaurante
             if (!dr2.Read()) {
                 con.Close();
                 con.Open();
-                string sql = "INSERT INTO PratosProdutos(nome,tipo,cozinha) VALUES ('" + nome + "', '" + tipo + "', '"+cozinha+"')";
+                string sql = "INSERT INTO PratosProdutos(nome,tipo,cozinha,preco) VALUES ('" + nome + "', '" + tipo + "', '"+cozinha+"', '"+Valor+"')";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
 
@@ -200,13 +203,16 @@ namespace Restaurante
             {
                 using (erro er = new erro("Prato ou Produto já Cadastrado!") { })
                 {
+                    if (DialogResult.OK == er.ShowDialog())
+                    {
 
+                    }
                 }
                 con.Close();
             }
         }
 
-        public void atualizarPrato(string nome, string tipo, int Id, string cozinha)
+        public void atualizarPrato(string nome, string tipo, int Id, string cozinha, string Valor)
         {
             con.Open();
             string sql1 = "SELECT IdPratoProduto FROM PratosProdutos WHERE nome = '" + nome + "'";
@@ -218,12 +224,15 @@ namespace Restaurante
                 {
                     con.Close();
                     con.Open();
-                    string sql = "UPDATE PratosProdutos SET nome = '" + nome + "', tipo = '" + tipo + "', cozinha='"+cozinha+"' WHERE IdPratoProduto = '" + Id + "' ";
+                    string sql = "UPDATE PratosProdutos SET nome = '" + nome + "', tipo = '" + tipo + "', cozinha='"+cozinha+"', preco = '"+Valor+"' WHERE IdPratoProduto = '" + Id + "' ";
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.ExecuteNonQuery();
                     using (sucesso sc = new sucesso() { })
                     {
+                        if (DialogResult.OK == sc.ShowDialog())
+                        {
 
+                        }
                     }
                     con.Close();
                 }
@@ -231,7 +240,10 @@ namespace Restaurante
                 {
                     using (erro er = new erro("Prato ou Produto já Cadastrado!") { })
                     {
+                        if (DialogResult.OK == er.ShowDialog())
+                        {
 
+                        }
                     }
                     con.Close();
                 }
@@ -240,12 +252,15 @@ namespace Restaurante
             {
                 con.Close();
                 con.Open();
-                string sql = "UPDATE PratosProdutos SET nome = '" + nome + "', tipo = '" + tipo + "' WHERE IdPratoProduto = '" + Id + "' ";
+                string sql = "UPDATE PratosProdutos SET nome = '" + nome + "', tipo = '" + tipo + "', preco = '"+Valor+"' WHERE IdPratoProduto = '" + Id + "' ";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
                 using (sucesso sc = new sucesso() { })
                 {
+                    if (DialogResult.OK == sc.ShowDialog())
+                    {
 
+                    }
                 }
                 con.Close();
             }

@@ -20,6 +20,8 @@ namespace Restaurante
 
         public string Detalhes { get; set; }
 
+        public string Valor { get; set; }
+
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
         //Ingredientes
@@ -38,12 +40,13 @@ namespace Restaurante
                 ingred.Tipo = dr["Tipo"].ToString().Trim();
                 ingred.Adicional = dr["Adicional"].ToString().Trim();
                 ingred.Detalhes = dr["detalhe"].ToString().Trim();
+                ingred.Valor = dr["preco"].ToString().Trim();
                 listaIngred.Add(ingred);
             }
             return listaIngred;
         }
 
-        public void Inserir(string Nome, string Tipo, string Adicional, string Detalhes)
+        public void Inserir(string Nome, string Tipo, string Adicional, string Detalhes, string Valor)
         {
             con.Open();
             string sql = "SELECT nome FROM Ingredientes WHERE nome = '" + Nome + "'";
@@ -53,7 +56,7 @@ namespace Restaurante
             {
                 con.Close();
                 con.Open();
-                string sql2 = "INSERT INTO Ingredientes( nome, Tipo, Adicional, detalhe) VALUES('" + Nome + "','" + Tipo + "', '" + Adicional + "','"+Detalhes+"')";
+                string sql2 = "INSERT INTO Ingredientes( nome, Tipo, Adicional, detalhe, preco) VALUES('" + Nome + "','" + Tipo + "', '" + Adicional + "','"+Detalhes+"', '"+Valor+"')";
                 SqlCommand cmd2 = new SqlCommand(sql2, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
@@ -62,13 +65,16 @@ namespace Restaurante
             {
                 using (erro er = new erro("Este nome de ingrediente já está sendo usado!") { })
                 {
+                    if (DialogResult.OK == er.ShowDialog())
+                    {
 
+                    }
                 }
                 con.Close();
             }
         }
 
-        public void Atualizar(string Nome, string Tipo, string Adicional, string Detalhes, int Id)
+        public void Atualizar(string Nome, string Tipo, string Adicional, string Detalhes, int Id, string Valor)
         {
             con.Open();
             string sql = "SELECT IdIngrediente FROM Ingredientes WHERE nome = '" + Nome + "'";
@@ -78,12 +84,15 @@ namespace Restaurante
             {
                 con.Close();
                 con.Open();
-                string sql2 = "UPDATE Ingredientes SET nome = '" + Nome + "', Tipo = '" + Tipo + "', Adicional = '" + Adicional + "', detalhe = '"+Detalhes+ "' WHERE IdIngrediente = '" + Id + "'";
+                string sql2 = "UPDATE Ingredientes SET nome = '" + Nome + "', Tipo = '" + Tipo + "', Adicional = '" + Adicional + "', detalhe = '"+Detalhes+ "', preco = '"+Valor+"' WHERE IdIngrediente = '" + Id + "'";
                 SqlCommand cmd2 = new SqlCommand(sql2, con);
                 cmd2.ExecuteNonQuery();
                 using (sucesso sc = new sucesso() { })
                 {
+                    if (DialogResult.OK == sc.ShowDialog())
+                    {
 
+                    }
                 }
                 con.Close();
             }
@@ -93,12 +102,15 @@ namespace Restaurante
                 {
                     con.Close();
                     con.Open();
-                    string sql2 = "UPDATE Ingredientes SET nome = '" + Nome + "', Tipo = '" + Tipo + "', Adicional = '" + Adicional + "', detalhe = '" + Detalhes + "' WHERE IdIngrediente = '" + Id + "'";
+                    string sql2 = "UPDATE Ingredientes SET nome = '" + Nome + "', Tipo = '" + Tipo + "', Adicional = '" + Adicional + "', detalhe = '" + Detalhes + "', preco = '"+Valor+"' WHERE IdIngrediente = '" + Id + "'";
                     SqlCommand cmd2 = new SqlCommand(sql2, con);
                     cmd2.ExecuteNonQuery();
                     using (sucesso sc = new sucesso() { })
                     {
+                        if (DialogResult.OK == sc.ShowDialog())
+                        {
 
+                        }
                     }
                     con.Close();
                 }
@@ -106,7 +118,10 @@ namespace Restaurante
                 {
                     using (erro er = new erro("Este nome de ingrediente já está sendo usado!") { })
                     {
+                        if (DialogResult.OK == er.ShowDialog())
+                        {
 
+                        }
                     }
                     con.Close();
                 }

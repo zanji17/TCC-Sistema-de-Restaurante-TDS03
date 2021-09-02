@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Restaurante
 {
@@ -28,6 +29,27 @@ namespace Restaurante
             InitializeComponent();
         }
 
+        public void AtualizaAuto()
+        {
+            while (true)
+            {
+                Thread.Sleep(1000);
+                int count = 0;
+                for (int i = 0; i < dgvRegistro.RowCount; i++)
+                {
+                    if ((string)dgvRegistro.Rows[i].Cells[8].Value == "Pronto")
+                    {
+                        count++;
+                    }
+                }
+                string resposta = Atualizar.CountPronto(count, IdPedido);
+                if (resposta == "sim")
+                {
+                    atualizaDGV();
+                }
+            }
+        }
+
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             using (FormRegistrarPrato rp = new FormRegistrarPrato(IdPedido, 0) { })
@@ -42,13 +64,35 @@ namespace Restaurante
         private void FormRegistroPedido_Load(object sender, EventArgs e)
         {
             RegistroPedido rp = new RegistroPedido();
+            List<RegistroPedido> lista = rp.listaPratos(IdPedido);
+            dgvRegistro.DataSource = lista;
+            dgvRegistro.Columns.Remove("Mesa");
+            dgvRegistro.Columns.Remove("Cliente");
+            dgvRegistro.Columns.Remove("IdPedido");
+            dgvRegistro.Columns[0].Width = 45;
+            dgvRegistro.Columns[1].Width = 50;
+            dgvRegistro.Columns[8].HeaderText = "Situação";
+            dgvRegistro.Columns[1].HeaderText = "Qtd";
+            dgvRegistro.Columns[2].HeaderText = "Prato/Produto";
+            for (int i = 0; i < dgvRegistro.RowCount; i++)
+            {
+                if ((string)dgvRegistro.Rows[i].Cells[8].Value == "Pronto")
+                {
+                    dgvRegistro.Rows[i].DefaultCellStyle.BackColor = Color.Gold;
+                }
+            }
+
             rp.Localizar(IdPedido);
             lblMesa.Text = rp.Mesa;
             lblCliente.Text = rp.Cliente;
             Pedidos p = new Pedidos();
             p.BuscaAtendente(IdPedido);
             IdAtendente = p.IdAtendente;
-            atualizaDGV();
+            dgvRegistro.ClearSelection();
+            Row = 0;
+            dgvRegistro.ClearSelection();
+            Thread t = new Thread(new ThreadStart(AtualizaAuto));
+            t.Start();
         }
 
         private void btnConfirmado_Click(object sender, EventArgs e)
@@ -76,7 +120,7 @@ namespace Restaurante
                 {
                     Row = dgvRegistro.CurrentRow.Index;
                 }
-                if (dgvRegistro.Rows[Row].Cells[8].Value.ToString() == "Confirmado")
+                if (dgvRegistro.Rows[Row].Cells[8].Value.ToString() == "Pronto")
                 {
                     RegistroPedido registro = new RegistroPedido();
                     registro.Servido((int)dgvRegistro.Rows[Row].Cells[0].Value);
@@ -89,17 +133,30 @@ namespace Restaurante
         {
             RegistroPedido registro = new RegistroPedido();
             List<RegistroPedido> lista = registro.listaPratos(IdPedido);
-            dgvRegistro.DataSource = lista;
-            dgvRegistro.Columns.Remove("Mesa");
-            dgvRegistro.Columns.Remove("Cliente");
-            dgvRegistro.Columns.Remove("IdPedido");
-            dgvRegistro.Columns[8].HeaderText = "Situação";
-            dgvRegistro.Columns[1].HeaderText = "Qtd";
-            dgvRegistro.Columns[2].HeaderText = "Prato/Produto";
-            dgvRegistro.Columns[0].Width = 45;
-            dgvRegistro.Columns[1].Width = 50;
-            dgvRegistro.ClearSelection();
-            Row = 0;
+            if (dgvRegistro.InvokeRequired)
+            {
+                dgvRegistro.Invoke((MethodInvoker)delegate
+                {
+                    dgvRegistro.DataSource = lista;
+                    dgvRegistro.Columns.Remove("Mesa");
+                    dgvRegistro.Columns.Remove("Cliente");
+                    dgvRegistro.Columns.Remove("IdPedido");
+                    dgvRegistro.Columns[0].Width = 45;
+                    dgvRegistro.Columns[1].Width = 50;
+                    dgvRegistro.Columns[8].HeaderText = "Situação";
+                    dgvRegistro.Columns[1].HeaderText = "Qtd";
+                    dgvRegistro.Columns[2].HeaderText = "Prato/Produto";
+                    for (int i = 0; i < dgvRegistro.RowCount; i++)
+                    {
+                        if ((string)dgvRegistro.Rows[i].Cells[8].Value == "Pronto")
+                        {
+                            dgvRegistro.Rows[i].DefaultCellStyle.BackColor = Color.Gold;
+                        }
+                    }
+                    dgvRegistro.ClearSelection();
+                    Row = 0;
+                });
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)

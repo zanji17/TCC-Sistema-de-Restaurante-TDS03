@@ -41,6 +41,8 @@ namespace Restaurante
                 IdAtendente = pedido.IdAtendente;
             }
             atualizar();
+            dgvMeusPedidos.ClearSelection();
+            dgvTodosPedidos.ClearSelection();
             Thread t = new Thread(new ThreadStart(atualizarTodosPedidos));
             t.Start();
         }
@@ -96,6 +98,22 @@ namespace Restaurante
                         });
                     }
                 }
+
+                for (int i = 0; i < dgvMeusPedidos.RowCount; i++)
+                {
+                    resposta = Atualizar.VerPronto((int)dgvMeusPedidos.Rows[i].Cells[0].Value);
+                    if (resposta == "sim")
+                    {
+                        if (dgvMeusPedidos.Rows[i].DefaultCellStyle.BackColor != Color.Gold)
+                        {
+                            dgvMeusPedidos.Rows[i].DefaultCellStyle.BackColor = Color.Gold;
+                        }
+                    }
+                    else
+                    {
+                        dgvMeusPedidos.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    }
+                }
             }
         }
 
@@ -145,6 +163,8 @@ namespace Restaurante
             dgvTodosPedidos.Columns.Remove("complemento");
             dgvTodosPedidos.Columns.Remove("telefone");
             nPessoas.Value = 1;
+            dgvTodosPedidos.ClearSelection();
+            dgvMeusPedidos.ClearSelection();
         }
 
         private void dgvTodosPedidos_CellClick(object sender, DataGridViewCellEventArgs e)

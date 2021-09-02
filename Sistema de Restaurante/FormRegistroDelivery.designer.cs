@@ -36,9 +36,9 @@ namespace Restaurante
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.painel_botoes = new Guna.UI2.WinForms.Guna2Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnCancelarPedido = new Guna.UI2.WinForms.Guna2Button();
             this.paiel_topo = new Guna.UI2.WinForms.Guna2Panel();
             this.pbFechar = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.btnCancelarPedido = new Guna.UI2.WinForms.Guna2Button();
             this.btnFecharPedido = new Guna.UI2.WinForms.Guna2Button();
             this.btnRegistrarPedido = new Guna.UI2.WinForms.Guna2Button();
             this.btnConfirmado = new Guna.UI2.WinForms.Guna2Button();
@@ -58,6 +58,16 @@ namespace Restaurante
             this.lblCliente = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnPronto = new Guna.UI2.WinForms.Guna2Button();
             this.dgvRegistro = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.lblValorFinal = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnSub = new Guna.UI2.WinForms.Guna2GradientCircleButton();
+            this.btnDesconto = new Guna.UI2.WinForms.Guna2GradientCircleButton();
+            this.btnAdd = new Guna.UI2.WinForms.Guna2GradientCircleButton();
+            this.txtDesconto = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtAumDim = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblTotal = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnReset = new Guna.UI2.WinForms.Guna2Button();
             this.painel_botoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.paiel_topo.SuspendLayout();
@@ -73,6 +83,7 @@ namespace Restaurante
             // 
             this.painel_botoes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(254)))));
             this.painel_botoes.Controls.Add(this.pictureBox1);
+            this.painel_botoes.Controls.Add(this.btnCancelarPedido);
             this.painel_botoes.Dock = System.Windows.Forms.DockStyle.Top;
             this.painel_botoes.Location = new System.Drawing.Point(0, 40);
             this.painel_botoes.Name = "painel_botoes";
@@ -90,6 +101,27 @@ namespace Restaurante
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 26;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnCancelarPedido
+            // 
+            this.btnCancelarPedido.Animated = true;
+            this.btnCancelarPedido.AutoRoundedCorners = true;
+            this.btnCancelarPedido.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelarPedido.BorderRadius = 16;
+            this.btnCancelarPedido.CheckedState.Parent = this.btnCancelarPedido;
+            this.btnCancelarPedido.CustomImages.Parent = this.btnCancelarPedido;
+            this.btnCancelarPedido.FillColor = System.Drawing.Color.Crimson;
+            this.btnCancelarPedido.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarPedido.ForeColor = System.Drawing.Color.White;
+            this.btnCancelarPedido.HoverState.Parent = this.btnCancelarPedido;
+            this.btnCancelarPedido.Location = new System.Drawing.Point(751, 18);
+            this.btnCancelarPedido.Name = "btnCancelarPedido";
+            this.btnCancelarPedido.ShadowDecoration.Parent = this.btnCancelarPedido;
+            this.btnCancelarPedido.Size = new System.Drawing.Size(127, 35);
+            this.btnCancelarPedido.TabIndex = 52;
+            this.btnCancelarPedido.Text = "Cancelar Pedido";
+            this.btnCancelarPedido.UseTransparentBackground = true;
+            this.btnCancelarPedido.Click += new System.EventHandler(this.btnCancelarPedido_Click);
             // 
             // paiel_topo
             // 
@@ -116,42 +148,22 @@ namespace Restaurante
             this.pbFechar.TabIndex = 76;
             this.pbFechar.Click += new System.EventHandler(this.pbFechar_Click);
             // 
-            // btnCancelarPedido
-            // 
-            this.btnCancelarPedido.Animated = true;
-            this.btnCancelarPedido.AutoRoundedCorners = true;
-            this.btnCancelarPedido.BackColor = System.Drawing.Color.Transparent;
-            this.btnCancelarPedido.BorderRadius = 16;
-            this.btnCancelarPedido.CheckedState.Parent = this.btnCancelarPedido;
-            this.btnCancelarPedido.CustomImages.Parent = this.btnCancelarPedido;
-            this.btnCancelarPedido.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(129)))), ((int)(((byte)(172)))));
-            this.btnCancelarPedido.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarPedido.ForeColor = System.Drawing.Color.White;
-            this.btnCancelarPedido.HoverState.Parent = this.btnCancelarPedido;
-            this.btnCancelarPedido.Location = new System.Drawing.Point(736, 217);
-            this.btnCancelarPedido.Name = "btnCancelarPedido";
-            this.btnCancelarPedido.ShadowDecoration.Parent = this.btnCancelarPedido;
-            this.btnCancelarPedido.Size = new System.Drawing.Size(127, 35);
-            this.btnCancelarPedido.TabIndex = 52;
-            this.btnCancelarPedido.Text = "Cancelar Pedido";
-            this.btnCancelarPedido.UseTransparentBackground = true;
-            this.btnCancelarPedido.Click += new System.EventHandler(this.btnCancelarPedido_Click);
-            // 
             // btnFecharPedido
             // 
             this.btnFecharPedido.Animated = true;
             this.btnFecharPedido.AutoRoundedCorners = true;
             this.btnFecharPedido.BackColor = System.Drawing.Color.Transparent;
-            this.btnFecharPedido.BorderRadius = 21;
+            this.btnFecharPedido.BorderRadius = 17;
             this.btnFecharPedido.CheckedState.Parent = this.btnFecharPedido;
             this.btnFecharPedido.CustomImages.Parent = this.btnFecharPedido;
+            this.btnFecharPedido.FillColor = System.Drawing.Color.Gold;
             this.btnFecharPedido.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFecharPedido.ForeColor = System.Drawing.Color.White;
             this.btnFecharPedido.HoverState.Parent = this.btnFecharPedido;
-            this.btnFecharPedido.Location = new System.Drawing.Point(727, 127);
+            this.btnFecharPedido.Location = new System.Drawing.Point(754, 554);
             this.btnFecharPedido.Name = "btnFecharPedido";
             this.btnFecharPedido.ShadowDecoration.Parent = this.btnFecharPedido;
-            this.btnFecharPedido.Size = new System.Drawing.Size(136, 44);
+            this.btnFecharPedido.Size = new System.Drawing.Size(124, 36);
             this.btnFecharPedido.TabIndex = 53;
             this.btnFecharPedido.Text = "Fechar Pedido";
             this.btnFecharPedido.UseTransparentBackground = true;
@@ -185,7 +197,7 @@ namespace Restaurante
             this.btnConfirmado.BorderRadius = 16;
             this.btnConfirmado.CheckedState.Parent = this.btnConfirmado;
             this.btnConfirmado.CustomImages.Parent = this.btnConfirmado;
-            this.btnConfirmado.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(130)))), ((int)(((byte)(255)))));
+            this.btnConfirmado.FillColor = System.Drawing.Color.LimeGreen;
             this.btnConfirmado.Font = new System.Drawing.Font("Yu Gothic", 11.25F);
             this.btnConfirmado.ForeColor = System.Drawing.Color.White;
             this.btnConfirmado.HoverState.Parent = this.btnConfirmado;
@@ -206,6 +218,7 @@ namespace Restaurante
             this.btnCancelar.BorderRadius = 16;
             this.btnCancelar.CheckedState.Parent = this.btnCancelar;
             this.btnCancelar.CustomImages.Parent = this.btnCancelar;
+            this.btnCancelar.FillColor = System.Drawing.Color.Gold;
             this.btnCancelar.Font = new System.Drawing.Font("Yu Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
             this.btnCancelar.HoverState.Parent = this.btnCancelar;
@@ -246,6 +259,7 @@ namespace Restaurante
             this.btnApagar.BorderRadius = 16;
             this.btnApagar.CheckedState.Parent = this.btnApagar;
             this.btnApagar.CustomImages.Parent = this.btnApagar;
+            this.btnApagar.FillColor = System.Drawing.Color.Crimson;
             this.btnApagar.Font = new System.Drawing.Font("Yu Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApagar.ForeColor = System.Drawing.Color.White;
             this.btnApagar.HoverState.Parent = this.btnApagar;
@@ -389,6 +403,7 @@ namespace Restaurante
             this.btnPronto.BorderRadius = 16;
             this.btnPronto.CheckedState.Parent = this.btnPronto;
             this.btnPronto.CustomImages.Parent = this.btnPronto;
+            this.btnPronto.FillColor = System.Drawing.Color.LimeGreen;
             this.btnPronto.Font = new System.Drawing.Font("Yu Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPronto.ForeColor = System.Drawing.Color.White;
             this.btnPronto.HoverState.Parent = this.btnPronto;
@@ -397,7 +412,7 @@ namespace Restaurante
             this.btnPronto.ShadowDecoration.Parent = this.btnPronto;
             this.btnPronto.Size = new System.Drawing.Size(127, 35);
             this.btnPronto.TabIndex = 75;
-            this.btnPronto.Text = "Pronto";
+            this.btnPronto.Text = "OK";
             this.btnPronto.UseTransparentBackground = true;
             this.btnPronto.Click += new System.EventHandler(this.btnPronto_Click);
             // 
@@ -434,7 +449,7 @@ namespace Restaurante
             this.dgvRegistro.ReadOnly = true;
             this.dgvRegistro.RowHeadersVisible = false;
             this.dgvRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRegistro.Size = new System.Drawing.Size(683, 315);
+            this.dgvRegistro.Size = new System.Drawing.Size(683, 211);
             this.dgvRegistro.TabIndex = 76;
             this.dgvRegistro.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvRegistro.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -459,12 +474,221 @@ namespace Restaurante
             this.dgvRegistro.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvRegistro.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // lblValorFinal
+            // 
+            this.lblValorFinal.BackColor = System.Drawing.Color.Transparent;
+            this.lblValorFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.lblValorFinal.Location = new System.Drawing.Point(723, 493);
+            this.lblValorFinal.Name = "lblValorFinal";
+            this.lblValorFinal.Size = new System.Drawing.Size(3, 2);
+            this.lblValorFinal.TabIndex = 78;
+            this.lblValorFinal.Text = null;
+            // 
+            // guna2HtmlLabel2
+            // 
+            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(644, 520);
+            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(82, 22);
+            this.guna2HtmlLabel2.TabIndex = 77;
+            this.guna2HtmlLabel2.Text = "Valor Final: ";
+            // 
+            // btnSub
+            // 
+            this.btnSub.Animated = true;
+            this.btnSub.BackColor = System.Drawing.Color.Transparent;
+            this.btnSub.BorderColor = System.Drawing.Color.White;
+            this.btnSub.BorderRadius = 20;
+            this.btnSub.BorderThickness = 1;
+            this.btnSub.CheckedState.Parent = this.btnSub;
+            this.btnSub.CustomImages.Parent = this.btnSub;
+            this.btnSub.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(120)))), ((int)(((byte)(255)))));
+            this.btnSub.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.btnSub.ForeColor = System.Drawing.Color.White;
+            this.btnSub.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btnSub.HoverState.Parent = this.btnSub;
+            this.btnSub.Location = new System.Drawing.Point(585, 512);
+            this.btnSub.Name = "btnSub";
+            this.btnSub.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnSub.ShadowDecoration.Parent = this.btnSub;
+            this.btnSub.Size = new System.Drawing.Size(40, 36);
+            this.btnSub.TabIndex = 83;
+            this.btnSub.Text = "SB";
+            this.btnSub.UseTransparentBackground = true;
+            this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
+            // 
+            // btnDesconto
+            // 
+            this.btnDesconto.Animated = true;
+            this.btnDesconto.BackColor = System.Drawing.Color.Transparent;
+            this.btnDesconto.BorderColor = System.Drawing.Color.White;
+            this.btnDesconto.BorderRadius = 20;
+            this.btnDesconto.BorderThickness = 1;
+            this.btnDesconto.CheckedState.Parent = this.btnDesconto;
+            this.btnDesconto.CustomImages.Parent = this.btnDesconto;
+            this.btnDesconto.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(120)))), ((int)(((byte)(255)))));
+            this.btnDesconto.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.btnDesconto.ForeColor = System.Drawing.Color.White;
+            this.btnDesconto.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btnDesconto.HoverState.Parent = this.btnDesconto;
+            this.btnDesconto.Location = new System.Drawing.Point(585, 554);
+            this.btnDesconto.Name = "btnDesconto";
+            this.btnDesconto.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnDesconto.ShadowDecoration.Parent = this.btnDesconto;
+            this.btnDesconto.Size = new System.Drawing.Size(40, 36);
+            this.btnDesconto.TabIndex = 82;
+            this.btnDesconto.Text = "OK";
+            this.btnDesconto.UseTransparentBackground = true;
+            this.btnDesconto.Click += new System.EventHandler(this.btnDesconto_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Animated = true;
+            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdd.BorderColor = System.Drawing.Color.White;
+            this.btnAdd.BorderRadius = 20;
+            this.btnAdd.BorderThickness = 1;
+            this.btnAdd.CheckedState.Parent = this.btnAdd;
+            this.btnAdd.CustomImages.Parent = this.btnAdd;
+            this.btnAdd.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(120)))), ((int)(((byte)(255)))));
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btnAdd.HoverState.Parent = this.btnAdd;
+            this.btnAdd.Location = new System.Drawing.Point(543, 512);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnAdd.ShadowDecoration.Parent = this.btnAdd;
+            this.btnAdd.Size = new System.Drawing.Size(40, 36);
+            this.btnAdd.TabIndex = 81;
+            this.btnAdd.Text = "AD";
+            this.btnAdd.UseTransparentBackground = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // txtDesconto
+            // 
+            this.txtDesconto.Animated = true;
+            this.txtDesconto.AutoRoundedCorners = true;
+            this.txtDesconto.BackColor = System.Drawing.Color.Transparent;
+            this.txtDesconto.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDesconto.BorderRadius = 17;
+            this.txtDesconto.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtDesconto.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDesconto.DefaultText = "";
+            this.txtDesconto.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDesconto.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDesconto.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDesconto.DisabledState.Parent = this.txtDesconto;
+            this.txtDesconto.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDesconto.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDesconto.FocusedState.Parent = this.txtDesconto;
+            this.txtDesconto.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtDesconto.ForeColor = System.Drawing.Color.Black;
+            this.txtDesconto.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDesconto.HoverState.Parent = this.txtDesconto;
+            this.txtDesconto.Location = new System.Drawing.Point(396, 555);
+            this.txtDesconto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDesconto.Name = "txtDesconto";
+            this.txtDesconto.PasswordChar = '\0';
+            this.txtDesconto.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDesconto.PlaceholderText = "Desconto %";
+            this.txtDesconto.SelectedText = "";
+            this.txtDesconto.ShadowDecoration.Parent = this.txtDesconto;
+            this.txtDesconto.Size = new System.Drawing.Size(183, 36);
+            this.txtDesconto.TabIndex = 80;
+            this.txtDesconto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesconto_KeyPress);
+            // 
+            // txtAumDim
+            // 
+            this.txtAumDim.Animated = true;
+            this.txtAumDim.AutoRoundedCorners = true;
+            this.txtAumDim.BackColor = System.Drawing.Color.Transparent;
+            this.txtAumDim.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtAumDim.BorderRadius = 17;
+            this.txtAumDim.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtAumDim.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtAumDim.DefaultText = "";
+            this.txtAumDim.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtAumDim.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtAumDim.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtAumDim.DisabledState.Parent = this.txtAumDim;
+            this.txtAumDim.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtAumDim.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtAumDim.FocusedState.Parent = this.txtAumDim;
+            this.txtAumDim.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtAumDim.ForeColor = System.Drawing.Color.Black;
+            this.txtAumDim.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtAumDim.HoverState.Parent = this.txtAumDim;
+            this.txtAumDim.Location = new System.Drawing.Point(396, 511);
+            this.txtAumDim.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAumDim.Name = "txtAumDim";
+            this.txtAumDim.PasswordChar = '\0';
+            this.txtAumDim.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtAumDim.PlaceholderText = "Aumentar/Diminuir";
+            this.txtAumDim.SelectedText = "";
+            this.txtAumDim.ShadowDecoration.Parent = this.txtAumDim;
+            this.txtAumDim.Size = new System.Drawing.Size(146, 36);
+            this.txtAumDim.TabIndex = 79;
+            this.txtAumDim.TextChanged += new System.EventHandler(this.txtAumDim_TextChanged);
+            this.txtAumDim.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAumDim_KeyPress);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.lblTotal.Location = new System.Drawing.Point(228, 492);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(3, 2);
+            this.lblTotal.TabIndex = 85;
+            this.lblTotal.Text = null;
+            // 
+            // guna2HtmlLabel1
+            // 
+            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(684, 492);
+            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(42, 22);
+            this.guna2HtmlLabel1.TabIndex = 84;
+            this.guna2HtmlLabel1.Text = "Total: ";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Animated = true;
+            this.btnReset.AutoRoundedCorners = true;
+            this.btnReset.BackColor = System.Drawing.Color.Transparent;
+            this.btnReset.BorderRadius = 17;
+            this.btnReset.CheckedState.Parent = this.btnReset;
+            this.btnReset.CustomImages.Parent = this.btnReset;
+            this.btnReset.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.HoverState.Parent = this.btnReset;
+            this.btnReset.Location = new System.Drawing.Point(631, 554);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.ShadowDecoration.Parent = this.btnReset;
+            this.btnReset.Size = new System.Drawing.Size(111, 36);
+            this.btnReset.TabIndex = 86;
+            this.btnReset.Text = "Resetar Valor";
+            this.btnReset.UseTransparentBackground = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // FormRegistroDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Restaurante.Properties.Resources.Design_sem_nome__2_;
             this.ClientSize = new System.Drawing.Size(890, 650);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.guna2HtmlLabel1);
+            this.Controls.Add(this.btnSub);
+            this.Controls.Add(this.btnDesconto);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.txtDesconto);
+            this.Controls.Add(this.txtAumDim);
+            this.Controls.Add(this.lblValorFinal);
+            this.Controls.Add(this.guna2HtmlLabel2);
             this.Controls.Add(this.dgvRegistro);
             this.Controls.Add(this.btnPronto);
             this.Controls.Add(this.lblCliente);
@@ -484,7 +708,6 @@ namespace Restaurante
             this.Controls.Add(this.btnConfirmado);
             this.Controls.Add(this.btnRegistrarPedido);
             this.Controls.Add(this.btnFecharPedido);
-            this.Controls.Add(this.btnCancelarPedido);
             this.Controls.Add(this.painel_botoes);
             this.Controls.Add(this.paiel_topo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -528,5 +751,15 @@ namespace Restaurante
         private Guna.UI2.WinForms.Guna2Button btnPronto;
         private Guna.UI2.WinForms.Guna2ControlBox pbFechar;
         private Guna.UI2.WinForms.Guna2DataGridView dgvRegistro;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblValorFinal;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2GradientCircleButton btnSub;
+        private Guna.UI2.WinForms.Guna2GradientCircleButton btnDesconto;
+        private Guna.UI2.WinForms.Guna2GradientCircleButton btnAdd;
+        private Guna.UI2.WinForms.Guna2TextBox txtDesconto;
+        private Guna.UI2.WinForms.Guna2TextBox txtAumDim;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTotal;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2Button btnReset;
     }
 }

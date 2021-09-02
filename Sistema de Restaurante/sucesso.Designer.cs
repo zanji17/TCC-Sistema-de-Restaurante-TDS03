@@ -112,6 +112,8 @@ namespace Restaurante
             this.Name = "sucesso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.sucesso_FormClosing);
+            this.Load += new System.EventHandler(this.sucesso_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

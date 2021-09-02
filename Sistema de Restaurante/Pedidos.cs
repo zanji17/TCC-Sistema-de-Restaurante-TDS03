@@ -102,7 +102,10 @@ namespace Restaurante
             {
                 using (erro er = new erro("Esse Cliente Possui um Pedido em Aberto!") { })
                 {
+                    if (DialogResult.OK == er.ShowDialog())
+                    {
 
+                    }
                 }
                 con.Close();
             }

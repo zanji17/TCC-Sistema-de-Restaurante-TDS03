@@ -35,14 +35,25 @@ namespace Restaurante
 
         public string Status { get; set; }
 
+        public string Valor { get; set; }
+
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programas\\Restaurante\\Sistema de Restaurante\\Restaurante.mdf;Integrated Security=True");
 
         //Home Cozinha
+        public void pronto(int IdPPP)
+        {
+            con.Open();
+            string sql = "UPDATE PedidosPratosProdutos SET status = 'Pronto' WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
         public List<RegistroPedido> listaConfirmados(string[] rapidos)
         {
             List<RegistroPedido> lista = new List<RegistroPedido>();
             con.Open();
-            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.status = 'Aberto' AND PedidosPratosProdutos.status = 'Confirmado' AND PratosProdutos.cozinha = 'S' AND tipo NOT IN (";
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.status = 'Aberto' AND (PedidosPratosProdutos.status = 'Confirmado' OR PedidosPratosProdutos.status = 'Pronto') AND PratosProdutos.cozinha = 'S' AND tipo NOT IN (";
             int count = 0;
             {
                 for (int i = 0; i < rapidos.Length; i++)
@@ -58,7 +69,7 @@ namespace Restaurante
             sql += ") ORDER BY data ASC";
             if (rapidos.Length == 0)
             {
-                sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.status = 'Aberto' AND PedidosPratosProdutos.status = 'Confirmado' AND PratosProdutos.cozinha = 'S' ORDER BY data ASC";
+                sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.status = 'Aberto' AND (PedidosPratosProdutos.status = 'Confirmado' OR PedidosPratosProdutos.status = 'Pronto') AND PratosProdutos.cozinha = 'S' ORDER BY data ASC";
             }
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -133,7 +144,7 @@ namespace Restaurante
         {
             List<RegistroPedido> lista = new List<RegistroPedido>();
             con.Open();
-            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.status = 'Aberto' AND PedidosPratosProdutos.status = 'Confirmado' AND PratosProdutos.cozinha = 'S' AND tipo in (";
+            string sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.status = 'Aberto' AND (PedidosPratosProdutos.status = 'Confirmado' OR PedidosPratosProdutos.status = 'Pronto') AND PratosProdutos.cozinha = 'S' AND tipo in (";
             int count = 0;
             for (int i = 0; i < rapidos.Length; i++)
             {
@@ -147,7 +158,7 @@ namespace Restaurante
             sql += ") ORDER BY data ASC";
             if (rapidos.Length == 0)
             {
-                sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.status = 'Aberto' AND PedidosPratosProdutos.status = 'Confirmado' AND PratosProdutos.cozinha = 'S' AND tipo in ('none')";
+                sql = "SELECT Pedidos.nome as cliente, Pedidos.mesa, IdPedidoPratoProduto, PratosProdutos.nome as prato, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente, Pedidos.IdPedido FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.status = 'Aberto' AND (PedidosPratosProdutos.status = 'Confirmado' OR PedidosPratosProdutos.status = 'Pronto') AND PratosProdutos.cozinha = 'S' AND tipo in ('none')";
             }
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -316,7 +327,7 @@ namespace Restaurante
         {
             List<RegistroPedido> lista = new List<RegistroPedido>();
             con.Open();
-            string sql = "SELECT IdPedidoPratoProduto, PratosProdutos.nome, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.IdPedido = '" + Id + "'";
+            string sql = "SELECT IdPedidoPratoProduto, PratosProdutos.preco, PratosProdutos.nome, PedidosPratosProdutos.quantidade, obs, PedidosPratosProdutos.data, PedidosPratosProdutos.status, PedidosPratosProdutos.status, PedidosPratosProdutos.IdAtendente FROM Pedidos INNER JOIN PedidosPratosProdutos ON Pedidos.IdPedido = PedidosPratosProdutos.IdPedido INNER JOIN PratosProdutos ON PedidosPratosProdutos.IdPratoProduto = PratosProdutos.IdPratoProduto WHERE Pedidos.IdPedido = '" + Id + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -337,23 +348,25 @@ namespace Restaurante
                 }
                 registro.Status = dt.Rows[i]["status"].ToString().Trim();
                 con.Open();
-                string sql2 = "SELECT Ingredientes.nome FROM Ingredientes INNER JOIN AdicionaisRetirados ON Ingredientes.IdIngrediente = AdicionaisRetirados.IdIngredientes INNER JOIN PedidosPratosProdutos ON AdicionaisRetirados.IdPedidosPratosProdutos = PedidosPratosProdutos.IdPedidoPratoProduto WHERE AdicionaisRetirados.Status = 'Adicional' AND PedidosPratosProdutos.IdPedidoPratoProduto=@Id";
+                string sql2 = "SELECT Ingredientes.nome, Ingredientes.preco FROM Ingredientes INNER JOIN AdicionaisRetirados ON Ingredientes.IdIngrediente = AdicionaisRetirados.IdIngredientes INNER JOIN PedidosPratosProdutos ON AdicionaisRetirados.IdPedidosPratosProdutos = PedidosPratosProdutos.IdPedidoPratoProduto WHERE AdicionaisRetirados.Status = 'Adicional' AND PedidosPratosProdutos.IdPedidoPratoProduto=@Id";
                 SqlCommand cmd2 = new SqlCommand(sql2, con);
                 cmd2.Parameters.AddWithValue("@Id", SqlDbType.Int).Value = (int)dt.Rows[i]["IdPedidoPratoProduto"];
                 SqlDataReader dr = cmd2.ExecuteReader();
                 int count = 0;
+                double valor=0;
                 while (dr.Read())
                 {
                     if (count > 1)
                     {
-                        registro.Adicional += ", ";
+                        registro.Adicional += ", "; 
                     }
                     registro.Adicional += dr["nome"].ToString().Trim();
+                    valor += Convert.ToInt32(dr["preco"].ToString().Trim().Replace("R$","").Replace(",", "").Replace(".",""));
                 }
                 con.Close();
 
                 con.Open();
-                string sql3 = "SELECT Ingredientes.nome FROM Ingredientes INNER JOIN AdicionaisRetirados ON Ingredientes.IdIngrediente = AdicionaisRetirados.IdIngredientes INNER JOIN PedidosPratosProdutos ON AdicionaisRetirados.IdPedidosPratosProdutos = PedidosPratosProdutos.IdPedidoPratoProduto WHERE AdicionaisRetirados.Status = 'Retirar' AND PedidosPratosProdutos.IdPedidoPratoProduto=@Id";
+                string sql3 = "SELECT Ingredientes.nome, Ingredientes.preco FROM Ingredientes INNER JOIN AdicionaisRetirados ON Ingredientes.IdIngrediente = AdicionaisRetirados.IdIngredientes INNER JOIN PedidosPratosProdutos ON AdicionaisRetirados.IdPedidosPratosProdutos = PedidosPratosProdutos.IdPedidoPratoProduto WHERE AdicionaisRetirados.Status = 'Retirar' AND PedidosPratosProdutos.IdPedidoPratoProduto=@Id";
                 SqlCommand cmd3 = new SqlCommand(sql3, con);
                 cmd3.Parameters.AddWithValue("@Id", SqlDbType.Int).Value = (int)dt.Rows[i]["IdPedidoPratoProduto"];
                 SqlDataReader dr2 = cmd3.ExecuteReader();
@@ -365,8 +378,24 @@ namespace Restaurante
                         registro.Retirar += ", ";
                     }
                     registro.Retirar += dr2["nome"].ToString().Trim();
+                    valor = valor - Convert.ToInt32(dr["preco"].ToString().ToString().Replace("R$", "").Replace(",", "").Replace(".", ""));
                 }
                 con.Close();
+                string valorFinal;
+                if(dt.Rows[i]["status"].ToString().Trim() == "Servido" || dt.Rows[i]["status"].ToString().Trim() == "OK")
+                {
+                    valor = Convert.ToInt32(dt.Rows[i]["preco"].ToString().Trim().Replace("R$", "").Replace(",", "").Replace(".", "")) + valor;
+                    valorFinal = Convert.ToString(valor);
+                    while (valorFinal.Length < 3)
+                    {
+                        valorFinal = "0" + valorFinal;
+                    }
+                }
+                else
+                {
+                    valorFinal = "000";
+                }
+                registro.Valor = "R$" + valorFinal.Substring(0, valorFinal.Length - 2) + "," + valorFinal.Substring(valorFinal.Length - 2, 2);
 
                 con.Open();
                 string sql4 = "SELECT nome FROM Atendentes WHERE IdAtendente = @Id";
@@ -538,10 +567,10 @@ namespace Restaurante
             con.Close();
         }
 
-        public void Pronto(int IdPPP)
+        public void OK(int IdPPP)
         {
             con.Open();
-            string sql = "UPDATE PedidosPratosProdutos SET status = 'Pronto' WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
+            string sql = "UPDATE PedidosPratosProdutos SET status = 'OK' WHERE IdPedidoPratoProduto = '" + IdPPP + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             con.Close();

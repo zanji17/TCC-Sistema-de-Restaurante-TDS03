@@ -54,6 +54,22 @@ namespace Restaurante
                 if (resposta == "sim")
                 {
                     atualizarDGV();
+                    dgvAberto.ClearSelection();
+                }
+                for (int i = 0; i < dgvAberto.RowCount; i++)
+                {
+                    resposta = Atualizar.VerPronto((int)dgvAberto.Rows[i].Cells[0].Value);
+                    if (resposta == "sim")
+                    {
+                        if (dgvAberto.Rows[i].DefaultCellStyle.BackColor != Color.Gold)
+                        {
+                            dgvAberto.Rows[i].DefaultCellStyle.BackColor = Color.Gold;
+                        }
+                    }
+                    else
+                    {
+                        dgvAberto.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    }
                 }
             }
         }
@@ -80,6 +96,7 @@ namespace Restaurante
                     dgvAberto.Columns.Remove("bairro");
                     dgvAberto.Columns.Remove("complemento");
                     dgvAberto.Columns.Remove("telefone");
+                    dgvAberto.ClearSelection();
                 });
             }
             if (dgvFinalizado.InvokeRequired)
@@ -99,6 +116,7 @@ namespace Restaurante
                     dgvFinalizado.Columns.Remove("complemento");
                     dgvFinalizado.Columns.Remove("telefone");
                     dgvFinalizado.Columns[3].HeaderText = "Situação";
+                    dgvFinalizado.ClearSelection();
                 });
             }
         }

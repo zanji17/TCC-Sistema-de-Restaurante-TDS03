@@ -60,7 +60,10 @@ namespace Restaurante
                     con.Close();
                     using (erro er = new erro("LOGIN já está cadastrado") { })
                     {
+                        if (DialogResult.OK == er.ShowDialog())
+                        {
 
+                        }
                     }
                 }
             }
@@ -69,7 +72,10 @@ namespace Restaurante
                 con.Close();
                 using (erro er = new erro("CPF já está cadastrado") { })
                 {
+                    if (DialogResult.OK == er.ShowDialog())
+                    {
 
+                    }
                 }
             }
         }
@@ -122,7 +128,10 @@ namespace Restaurante
                     cmd2.ExecuteNonQuery();
                     using (sucesso sc = new sucesso() { })
                     {
+                        if (DialogResult.OK == sc.ShowDialog())
+                        {
 
+                        }
                     }
                     con.Close();
                 }
@@ -140,7 +149,10 @@ namespace Restaurante
                         cmd2.ExecuteNonQuery();
                         using (sucesso sc = new sucesso() { })
                         {
+                            if (DialogResult.OK == sc.ShowDialog())
+                            {
 
+                            }
                         }
                         con.Close();
                     }
@@ -149,7 +161,10 @@ namespace Restaurante
                         con.Close();
                         using (erro er = new erro("LOGIN já está cadastrado") { })
                         {
+                            if (DialogResult.OK == er.ShowDialog())
+                            {
 
+                            }
                         }
                     }
                 }
@@ -175,7 +190,10 @@ namespace Restaurante
                         cmd2.ExecuteNonQuery();
                         using (sucesso sc = new sucesso() { })
                         {
+                            if (DialogResult.OK == sc.ShowDialog())
+                            {
 
+                            }
                         }
                         con.Close();
                     }
@@ -193,7 +211,10 @@ namespace Restaurante
                             cmd2.ExecuteNonQuery();
                             using (sucesso sc = new sucesso() { })
                             {
+                                if (DialogResult.OK == sc.ShowDialog())
+                                {
 
+                                }
                             }
                             con.Close();
                         }
@@ -202,7 +223,10 @@ namespace Restaurante
                             con.Close();
                             using (erro er = new erro("LOGIN já está cadastrado") { })
                             {
+                                if (DialogResult.OK == er.ShowDialog())
+                                {
 
+                                }
                             }
                         }
                     }
@@ -211,7 +235,10 @@ namespace Restaurante
                 {
                     using (erro er = new erro("CPF já está cadastrado") { })
                     {
+                        if (DialogResult.OK == er.ShowDialog())
+                        {
 
+                        }
                     }
                 }
             }

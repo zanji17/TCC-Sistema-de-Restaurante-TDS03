@@ -31,7 +31,13 @@ namespace Restaurante
             }
             else
             {
-                MessageBox.Show("Login ou Senha Incorreto. Tente Novamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                using (erro er = new erro("Login ou Senha Incorreto. Tente Novamente!") { })
+                {
+                    if (DialogResult.OK == er.ShowDialog())
+                    {
+
+                    }
+                }
                 con.Close();
             }
         }

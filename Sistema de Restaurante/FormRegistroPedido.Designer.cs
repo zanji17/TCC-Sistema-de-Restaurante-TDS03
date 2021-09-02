@@ -30,9 +30,9 @@ namespace Restaurante
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCancelarTudo = new Guna.UI2.WinForms.Guna2Button();
             this.btnRegistrar = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancelar = new Guna.UI2.WinForms.Guna2Button();
@@ -71,7 +71,7 @@ namespace Restaurante
             this.btnCancelarTudo.BorderRadius = 17;
             this.btnCancelarTudo.CheckedState.Parent = this.btnCancelarTudo;
             this.btnCancelarTudo.CustomImages.Parent = this.btnCancelarTudo;
-            this.btnCancelarTudo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(129)))), ((int)(((byte)(172)))));
+            this.btnCancelarTudo.FillColor = System.Drawing.Color.Crimson;
             this.btnCancelarTudo.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnCancelarTudo.ForeColor = System.Drawing.Color.White;
             this.btnCancelarTudo.HoverState.Parent = this.btnCancelarTudo;
@@ -112,6 +112,7 @@ namespace Restaurante
             this.btnCancelar.BorderRadius = 17;
             this.btnCancelar.CheckedState.Parent = this.btnCancelar;
             this.btnCancelar.CustomImages.Parent = this.btnCancelar;
+            this.btnCancelar.FillColor = System.Drawing.Color.Gold;
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
             this.btnCancelar.HoverState.Parent = this.btnCancelar;
@@ -132,6 +133,7 @@ namespace Restaurante
             this.btnDel.BorderRadius = 17;
             this.btnDel.CheckedState.Parent = this.btnDel;
             this.btnDel.CustomImages.Parent = this.btnDel;
+            this.btnDel.FillColor = System.Drawing.Color.Crimson;
             this.btnDel.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnDel.ForeColor = System.Drawing.Color.White;
             this.btnDel.HoverState.Parent = this.btnDel;
@@ -345,6 +347,7 @@ namespace Restaurante
             this.btnServidos.BorderRadius = 17;
             this.btnServidos.CheckedState.Parent = this.btnServidos;
             this.btnServidos.CustomImages.Parent = this.btnServidos;
+            this.btnServidos.FillColor = System.Drawing.Color.LimeGreen;
             this.btnServidos.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnServidos.ForeColor = System.Drawing.Color.White;
             this.btnServidos.HoverState.Parent = this.btnServidos;
@@ -365,6 +368,7 @@ namespace Restaurante
             this.btnConfirmado.BorderRadius = 17;
             this.btnConfirmado.CheckedState.Parent = this.btnConfirmado;
             this.btnConfirmado.CustomImages.Parent = this.btnConfirmado;
+            this.btnConfirmado.FillColor = System.Drawing.Color.LimeGreen;
             this.btnConfirmado.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.btnConfirmado.ForeColor = System.Drawing.Color.White;
             this.btnConfirmado.HoverState.Parent = this.btnConfirmado;
@@ -385,7 +389,7 @@ namespace Restaurante
             this.btnCancelarPedidos.BorderRadius = 17;
             this.btnCancelarPedidos.CheckedState.Parent = this.btnCancelarPedidos;
             this.btnCancelarPedidos.CustomImages.Parent = this.btnCancelarPedidos;
-            this.btnCancelarPedidos.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(129)))), ((int)(((byte)(172)))));
+            this.btnCancelarPedidos.FillColor = System.Drawing.Color.Crimson;
             this.btnCancelarPedidos.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnCancelarPedidos.ForeColor = System.Drawing.Color.White;
             this.btnCancelarPedidos.HoverState.Parent = this.btnCancelarPedidos;
@@ -400,30 +404,30 @@ namespace Restaurante
             // 
             // dgvRegistro
             // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            this.dgvRegistro.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvRegistro.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRegistro.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRegistro.BackgroundColor = System.Drawing.Color.White;
             this.dgvRegistro.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRegistro.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvRegistro.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRegistro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRegistro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRegistro.ColumnHeadersHeight = 21;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRegistro.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRegistro.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRegistro.EnableHeadersVisualStyles = false;
             this.dgvRegistro.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvRegistro.Location = new System.Drawing.Point(22, 210);

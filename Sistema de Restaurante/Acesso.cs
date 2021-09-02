@@ -60,9 +60,11 @@ namespace Restaurante
             {
                 using (erro er = new erro("Este login já está sendo usado!") { })
                 {
+                    if (DialogResult.OK == er.ShowDialog())
+                    {
 
+                    }
                 }
-                MessageBox.Show("Este login já está sendo usado!", "Erro", MessageBoxButtons.OK,MessageBoxIcon.Error);
                 con.Close();
             }
         }
@@ -81,7 +83,10 @@ namespace Restaurante
                 cmd2.ExecuteNonQuery();
                 using (sucesso sc = new sucesso() { })
                 {
+                    if (DialogResult.OK == sc.ShowDialog())
+                    {
 
+                    }
                 }
                 con.Close();
             }
@@ -96,7 +101,10 @@ namespace Restaurante
                     cmd2.ExecuteNonQuery();
                     using (sucesso sc = new sucesso() { })
                     {
+                        if (DialogResult.OK == sc.ShowDialog())
+                        {
 
+                        }
                     }
                     con.Close();
                 }
@@ -104,7 +112,10 @@ namespace Restaurante
                 {
                     using(erro er = new erro("Este login já está sendo usado!") { })
                     {
+                        if (DialogResult.OK == er.ShowDialog())
+                        {
 
+                        }
                     }
                     con.Close();
                 }

@@ -107,6 +107,12 @@
     <Compile Include="FormRegistroDelivery.designer.cs">
       <DependentUpon>FormRegistroDelivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRegistroPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistroPedido.designer.cs">
+      <DependentUpon>FormRegistroPedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ingrediente.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="ModeloAdicional.cs" />
@@ -148,12 +154,6 @@
     </Compile>
     <Compile Include="FormAcesso.Designer.cs">
       <DependentUpon>FormAcesso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormRegistroPedido.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormRegistroPedido.Designer.cs">
-      <DependentUpon>FormRegistroPedido.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAtendente.cs">
       <SubType>Form</SubType>
@@ -237,6 +237,9 @@
     <EmbeddedResource Include="FormRegistroDelivery.resx">
       <DependentUpon>FormRegistroDelivery.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistroPedido.resx">
+      <DependentUpon>FormRegistroPedido.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pesquisar.resx">
       <DependentUpon>pesquisar.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,9 +269,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormIngrediente.resx">
       <DependentUpon>FormIngrediente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistroPedido.resx">
-      <DependentUpon>FormRegistroPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRelatorioPedidos.resx">
       <DependentUpon>FormRelatorioPedidos.cs</DependentUpon>

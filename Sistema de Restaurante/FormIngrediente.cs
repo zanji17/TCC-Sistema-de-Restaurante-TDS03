@@ -33,7 +33,7 @@ namespace Restaurante
                 {
                     adicional = "S";
                 }
-                ingred.Inserir(txtNome.Text, txtTipo.Text, adicional, txtDetalhes.Text);
+                ingred.Inserir(txtNome.Text, txtTipo.Text, adicional, txtDetalhes.Text, txtValor.Text);
                 atualizaDGV();
             }
         }
@@ -48,7 +48,7 @@ namespace Restaurante
                 {
                     adicional = "S";
                 }
-                ingred.Atualizar(txtNome.Text, txtTipo.Text, adicional, txtDetalhes.Text, Id);
+                ingred.Atualizar(txtNome.Text, txtTipo.Text, adicional, txtDetalhes.Text, Id, txtValor.Text);
                 atualizaDGV();
             }
         }
@@ -72,6 +72,7 @@ namespace Restaurante
             txtTipo.Text = string.Empty;
             txtDetalhes.Text = string.Empty;
             ckAdicional.Checked = false;
+            txtValor.Text = "R$0,00";
         }
 
         private void dgvIngredientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -113,6 +114,7 @@ namespace Restaurante
             txtTipo.Text = string.Empty;
             txtDetalhes.Text = string.Empty;
             ckAdicional.Checked = false;
+            txtValor.Text = "R$0,00";
         }
 
         private void txtTipo_Enter(object sender, EventArgs e)

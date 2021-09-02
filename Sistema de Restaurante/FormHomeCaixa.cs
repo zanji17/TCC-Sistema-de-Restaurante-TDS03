@@ -48,7 +48,9 @@ namespace Restaurante
         {
             atualizarDGV();
             Thread t = new Thread(new ThreadStart(atualizarPedidos));
+            txtAumDim.Text = "R$0,00";
             t.Start();
+            dgvPedidosAbertos.ClearSelection();
         }
 
         public void atualizarDGV()
@@ -101,6 +103,21 @@ namespace Restaurante
                 dgvRegistroPedido.Columns[1].Width = 45;
                 dgvRegistroPedido.Columns[2].HeaderText = "Prato/Produto";
                 dgvRegistroPedido.Columns[7].HeaderText = "Situação";
+                txtAumDim.Text = "R$0,00";
+                txtDesconto.Text = string.Empty;
+                int valor=0;
+                string valorEscrito;
+                for (int i = 0; i < dgvRegistroPedido.RowCount; i++)
+                {
+                    valor += Convert.ToInt32(dgvRegistroPedido.Rows[i].Cells[8].Value.ToString().Replace("R$", "").Replace(",", "").Replace(".", ""));
+                }
+                valorEscrito = Convert.ToString(valor);
+                while (valorEscrito.Length < 3)
+                {
+                    valorEscrito = "0" + valorEscrito;
+                }
+                lblTotal.Text = "R$" + valorEscrito.Substring(0, valorEscrito.Length - 2) + "," + valorEscrito.Substring(valorEscrito.Length - 2, 2);
+                lblValorFinal.Text = "R$" + valorEscrito.Substring(0, valorEscrito.Length - 2) + "," + valorEscrito.Substring(valorEscrito.Length - 2, 2);
             }
         }
 
@@ -130,8 +147,15 @@ namespace Restaurante
                     if (confirmado == false)
                     {
                         registro.fecharPedido((int)dgvPedidosAbertos.Rows[Row].Cells[0].Value);
-                        MessageBox.Show("O Pedido Foi Finalizado com Sucesso!", "Fechado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        using (sucesso sc = new sucesso() { })
+                        {
+                            if (DialogResult.OK == sc.ShowDialog())
+                            {
+
+                            }
+                        }
                         atualizarDGV();
+                        txtAumDim.Text = "R$0,00";
                         dgvRegistroPedido.Columns.Clear();
                     }
                 }
@@ -143,12 +167,98 @@ namespace Restaurante
             dgvRegistroPedido.Columns.Clear();
             dgvPedidosAbertos.ClearSelection();
             lblMesa.Text = string.Empty;
+            txtAumDim.Text = "R$0,00";
         }
 
         private void cbtnDelivery_Click(object sender, EventArgs e)
         {
             FormDelivery d = new FormDelivery();
             d.Show();
+        }
+
+        private void txtAumDim_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDesconto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAumDim_TextChanged(object sender, EventArgs e)
+        {
+            string valor = txtAumDim.Text.Replace(",", "").Replace(".", "").Replace("R$", "");
+            if (valor == "")
+            {
+                txtAumDim.Text = "R$0,00";
+            }
+            else if (valor.Length >= 4)
+            {
+                if (valor.Substring(0, 1) == "0")
+                {
+                    txtAumDim.Text = "R$" + valor.Substring(1, 1) + "," + valor.Substring(2, 2);
+                }
+                else
+                {
+                    txtAumDim.Text = "R$" + valor.Substring(0, valor.Length - 2) + "," + valor.Substring(valor.Length - 2, 2);
+                }
+            }
+            else if (valor.Length < 3)
+            {
+                txtAumDim.Text = "R$" + 0 + "," + valor;
+            }
+            else if(valor.Length == 3)
+            {
+                txtAumDim.Text = "R$" + valor.Substring(0, 1) + "," + valor.Substring(1, 2);
+            }
+            txtAumDim.SelectionStart = txtAumDim.Text.Length;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string valor = Convert.ToString(Convert.ToInt32(lblValorFinal.Text.Replace("R$", "").Replace(",", "").Replace(".", "")) + Convert.ToInt32(txtAumDim.Text.Replace("R$", "").Replace(",", "").Replace(".", "")));
+            while (valor.Length < 3)
+            {
+                valor = "0" + valor;
+            }
+            lblValorFinal.Text = "R$" + valor.Substring(0, valor.Length - 2) + "," + valor.Substring(valor.Length - 2, 2);
+            txtAumDim.Text = "R$0,00";
+        }
+
+        private void btnSub_Click(object sender, EventArgs e)
+        {
+            string valor = Convert.ToString(Convert.ToInt32(lblValorFinal.Text.Replace("R$", "").Replace(",", "").Replace(".", "")) - Convert.ToInt32(txtAumDim.Text.Replace("R$", "").Replace(",", "").Replace(".", "")));
+            while (valor.Length < 3)
+            {
+                valor = "0" + valor;
+            }
+            lblValorFinal.Text = "R$" + valor.Substring(0, valor.Length - 2) + "," + valor.Substring(valor.Length - 2, 2);
+            txtAumDim.Text = "R$0,00";
+        }
+
+        private void btnDesconto_Click(object sender, EventArgs e)
+        {
+            string valor = Convert.ToString(Convert.ToInt32(lblValorFinal.Text.Replace("R$", "").Replace(",", "").Replace(".", "")) - (Convert.ToInt32(lblValorFinal.Text.Replace("R$", "").Replace(",", "").Replace(".", "")) * (Convert.ToDouble(txtDesconto.Text)/100)));
+            while (valor.Length < 3)
+            {
+                valor = "0" + valor;
+            }
+            lblValorFinal.Text = "R$" + valor.Substring(0, valor.Length - 2) + "," + valor.Substring(valor.Length - 2, 2);
+            txtDesconto.Text = string.Empty;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            lblValorFinal.Text = lblTotal.Text;
+            txtAumDim.Text = "R$0,00";
+            txtDesconto.Text = string.Empty;
         }
     }
 }

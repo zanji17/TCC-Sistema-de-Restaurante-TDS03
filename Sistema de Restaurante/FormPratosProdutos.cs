@@ -26,6 +26,7 @@ namespace Restaurante
 
         private void FormPratosProdutos_Load(object sender, EventArgs e)
         {
+            txtValor.Text = "R$0,00";
             PratosProdutos PP = new PratosProdutos();
             List<PratosProdutos> lista = PP.listaTiposIngredientes();
             for (int i = 0; i < lista.Count; i++)
@@ -142,7 +143,7 @@ namespace Restaurante
                 {
                     cozinha = "S";
                 }
-                pratosprodutos.InserirPrato(txtNome.Text.Trim(), txtTipo.Text.Trim(), cozinha);
+                pratosprodutos.InserirPrato(txtNome.Text.Trim(), txtTipo.Text.Trim(), cozinha, txtValor.Text);
                 if (pratosprodutos.IdPPRetorno != 0)
                 {
                     for (var i = 0; i < clbRetirar.Items.Count; i++)
@@ -160,12 +161,17 @@ namespace Restaurante
                         pratosprodutos.IdIngred(nomeing.ToString());
                         pratosprodutos.PratosAdicional(pratosprodutos.IdPPRetorno, pratosprodutos.IdIngRetorno);
                     }
-                    MessageBox.Show("Prato ou Produto Cadastrado com Sucesso!!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     atualizar();
                 }
                 else
                 {
-                    MessageBox.Show("Prato ou Produto já Cadastrado!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    using (erro er = new erro("Prato ou Produto já Cadastrado!") { })
+                    {
+                        if (DialogResult.Yes == er.ShowDialog())
+                        {
+
+                        }
+                    }
                 }
             }
         }
@@ -249,7 +255,7 @@ namespace Restaurante
                 {
                     cozinha = "S";
                 }
-                PP.atualizarPrato(txtNome.Text.Trim(), txtTipo.Text.Trim(), IdPP, cozinha);
+                PP.atualizarPrato(txtNome.Text.Trim(), txtTipo.Text.Trim(), IdPP, cozinha, txtValor.Text);
                 PP.RenovarIng(IdPP);
                 for (int i = 0; i < clbRetirar.Items.Count; i++)
                 {
@@ -266,7 +272,13 @@ namespace Restaurante
                     PP.IdIngred(nomeing.ToString());
                     PP.PratosAdicional(IdPP, PP.IdIngRetorno);
                 }
-                MessageBox.Show("Prato ou Produto Atualizado com Sucesso!!", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                using (sucesso sc = new sucesso() { })
+                {
+                    if (DialogResult.Yes == sc.ShowDialog())
+                    {
+
+                    }
+                }
                 atualizar();
             }
         }
@@ -370,6 +382,7 @@ namespace Restaurante
             IdPP = 0;
             nome = string.Empty;
             ckCozinha.Checked = false;
+            txtValor.Text = "R$0,00";
         }
 
         private void dgvPratosProdutos_CellClick_1(object sender, DataGridViewCellEventArgs e)
@@ -474,6 +487,14 @@ namespace Restaurante
                 txtValor.Text = "R$" + 0 + "," + valor;
             }
             txtValor.SelectionStart = txtValor.Text.Length;
+        }
+
+        private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

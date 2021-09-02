@@ -57,6 +57,7 @@ namespace Restaurante
             this.dgvPratoConfirmado = new Guna.UI2.WinForms.Guna2DataGridView();
             this.dgvPR = new Guna.UI2.WinForms.Guna2DataGridView();
             this.dgvPC = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.btnPronto = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).BeginInit();
             this.painel_botoes.SuspendLayout();
@@ -283,6 +284,7 @@ namespace Restaurante
             this.dgvPratoConfirmado.ThemeStyle.RowsStyle.Height = 22;
             this.dgvPratoConfirmado.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvPratoConfirmado.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvPratoConfirmado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPratoConfirmado_CellClick);
             // 
             // dgvPR
             // 
@@ -341,6 +343,7 @@ namespace Restaurante
             this.dgvPR.ThemeStyle.RowsStyle.Height = 22;
             this.dgvPR.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvPR.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvPR.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPR_CellClick);
             // 
             // dgvPC
             // 
@@ -400,12 +403,34 @@ namespace Restaurante
             this.dgvPC.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvPC.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // btnPronto
+            // 
+            this.btnPronto.Animated = true;
+            this.btnPronto.AutoRoundedCorners = true;
+            this.btnPronto.BackColor = System.Drawing.Color.Transparent;
+            this.btnPronto.BorderRadius = 16;
+            this.btnPronto.CheckedState.Parent = this.btnPronto;
+            this.btnPronto.CustomImages.Parent = this.btnPronto;
+            this.btnPronto.FillColor = System.Drawing.Color.LimeGreen;
+            this.btnPronto.Font = new System.Drawing.Font("Yu Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPronto.ForeColor = System.Drawing.Color.White;
+            this.btnPronto.HoverState.Parent = this.btnPronto;
+            this.btnPronto.Location = new System.Drawing.Point(473, 98);
+            this.btnPronto.Name = "btnPronto";
+            this.btnPronto.ShadowDecoration.Parent = this.btnPronto;
+            this.btnPronto.Size = new System.Drawing.Size(127, 35);
+            this.btnPronto.TabIndex = 76;
+            this.btnPronto.Text = "Pronto";
+            this.btnPronto.UseTransparentBackground = true;
+            this.btnPronto.Click += new System.EventHandler(this.btnPronto_Click);
+            // 
             // FormHomeCozinha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Restaurante.Properties.Resources.Design_sem_nome__2_;
             this.ClientSize = new System.Drawing.Size(890, 650);
+            this.Controls.Add(this.btnPronto);
             this.Controls.Add(this.dgvPC);
             this.Controls.Add(this.dgvPR);
             this.Controls.Add(this.dgvPratoConfirmado);
@@ -474,5 +499,6 @@ namespace Restaurante
         private Guna.UI2.WinForms.Guna2DataGridView dgvPC;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPR;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPratoConfirmado;
+        private Guna.UI2.WinForms.Guna2Button btnPronto;
     }
 }
